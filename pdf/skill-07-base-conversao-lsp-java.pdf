@@ -1,0 +1,394 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R] /Count 7 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3783 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 16.00 Tf 1 0 0 1 54.00 730.00 Tm (Skill 7 * Base de Convers\343o LSP -> Java) Tj
+/F1 8.00 Tf 1 0 0 1 54.00 701.60 Tm (Fonte: skill-07-base-conversao-lsp-java.md) Tj
+/F2 16.00 Tf 1 0 0 1 54.00 667.70 Tm (Skill 7 * Base de Convers\343o LSP -> Java) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.14 * Interna * skill-07-base-conversao-lsp-java.md) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 617.30 Tm (N\343o entra no menu. Aplique as regras globais do Router. Em conflito de assinatura, revalide na Skill) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 603.30 Tm (6 / p\341gina oficial.) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 579.30 Tm (Fronteira: Skill 6 = links/aliases; esta skill = mec\342nica + cat\341logo + exemplos de convers\343o.) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 565.30 Tm (Crescimento do cat\341logo: s\363 incluir equival\352ncia confirmada \(doc oficial / Skill 6\). Proibido) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 551.30 Tm (expandir por infer\352ncia.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 517.30 Tm (Como consultar \(ordem obrigat\363ria\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 488.10 Tm (A. Restri\347\365es + Regra de ouro + Invariantes   <- nunca pular) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 476.20 Tm (B. Workflow \(6 passos\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 464.30 Tm (C. Tipos / sintaxe \(se necess\341rio\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 452.40 Tm (D. Cat\341logo - s\363 a fam\355lia do item LSP) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 440.50 Tm (E. Armadilhas \(checklist r\341pido\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 428.60 Tm (F. Exemplos - s\363 o padr\343o an\341logo) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 416.70 Tm (G. Sa\355da tipada para a Skill 5) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 392.80 Tm (N\343o leia o cat\341logo inteiro de ponta a ponta em toda convers\343o. Localize a fam\355lia no \355ndice abaixo.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 358.80 Tm (\315ndice r\341pido do arquivo) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 331.60 Tm (| Precisa de... | V\341 para | |---|---| | Proibi\347\365es / minutos / Sem Situacao.getMinutos | Restri\347\365es) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 317.60 Tm (absolutas | | Modelo mental LSP->contexto | Regra de ouro | | Passo a passo | Workflow | | Tipagem /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 303.60 Tm (Se->if / Vapara | Tipos e sintaxe | | Esqueleto Apuracao / FechamentoBH | Esqueletos | | DatPro,) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 289.60 Tm (HorSit, FPxMar, hist\363ricos... | Cat\341logo -> fam\355lia | | Erros comuns | Armadilhas | | Par LSP/Java) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 275.60 Tm (pronto | Exemplos sanitizados |) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 241.60 Tm (Fontes oficiais) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 214.40 Tm (| Fonte | URL | Uso | |---|---|---| | Equival\352ncia das fun\347\365es de regras |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 200.40 Tm (https://documentacao.senior.com.br/gestao-de-pessoas-hcm/6.10.4/informacoes-adicionais/rotinas/gpo/i) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 186.40 Tm (ntegracao-controle-ponto-refeitorio/equivalencia-funcoes-regras.htm | Mapa oficial | | \315ndice das) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 172.40 Tm (Fun\347\365es HCM 6.10.4 |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 158.40 Tm (https://documentacao.senior.com.br/gestao-de-pessoas-hcm/6.10.4/customizacoes/funcoes.htm |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 144.40 Tm (Assinatura + contexto do m\351todo |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 120.40 Tm (Cat\341logo abaixo: evid\352ncia confirmada \(salvo nota\). Exemplos: padrao_anexo. Assinatura/contexto) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 106.40 Tm (incompletos no cat\341logo -> abrir \315ndice das Fun\347\365es \(Skill 6\) antes de gerar c\363digo.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 72.40 Tm (Quando usar / n\343o usar) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (1/7) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 3812 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 10.00 Tf 1 0 0 1 54.00 721.00 Tm (| Usar | N\343o usar | |---|---| | Converter/mapear vari\341veis e fun\347\365es de apura\347\343o LSP->Java | S\363) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 707.00 Tm (mentoria; inventar m\351todo; s\363 citar link \(Skill 6\) |) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 673.00 Tm (Restri\347\365es absolutas) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 645.80 Tm (1. Preferir o cat\341logo; se faltar -> Skill 6 -> validacao_manual \(n\343o inventar\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 631.80 Tm (2. Horas em APIs de ponto = minutos inteiros.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 617.80 Tm (3. SQL/cursor -> API sem\342ntica do cat\341logo antes de EntitySession.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 603.80 Tm (4. Proibido getSituacao\(...\).getMinutos\(\) / setMinutos\(...\) - use getHorSit / setHorSit /) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 589.80 Tm (zeraHorasSituacao.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 575.80 Tm (5. Sanitize nomes de cliente em exemplos anexados.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 561.80 Tm (6. Sem Mensagem\(\)/popup em apura\347\343o - preferir mensagemLog.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 547.80 Tm (7. Confirmar se o m\351todo existe no contexto da regra \(apura\347\343o != geral != BH\).) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 513.80 Tm (Regra de ouro) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 486.60 Tm (LSP e Java diferem no modelo de execu\347\343o: vari\341veis/fun\347\365es globais LSP -> m\351todos no objeto de) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 472.60 Tm (contexto. Quem s\363 troca Inicio/Fim por { } produz c\363digo que n\343o compila.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 438.60 Tm (Workflow \(6 passos\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 411.40 Tm (1. Identificar contexto \(apura\347\343o / consist\352ncia / bloqueio / fechamento BH / geral\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 397.40 Tm (2. Inventariar constru\347\365es LSP.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 383.40 Tm (3. Mapear no cat\341logo \(nome e ordem de par\342metros\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 369.40 Tm (4. Traduzir mec\342nica \(getters/setters, arrays->m\351todos, cursor->List, End->retorno\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 355.40 Tm (5. Traduzir sintaxe \(Se->if, = compara\347\343o->==/.isEqual\(\), etc.\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 341.40 Tm (6. Revisar armadilhas.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 307.40 Tm (Invariantes) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 280.20 Tm (1. Toda vari\341vel/fun\347\343o de contexto LSP -> chamada de m\351todo.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 266.20 Tm (2. N\343o inventar assinatura.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 252.20 Tm (3. Conferir ordem de par\342metros.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 238.20 Tm (4. Horas = minutos inteiros.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 224.20 Tm (5. Tipagem forte Java.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 210.20 Tm (6. Sem popup em apura\347\343o.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 196.20 Tm (7. Arrays indexados -> m\351todos/cole\347\365es \(n\343o getApuDiu\(1\) inventado\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 182.20 Tm (8. M\351todo deve existir no contexto da regra.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 148.20 Tm (Tipos e sintaxe) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 121.00 Tm (| LSP | Java | |---|---| | Numero inteiro | int / long | | Numero decimal | double | | Alfa | String) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 107.00 Tm (| | l\363gico 0/1 | boolean | | Data | LocalDate \(ou padr\343o do SDK - n\343o misturar Joda + java.time sem) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 93.00 Tm (necessidade\) | | Hora \(minutos\) | int minutos | | marca\347\343o | Marcacao | | Se / Senao / Enquanto /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 79.00 Tm (Inicio/Fim | if / else / while / { } | | Vapara / labels | while/for + break/continue | | @ ... @ |) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (2/7) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 3390 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 10.00 Tf 1 0 0 1 54.00 730.00 Tm (// | | = compara\347\343o | == / .isEqual\(\) / .equals\(\) | | <> | != |) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 696.00 Tm (Instru\347\365es) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 666.80 Tm (1. Seguir "Como consultar" \(A->G\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 654.90 Tm (2. Identificar contexto) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 643.00 Tm (3. Buscar item s\363 na fam\355lia do Cat\341logo) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 631.10 Tm (4. Assinatura/contexto duvidosos -> \315ndice das Fun\347\365es \(Skill 6\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 619.20 Tm (5. Ausente -> validacao_manual) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 585.30 Tm (Esqueletos de classe) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 550.10 Tm (Apura\347\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 524.70 Tm (@Rule\(description = "Regra de Apuracao"\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 512.80 Tm (public class RegraApuracao extends Apuracao {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 500.90 Tm (@Override) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 489.00 Tm (public void execute\(\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 477.10 Tm (ContextoGeralRH contextoGeral = getContainer\(\).getContextoGeral\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 465.20 Tm (ContextoApuracao contextoApuracao = getContainer\(\).getContextoApuracao\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 453.30 Tm (}) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 441.40 Tm (}) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 409.50 Tm (Fechamento BH) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 384.10 Tm (@Rule\(description = "Regra de Fechamento de Banco de Horas"\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 372.20 Tm (public class RegraFechamentoBH extends FechamentoBH {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 360.30 Tm (@Override) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 348.40 Tm (public void execute\(\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 336.50 Tm (ContextoGeralRH contextoGeral = getContainer\(\).getContextoGeral\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 324.60 Tm (ContextoFechamentoBH contextoFechamentoBH = getContainer\(\).getContextoFechamentoBH\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 312.70 Tm (}) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 300.80 Tm (}) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 254.90 Tm (Cat\341logo de equival\352ncia \(oficial Senior 6.10.4\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 227.70 Tm (Fonte: Equival\352ncia das fun\347\365es de regras. M\351todos tipicamente em contextoApuracao / container -) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 213.70 Tm (confirmar contexto e assinatura no \315ndice das Fun\347\365es.) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 181.70 Tm (Fam\355lias \(\342ncora de busca\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 158.30 Tm (| Fam\355lia | Itens t\355picos LSP | |---|---| | Data / sistema | DatPro, HorSis, DiaSem, DatIni... | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 144.30 Tm (Situa\347\365es | HorSit[], SitAnt[], TotSit[], MotSit | | Horas apuradas/previstas | ApuDiu[], ApuNot[],) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 130.30 Tm (TraDiu, PrvTra[]... | | Marca\347\365es | FPxMar, FLeMar, DatMar, QtdMar... | | Escala / hor\341rio / feriado |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 116.30 Tm (EscAtu, CodHor, FerFil... | | Hist\363ricos / usu\341rio | CarEmp, CodSinEmp, CodUsu... | | Compensa\347\343o / BH /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 102.30 Tm (log | TemCmp[], RetBHRDat, MensagemLog... |) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 70.30 Tm (Data / sistema) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (3/7) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 10 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 5079 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 10.00 Tf 1 0 0 1 54.00 722.00 Tm (| LSP \(Controle de Ponto\) | Java \(Gest\343o do Ponto\) | |---|---| | DatPro \(impl\355cito via) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 708.00 Tm (Ano/Dia/MesPro\) | getData\(\) | | AnoPro | getAnoData\(Date data\) / getData\(\) | | MesPro |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 694.00 Tm (getMesData\(Date data\) | | DiaPro | getDiaData\(Date data\) | | AnoSis / MesSis / DiaSis | getAnoData /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 680.00 Tm (getMesData / getDiaData | | HorSis / ExtSis | Nativo em Java | | DatIni / Datfim | getDataInicial\(\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 666.00 Tm (/ getDataFinal\(\) | | DiaSem, DiaDom...DiaSab | getDiaSem\(Date data\) | | MesAtu | getMesData\(Date data\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 652.00 Tm (| | RetornaAnoData / RetornaDiaData / RetornaMesData | getAnoData / getDiaData / getMesData |) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 620.00 Tm (Situa\347\365es / HorSit) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 596.60 Tm (| LSP | Java | |---|---| | HorSit[] | getHorSit\(int codSit\) / getHorSit\(LocalDate data, int codSit\),) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 582.60 Tm (setHorSit\(int codSit, int horas\), somaHorasSituacao\(...\), zeraHorasSituacao\(...\),) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 568.60 Tm (zeraHorasSituacaoFaixa\(...\), getHorSitFaixa\(...\), getHorSitAnterior\(int... codSit\) | | SitAnt[] |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 554.60 Tm (getHorSitAnterior\(int codSit\) | | TotSit[] / BuscaTotalizadoresSituacoes | getTotalSituacoes\(int) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 540.60 Tm (codigoTotalizador, date data\) \(e overload com intervalo\) | | MotSit | getMotivoAcerto\(int situacao\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 526.60 Tm (|) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 494.60 Tm (Apura\347\343o diurna/noturna / trabalhadas / previstas) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 471.20 Tm (| LSP | Java | |---|---| | ApuDiu[] / ApuNot[] | getHorasSeparadas\(...\) / getHoras\(Marcacao,) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 457.20 Tm (Marcacao, ...\) | | HrtRaD[] / HrtRan[] / TraDiu / TraNot | getHorasTrabalhadas\(int parte\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 443.20 Tm (MinPvd[] / MinPvn[] / PrvTra[] / PrvTrd / PrvTrn / VprVho / VprVin / VprVtr |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 429.20 Tm (getTotalMinutosPrevisto\(...\) / getHorasPrevistas\(...\) / getTotalMinutosPrevistoProrrogado\(...\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 415.20 Tm (FatRed | getHorarioPrevistoColaborador\(...\) | | ExtrasIntervalo | getExtrasIntervalo /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 401.20 Tm (getExtrasIntervaloAnterior / getExtrasIntervaloPosterior | | MinExD[] / MinExn[] / MsaInd[] /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 387.20 Tm (MsaInn[] / IniExt / FimExt / PerExt / PriExt / QtdExt / TipExt / DiaExt | getIntervalosCalculados\(\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 373.20 Tm (/ getIntervaloCalculado\(int indice\) |) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 341.20 Tm (Marca\347\365es) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 317.80 Tm (| LSP | Java | |---|---| | FPxMar / FLeMar / ConGer / DatMar / HorMar / FncMar / OriMar / RlgMar /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 303.80 Tm (UsoMar | getMarcacoesRealizadas\(boolean conger\) | | QtdMar / TotMar |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 289.80 Tm (getQtdMarcacoesRealizadas\(boolean conger\) | | DulMar / HulMar | getMarcacaoAnterior\(\) | | MinJor |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 275.80 Tm (getHorasInterjornadaRealizada\(\) | | MinMJo | getHorasInterjornadaPrevista\(\) |) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 243.80 Tm (Escala / hor\341rio / filial / feriado) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 220.40 Tm (| LSP | Java | |---|---| | EscAtu | getEscala\(\) | | EscEmp / RetEscEmp | getHistoricoEscala\(\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 206.40 Tm (EscTrf | getEscalaHistorico\(\) | | TemTes | getTrocaEscala\(Date data\) | | TemThr |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 192.40 Tm (getTrocaHorario\(Date data\) | | RetornaEscala | getEscalaPrevistaColaborador\(...\) | | CodHor /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 178.40 Tm (RetornaHorarioApurado | getHorario\(\) | | HorEsc / HorTrf | getHorarioEscala\(\) | | HorDFe |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 164.40 Tm (getHorarioOriginalEscala\(\) | | HorFol | getCodigoHorarioFolga\(\) / getHorarioFolga\(\) | | HorPfo |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 150.40 Tm (getHorarioProjecaoFolga\(\) | | RetornaHorario / RetornaBatidaHorario |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 136.40 Tm (getHorarioPrevistoColaborador\(...\) | | NumPer | getNumeroPeriodos\(int codHor\) | | NumInt |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 122.40 Tm (getNumeroIntervalos\(\) | | NinRef | getNumeroIntervaloRefeicao\(\) | | TurInt | getTurmaIntervalo\(\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 108.40 Tm (RetMinRefHTr | getMinutosRefeicaoPrevisto\(\) | | FilEmp / RetFilEmp / DatAltFil / EmpAltFil |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 94.40 Tm (getHistoricoFilial\(\) | | FerFil | getFeriadoFilial\(Date data\) | | VerDatFer | getFeriado\(Date data\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 80.40 Tm (|) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (4/7) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 12 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+12 0 obj
+<< /Length 4268 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 11.00 Tf 1 0 0 1 54.00 722.00 Tm (Hist\363ricos colaborador / usu\341rio) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 698.60 Tm (| LSP | Java | |---|---| | CarEmp / EstCarEmp / RetCarEmp | getHistoricoCargo\(\) | | CcuEmp /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 684.60 Tm (DatAltCcu / RetCcuEmp | getHistoricoCentrodeCusto\(\) | | CodSinEmp / RetSinEmp |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 670.60 Tm (getHistoricoSindicato\(\) | | CodVinEmp / RetVinEmp | getHistoricoVinculo\(\) | | LocEmp / RetLocEmp |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 656.60 Tm (getHistoricoLocal\(...\) | | CodAfs / IniAfs / FimAfs / TemAfs / QtdAfs[] | getHistoricosAfastamento\(\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 642.60 Tm (| | BusCraTit | getHistoricosCracha\(\) / getHistoricosCrachaProvisorio\(\) | | RetApuPon |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 628.60 Tm (getHistoricoApuracao\(colaborador, data\) | | CodUsu | getUsuarioAtivo\(\) | | NomUsu | getUsuario\(long) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 614.60 Tm (codigoUsuario\) | | RetornaDesGrupo / RetornaQtdGrupos | getGrupos\(long codigoUsuario\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 600.60 Tm (AssociaUsuColab | associarUsuarioColaborador\(...\) | | RetColabPorCodUsu | getUsuarioColaborador\(...\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 586.60 Tm (|) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 554.60 Tm (Compensa\347\343o / banco de horas / c\341lculo) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 531.20 Tm (| LSP | Java | |---|---| | TemCmp[] / DtICmp[] / DtFCmp[] / PerCmp[] / QtdCmp[] / SitCmD[] /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 517.20 Tm (SitCmN[] / TipCmp[] | getCompensacoes\(\) / getCompensacoes\(LocalDate data\) | | LimBa1 / LimBa2 |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 503.20 Tm (getEscala\(\) | | RetBHRDat | getSaldoBanco\(int banco, int empresa, int tipo, int cadastro, LocalDate) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 489.20 Tm (data\) | | TipCal | getTipoCalculo\(\) | | MensagemLog | mensagemLog\(String mensagem\) | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 475.20 Tm (VerificaAbrangenciaNumero | getAbrangencia\(string abrangencia, int numero\) | | RetornaCodLoc /) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 461.20 Tm (RetornaNumLoc / RetNivLoc | getCodigoLocal / getNumeroLocal / getQtdNiveisLocal |) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 429.20 Tm (Defini\347\343o de situa\347\365es \(padr\343o complementar\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 405.80 Tm (Cursor R014SIN/R030EMP para CodDsi -> preferir API \(padrao_anexo at\351 confirmar na doc\):) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 379.80 Tm (int codDsi = contextoApuracao.getDefinicaoSituacoes\(\).getCodigo\(\);) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 333.90 Tm (Armadilhas pr\341ticas) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 306.70 Tm (| Armadilha | Corre\347\343o | |---|---| | S\363 trocar sintaxe sem mapear vari\341veis | Invent\341rio +) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 292.70 Tm (getters/setters primeiro | | Copiar ordem de par\342metros LSP | Confirmar no \315ndice das Fun\347\365es | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 278.70 Tm (getSituacao\(\).get/setMinutos | getHorSit / setHorSit / zeraHorasSituacao | | Cursor SQL por reflexo) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 264.70 Tm (| Buscar fam\355lia no cat\341logo | | getHorSit\(variavelDeMinutos\) | 1\272 arg = c\363digo da situa\347\343o | |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 250.70 Tm (Inventar getApuDiu\(1\) | getHoras / getHorasSeparadas | | M\351todo de apura\347\343o em contexto geral |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 236.70 Tm (Confirmar contexto | | Inventar m\351todo | validacao_manual | | Misturar java.time e Joda | Seguir SDK) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 222.70 Tm (/ validacao_manual |) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 188.70 Tm (Exemplos sanitizados \(use s\363 o an\341logo\)) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 153.50 Tm (HorSis + setHorSit) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 128.10 Tm (Se \(HorSis > 870\) Inicio) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 116.20 Tm (HorSit = 120;   @ situa\347\343o 100 @) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 104.30 Tm (Fim;) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 78.40 Tm (LocalTime agora = new LocalTime\(\); // ou padr\343o do projeto) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 66.50 Tm (int minutos = agora.getHourOfDay\(\) * 60 + agora.getMinuteOfHour\(\);) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (5/7) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 14 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+14 0 obj
+<< /Length 3306 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 8.50 Tf 1 0 0 1 70.00 730.00 Tm (if \(minutos > 870\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 718.10 Tm (contextoApuracao.setHorSit\(100, 120\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 706.20 Tm (}) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 674.30 Tm (HorSit - errado vs certo) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 648.90 Tm (// ERRADO) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 637.00 Tm (contexto.getSituacao\(xNorAnt\).setMinutos\(0\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 625.10 Tm (// CERTO) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 613.20 Tm (contexto.zeraHorasSituacao\(xNorAnt\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 601.30 Tm (double v = contexto.getHorSit\(xExDDsr\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 589.40 Tm (contexto.setHorSit\(xExDDsr, v + vNorDes\);) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 557.50 Tm (Marca\347\365es FLeMar/FPxMar -> List) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 532.10 Tm (for \(Marcacao m : contextoApuracao.getMarcacoesRealizadas\(false\)\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 520.20 Tm (if \(m.getData\(\).isAfter\(contextoApuracao.getData\(\)\)\) { /* ... */ }) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 508.30 Tm (}) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 476.40 Tm (End -> retorno \('RetBHRDat'\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 451.00 Tm (// ordem Java != LSP - confirmar no \355ndice) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 439.10 Tm (int saldo = contextoApuracao.getSaldoBanco\(codbhr, numemp, tipcol, numcad,) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 427.20 Tm (new LocalDate\(2014, 9, 24\)\);) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 395.30 Tm (M\372ltiplos End -> objeto) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 369.90 Tm (private ResultadoDiurnoNoturno calculaDiurnoNoturno\(...\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 358.00 Tm (return new ResultadoDiurnoNoturno\(minutosDiurnos, minutosNoturnos\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 346.10 Tm (}) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 314.20 Tm (Troca de situa\347\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 288.80 Tm (private int trocarSituacao\(ContextoApuracao ctx, int origem, int destino, int minutosPendentes\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 276.90 Tm (int minutosOrigem = ctx.getHorSit\(origem\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 265.00 Tm (if \(minutosOrigem >= minutosPendentes && minutosOrigem > 0 && minutosPendentes > 0\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 253.10 Tm (ctx.setHorSit\(destino, minutosPendentes\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 241.20 Tm (ctx.setHorSit\(origem, minutosOrigem - minutosPendentes\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 229.30 Tm (return 0;) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 217.40 Tm (}) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 205.50 Tm (if \(minutosOrigem < minutosPendentes && minutosOrigem > 0 && minutosPendentes > 0\) {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 193.60 Tm (ctx.setHorSit\(destino, minutosOrigem\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 181.70 Tm (ctx.setHorSit\(origem, 0\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 169.80 Tm (return minutosPendentes - minutosOrigem;) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 157.90 Tm (}) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 146.00 Tm (return minutosPendentes;) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 134.10 Tm (}) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 102.20 Tm (EntitySession \(\372ltimo recurso\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 76.80 Tm (ICursor<IEntidadeCustom> cursor = EntitySessionProvider.getSession\(\)) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (6/7) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 16 0 R /Resources << /Font << /F1 17 0 R /F2 18 0 R >> >> >>
+endobj
+16 0 obj
+<< /Length 1561 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-07-base-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 8.50 Tf 1 0 0 1 70.00 730.00 Tm (.newCursor\(IEntidadeCustom.class\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 718.10 Tm (try {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 706.20 Tm (cursor.addFilter\("campoA = :campoA", new MappedParamProvider\("campoA", valorA\)\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 694.30 Tm (cursor.open\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 682.40 Tm (if \(cursor.next\(\)\) { /* read */ }) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 670.50 Tm (} finally {) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 658.60 Tm (cursor.close\(\);) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 646.70 Tm (}) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 622.80 Tm (Justificar aus\352ncia de API; marcar validacao_manual se entidade custom.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 588.80 Tm (Sa\355da para a Skill 5) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 559.60 Tm (contexto: Apuracao | FechamentoBH | outro | indefinido) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 547.70 Tm (item_lsp: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 535.80 Tm (equivalente_java: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 523.90 Tm (evidencia: confirmada | padrao_anexo | validacao_manual) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 512.00 Tm (fonte: equivalencia-funcoes-regras | indice-funcoes | anexo) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 500.10 Tm (limite: ...) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 466.20 Tm (Relacionados) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 439.00 Tm (Skill 6 \(URLs/aliases\) * Skill 5 * Skill 9 \(CHK-SITAPI, CHK-ORDEM, CHK-FIN, CHK-CTXOK\)) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (7/7) Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+18 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 19
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000160 00000 n 
+0000000298 00000 n 
+0000004133 00000 n 
+0000004271 00000 n 
+0000008135 00000 n 
+0000008273 00000 n 
+0000011715 00000 n 
+0000011854 00000 n 
+0000016986 00000 n 
+0000017126 00000 n 
+0000021447 00000 n 
+0000021587 00000 n 
+0000024946 00000 n 
+0000025086 00000 n 
+0000026700 00000 n 
+0000026798 00000 n 
+trailer<< /Size 19 /Root 1 0 R >>
+startxref
+26901
+%%EOF

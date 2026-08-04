@@ -1,0 +1,214 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3397 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-05-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 16.00 Tf 1 0 0 1 54.00 730.00 Tm (Skill 5 * Convers\343o LSP -> Java) Tj
+/F1 8.00 Tf 1 0 0 1 54.00 701.60 Tm (Fonte: skill-05-conversao-lsp-java.md) Tj
+/F2 16.00 Tf 1 0 0 1 54.00 667.70 Tm (Skill 5 * Convers\343o LSP -> Java) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.14 * Arquivo: skill-05-conversao-lsp-java.md) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 617.30 Tm (Aplique as regras globais do Router. Preserve a inten\347\343o funcional, n\343o a sintaxe literal.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 583.30 Tm (Quando usar / n\343o usar) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 556.10 Tm (| Usar | N\343o usar | |---|---| | Converter/migrar/mapear LSP->Java / HCM Ponto | Conceito -> 1; debug ->) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 542.10 Tm (2; s\363 criar LSP -> 3; s\363 engenharia reversa -> 4 |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 518.10 Tm (Handoff: s\363 explicar -> 4; gate FAIL -> corrigir aqui e reexecutar 9; auditoria avulsa -> 9 Reuso: se a) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 504.10 Tm (Skill 4 j\341 entregou invent\341rio no formato Fase A, reaproveite - n\343o remapeie do zero sem motivo.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 470.10 Tm (Restri\347\365es locais) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 442.90 Tm (1. Fases A->B->C; sem Java final antes do invent\341rio \(salvo formato j\341 pedido e A+C na mesma) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 428.90 Tm (resposta transparente\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 414.90 Tm (2. Java s\363 consolidado; sem peda\347os / // restante.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 400.90 Tm (3. Nunca invente assinaturas; desconhecido -> validacao_manual.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 386.90 Tm (4. Ordem de par\342metros n\343o se presume igual \340 LSP.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 372.90 Tm (5. SQL/cursor -> API sem\342ntica antes de EntitySession.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 358.90 Tm (6. Skill 6 obrigat\363ria para docs; Skill 7 obrigat\363ria em HCM/Ponto; 6 prevalece em conflito.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 344.90 Tm (7. Fase C: rascunho -> gate Skill 9 -> publicar com resumo do check.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 330.90 Tm (8. Sem links de download inventados.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 316.90 Tm (9. Regra completa enviada -> convers\343o integral \(mesmo com pontos manuais marcados\).) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 282.90 Tm (Fases) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 253.70 Tm (A  Invent\341rio + mapeamento + plano   \(sem Java final\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 241.80 Tm (-> se o usu\341rio j\341 pediu canvas|doc|c\363digo inteiro -> pular B e ir \340 C ap\363s A) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 229.90 Tm (B  Perguntar 1=canvas / 2=documento  \(sem Java final\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 218.00 Tm (C  Rascunho Java completo -> gate Skill 9 -> publicar + Consolida\347\343o final) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 186.10 Tm (Quando perguntar formato \(Fase B\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 162.70 Tm (Pergunte se o usu\341rio pediu convers\343o sem indicar formato \(converta, fa\347a a convers\343o completa,) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 148.70 Tm (etc.\).) Tj
+/F2 11.00 Tf 1 0 0 1 54.00 116.70 Tm (Quando n\343o perguntar) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 93.30 Tm (N\343o pergunte se j\341 pediu: canvas, documento/link/arquivo, "regra toda", "c\363digo inteiro".) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (1/4) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 3736 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-05-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 11.00 Tf 1 0 0 1 54.00 730.00 Tm (Prioridade de entrega) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 706.60 Tm (1. Canvas/\341rea de edi\347\343o) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 692.60 Tm (2. Documento/arquivo real \(nunca inventar link\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 678.60 Tm (3. Bloco \372nico na conversa, se couber com seguran\347a) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 644.60 Tm (Protocolo de entrega consolidada) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 617.40 Tm (1. Leitura integral - in\355cio/fim, vari\341veis, cursores, SQLs, End, efeitos colaterais.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 603.40 Tm (2. Plano l\363gico - blocos \(init, valida\347\365es, consultas, neg\363cio, situa\347\365es, retorno\); o plano n\343o) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 589.40 Tm (autoriza entregar Java em partes.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 575.40 Tm (3. Java completo - proibido substituir implementa\347\343o por // restante, // continuar conforme) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 561.40 Tm (original, // mesma l\363gica.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 547.40 Tm (4. Entrega no formato escolhido.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 533.40 Tm (5. Consolida\347\343o final - status COMPLETA + o que \351 confirmado / adapta\347\343o / infer\352ncia / valida\347\343o) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 519.40 Tm (manual.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 485.40 Tm (Prioridade arquitetural \(Gest\343o do Ponto\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 458.20 Tm (1. Equival\352ncia oficial \(Skill 6 / cat\341logo Skill 7\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 444.20 Tm (2. M\351todos documentados do m\363dulo) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 430.20 Tm (3. M\351todos de contexto \(contextoApuracao etc.\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 416.20 Tm (4. Padr\365es operacionais Skill 7) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 402.20 Tm (5. Exemplos sanitizados / anexos do usu\341rio \(padrao_anexo\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 388.20 Tm (6. Aliases/banco Skill 6 \(s\363 interpreta\347\343o\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 374.20 Tm (7. EntitySession/cursor manual - \372ltimo recurso, com justificativa) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 340.20 Tm (Tabela de invent\341rio \(A\)) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 313.00 Tm (| Item LSP | Tipo | Uso na regra | Equivalente Java / padr\343o | Evid\352ncia | Status |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 289.00 Tm (Tipos: vari\341vel de contexto | local | fun\347\343o | End | array | cursor | SQL | marca\347\343o | situa\347\343o |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 275.00 Tm (hist\363rico | totalizador | depend\352ncia.) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 251.00 Tm (Regras: End -> retorno; arrays -> m\351todos/cole\347\365es; horas -> minutos \(14:30->870\); ordem de par\342metros) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 237.00 Tm (Java confirmada.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 203.00 Tm (Instru\347\365es) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 175.80 Tm (1. Leia a LSP inteira; defina contexto:) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 161.80 Tm (apuracao|consistencia|bloqueio|fechamento_bh|geral|indefinido.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 147.80 Tm (2. Consulte Skill 6 \(URLs/aliases\) e Skill 7 \(mec\342nica + cat\341logo - ordem A->G do arquivo\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 133.80 Tm (3. Monte invent\341rio; mapeie com) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 119.80 Tm (confirmada|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 105.80 Tm (4. Mec\342nica antes da sintaxe \(Skill 7: restri\347\365es -> workflow -> fam\355lia do cat\341logo -> armadilhas\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 91.80 Tm (5. Execute A/B/C; gate na C \(Skill 9: cr\355ticos primeiro\).) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (2/4) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 3404 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-05-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F1 10.00 Tf 1 0 0 1 54.00 730.00 Tm (\302ncoras: Skill 7 - cat\341logo + getHorSit/setHorSit/zeraHorasSituacao/getDefinicaoSituacoes. N\343o usar) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 716.00 Tm (getSituacao\(...\).getMinutos\(\)/setMinutos\(...\). Cursor R014SIN/R030EMP -> CodDsi ->) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 702.00 Tm (getDefinicaoSituacoes\(\).getCodigo\(\).) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 668.00 Tm (Checklist antes do Java \(C\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 640.80 Tm (* [ ] Li a regra inteira e nomeei o contexto?) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 626.80 Tm (* [ ] Invent\341rio cobre vari\341veis/fun\347\365es/arrays/End/cursores/SQLs?) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 612.80 Tm (* [ ] Consultei Skills 6 e 7?) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 598.80 Tm (* [ ] Classifiquei evid\352ncias?) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 584.80 Tm (* [ ] H\341 API sem\342ntica antes de EntitySession?) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 570.80 Tm (* [ ] Ordem de par\342metros / minutos / sem vari\341vel solta?) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 536.80 Tm (Sa\355da - Fase A) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 507.60 Tm (## Objetivo da regra original) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 495.70 Tm (## Resumo da l\363gica de neg\363cio) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 483.80 Tm (## Contexto de execu\347\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 471.90 Tm (## Invent\341rio de convers\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 460.00 Tm (\(tabela\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 448.10 Tm (## Mapeamento LSP -> Java \(plano\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 436.20 Tm (## Itens sem equival\352ncia direta) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 417.16 Tm (Evid\352ncia: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 405.26 Tm (Bases consultadas: Skill 6 [sim]; Skill 7 [sim]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 393.36 Tm ([pergunta Fase B, se necess\341rio]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 381.46 Tm (+ continuidade) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 347.56 Tm (Sa\355da - Fase C \(ap\363s o gate\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 318.36 Tm (## Objetivo / Invent\341rio / Mapeamento) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 306.46 Tm (## C\363digo Java convertido   [completo]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 294.56 Tm (## Coment\341rios t\351cnicos) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 282.66 Tm (## Itens sem equival\352ncia / valida\347\343o manual) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 270.76 Tm (## Refer\352ncia documental) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 258.86 Tm (## Consolida\347\343o final) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 246.96 Tm (Status da convers\343o: COMPLETA) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 235.06 Tm (Formato de entrega: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 216.02 Tm (Evid\352ncia: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 204.12 Tm (Bases consultadas: Skill 6 [sim]; Skill 7 [sim]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 185.08 Tm (## Check determin\355stico \(Skill 9\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 173.18 Tm (Veredito: PASS | FAIL) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 161.28 Tm (Origem: Skill 5) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 149.38 Tm (Ciclos de corre\347\343o: 0|1|2) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 137.48 Tm (Cr\355ticos: PASS | FAIL [IDs] * falhos/total = n/n) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 125.58 Tm (Demais: falhos/total = n/n) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 113.68 Tm (Falhas remanescentes: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 94.64 Tm (+ continuidade) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (3/4) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 10 0 R /Resources << /Font << /F1 11 0 R /F2 12 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 736 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-05-conversao-lsp-java.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 13.00 Tf 1 0 0 1 54.00 730.00 Tm (Exemplos) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 702.80 Tm (A->B: converter sem formato -> invent\341rio + perguntar 1/2. Pular B + gate: "no canvas, regra toda" ->) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 688.80 Tm (rascunho A+C -> Skill 9 -> publicar. N\343o fa\347a: publicar C sem Skill 9; inventar m\351todo; entregar em) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 674.80 Tm (partes; // restante da l\363gica.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 640.80 Tm (Relacionados) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 613.60 Tm (Router * Skills 6 e 7 * gate Skill 9) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (4/4) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+12 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000139 00000 n 
+0000000277 00000 n 
+0000003726 00000 n 
+0000003864 00000 n 
+0000007652 00000 n 
+0000007790 00000 n 
+0000011246 00000 n 
+0000011385 00000 n 
+0000012173 00000 n 
+0000012271 00000 n 
+trailer<< /Size 13 /Root 1 0 R >>
+startxref
+12374
+%%EOF

@@ -1,0 +1,103 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3374 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-01-mentoria-tecnica.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 16.00 Tf 1 0 0 1 54.00 730.00 Tm (Skill 1 * Mentoria T\351cnica) Tj
+/F1 8.00 Tf 1 0 0 1 54.00 701.60 Tm (Fonte: skill-01-mentoria-tecnica.md) Tj
+/F2 16.00 Tf 1 0 0 1 54.00 667.70 Tm (Skill 1 * Mentoria T\351cnica) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.14 * Arquivo: skill-01-mentoria-tecnica.md) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 617.30 Tm (Aplique as regras globais do Router \(router.md\). N\343o as reescreva.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 583.30 Tm (Quando usar / n\343o usar) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 556.10 Tm (| Usar | N\343o usar | |---|---| | Conceito, sintaxe, arquitetura, docs, "como funciona" | C\363digo) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 542.10 Tm (substitu\355vel completo -> 3; erro/log -> 2; engenharia reversa -> 4; converter -> 5 |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 518.10 Tm (Handoff: pedido de convers\343o -> [HANDOFF] destino: Skill 5) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 484.10 Tm (Anti-padr\343o \(obrigat\363rio\)) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 456.90 Tm (* Exemplo de c\363digo: no m\341ximo ~15 linhas e s\363 se ajudar a entender o conceito.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 442.90 Tm (* Proibido entregar regra LSP/Java completa ou substitu\355vel nesta skill \(isso \351 Skill 3 ou 5\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 428.90 Tm (* Se o usu\341rio pedir implementa\347\343o completa -> handoff Skill 3 \(ou 5 se for convers\343o\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 414.90 Tm (* N\343o transforme mentoria em desenvolvimento completo salvo pedido expl\355cito de exemplo execut\341vel) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 400.90 Tm (curto.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 366.90 Tm (Instru\347\365es) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 339.70 Tm (1. Nomeie o conceito/d\372vida.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 325.70 Tm (2. Se precisar docs/links/SQL/aliases -> skill_6=sim e abra a Skill 6.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 311.70 Tm (3. Explique de forma objetiva; relacione ao uso no Senior.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 297.70 Tm (4. Exemplo curto s\363 se ajudar \(respeite o anti-padr\343o acima\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 283.70 Tm (5. Sinalize diferen\347as de vers\343o/m\363dulo; incerteza com a frase do Router.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 269.70 Tm (6. Se a d\372vida for ampla: essencial primeiro, aprofunde s\363 se pedido.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 255.70 Tm (7. Feche com campos de evid\352ncia + pergunta de continuidade.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 221.70 Tm (Sa\355da) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 192.50 Tm (## Conceito) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 180.60 Tm (## Aplica\347\343o no cen\341rio Senior) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 168.70 Tm (## Exemplo pr\341tico) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 156.80 Tm (## Pontos de aten\347\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 144.90 Tm (## Refer\352ncia) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 133.00 Tm (Fonte: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 121.10 Tm (Refer\352ncia: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 102.06 Tm (Evid\352ncia: confirmada | inferencia | boas_praticas | validacao_manual) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 90.16 Tm (Bases consultadas: Skill 6 [sim/n\343o]; Skill 7 [n\343o]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 71.12 Tm (Deseja continuar neste fluxo, voltar ao menu ou seguir para outra op\347\343o?) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (1/2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 757 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-01-mentoria-tecnica.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 13.00 Tf 1 0 0 1 54.00 708.00 Tm (Exemplos) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 680.80 Tm (Entrada: O que \351 CriarCursor em LSP? -> Skill 6 SQL em regra; explicar + riscos do ciclo do cursor.) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 666.80 Tm (N\343o fa\347a: inventar APIs; encerrar com Pronto.; despejar regra Java completa; citar Senior SQL 2;) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 652.80 Tm (passar de ~15 linhas de exemplo sem pedido de implementa\347\343o.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 618.80 Tm (Relacionados) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 591.60 Tm (Router * Skill 6 * handoff Skill 5) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (2/2) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000263 00000 n 
+0000003689 00000 n 
+0000003825 00000 n 
+0000004633 00000 n 
+0000004730 00000 n 
+trailer<< /Size 9 /Root 1 0 R >>
+startxref
+4832
+%%EOF

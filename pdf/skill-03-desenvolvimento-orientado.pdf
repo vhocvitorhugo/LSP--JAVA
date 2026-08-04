@@ -1,0 +1,104 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3341 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-03-desenvolvimento-orientado.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 16.00 Tf 1 0 0 1 54.00 730.00 Tm (Skill 3 * Desenvolvimento Orientado) Tj
+/F1 8.00 Tf 1 0 0 1 54.00 701.60 Tm (Fonte: skill-03-desenvolvimento-orientado.md) Tj
+/F2 16.00 Tf 1 0 0 1 54.00 667.70 Tm (Skill 3 * Desenvolvimento Orientado) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.14 * Arquivo: skill-03-desenvolvimento-orientado.md) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 617.30 Tm (Aplique as regras globais do Router. N\343o as reescreva.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 583.30 Tm (Quando usar / n\343o usar) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 556.10 Tm (| Usar | N\343o usar | |---|---| | Criar/refatorar regra LSP, rotina, WS, automa\347\343o | Conceito -> 1; s\363) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 542.10 Tm (debug -> 2; s\363 engenharia reversa -> 4; converter -> 5 |) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 518.10 Tm (Handoff: convers\343o -> Skill 5 Desempate 2\3273\3274: use a tabela do Router \(ex.: "revise/refatore" sem bug) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 504.10 Tm (-> esta skill\).) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 470.10 Tm (Instru\347\365es) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 442.90 Tm (1. Declare objetivo funcional + premissas.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 428.90 Tm (2. Skill 6 para sintaxe/aliases/SQL.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 414.90 Tm (3. Escolha a estrat\351gia mais segura; implemente com coment\341rios por bloco.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 400.90 Tm (4. Liste riscos \(performance, transa\347\343o, concorr\352ncia, impacto sist\352mico\) + valida\347\343o manual.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 386.90 Tm (5. Monte rascunho completo \(sem // restante / // implementar demais valida\347\365es\).) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 372.90 Tm (6. Gate Skill 9 \(desenvolvimento_lsp\); se FAIL, corrija at\351 2 ciclos.) Tj
+/F1 10.00 Tf 1 0 0 1 64.00 358.90 Tm (7. Publique c\363digo + resumo Check 9 + evid\352ncia + continuidade.) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 324.90 Tm (Sa\355da) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 295.70 Tm (## Objetivo da implementa\347\343o) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 283.80 Tm (## Premissas adotadas) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 271.90 Tm (## Estrat\351gia t\351cnica) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 260.00 Tm (## C\363digo completo comentado) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 248.10 Tm (## Riscos / impactos) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 236.20 Tm (## Pontos de valida\347\343o manual) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 224.30 Tm (## Refer\352ncia) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 205.26 Tm (Evid\352ncia: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 193.36 Tm (Bases consultadas: Skill 6 [sim/n\343o]; Skill 7 [n\343o]) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 174.32 Tm (## Check determin\355stico \(Skill 9\)) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 162.42 Tm (Veredito: PASS | FAIL) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 150.52 Tm (Origem: Skill 3) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 138.62 Tm (Ciclos de corre\347\343o: 0|1|2) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 126.72 Tm (Cr\355ticos: PASS | FAIL [IDs] * falhos/total = n/n) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 114.82 Tm (Demais: falhos/total = n/n) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 102.92 Tm (Falhas remanescentes: ...) Tj
+/F1 8.50 Tf 1 0 0 1 70.00 83.88 Tm (Deseja continuar neste fluxo, voltar ao menu ou seguir para outra op\347\343o?) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (1/2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 7 0 R /F2 8 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 660 >>
+stream
+BT
+/F1 8.00 Tf 1 0 0 1 54.00 756.00 Tm (LSPCodMind - skill-03-desenvolvimento-orientado.md) Tj
+ET
+54.00 750.00 m 558.00 750.00 l S
+BT
+/F2 13.00 Tf 1 0 0 1 54.00 720.00 Tm (Exemplos) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 692.80 Tm (Entrada: Crie regra LSP que valide colaborador ativo -> rascunho -> gate 9 -> publicar. N\343o fa\347a:) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 678.80 Tm (publicar sem Skill 9; omitir c\363digo com coment\341rios; entregar Java HCM \(Skill 5\).) Tj
+/F2 13.00 Tf 1 0 0 1 54.00 644.80 Tm (Relacionados) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 617.60 Tm (Router * Skill 6 * gate Skill 9 * handoff Skill 5) Tj
+ET
+BT
+/F1 8 Tf 1 0 0 1 296.00 27.00 Tm (2/2) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+8 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000263 00000 n 
+0000003656 00000 n 
+0000003792 00000 n 
+0000004503 00000 n 
+0000004600 00000 n 
+trailer<< /Size 9 /Root 1 0 R >>
+startxref
+4702
+%%EOF
