@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.2 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.3 · Gate obrigatório · `skill-05-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.
 
@@ -24,7 +24,7 @@ Checks binários apenas — cite evidência observável. Proibido “parece ok�
 1. Skill 1 monta RASCUNHO da Fase C (ainda não envia)
 2. Skill 5 no modo gate_obrigatorio
 3. PASS → publica rascunho + resumo do check
-4. FAIL → corrige na Skill 1 → reexecuta 9 (máx. 2 ciclos)
+4. FAIL → corrige na Skill 1 → reexecuta Skill 5 (máx. 2 ciclos)
 5. Ainda FAIL → publica + FAIL transparente + IDs que falharam
 6. Pergunta de continuidade só na resposta final ao usuário
 ```
@@ -65,7 +65,9 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-EVID | `Evidência:` + `Bases consultadas:` | Ausente |
 | CHK-SQL2 | Sem Senior SQL 2 | Recomenda SQL 2 |
 | CHK-SITAPI | `getHorSit`/`setHorSit`/`zeraHorasSituacao` (se manipula situações) | `getSituacao().get/setMinutos` |
-| CHK-FIN | Cursor/`EntitySession` com `finally`/close (se usa cursor) | Abre sem fechar |
+| CHK-FIN | Cursor/`EntitySession` com `finally`/close (se usa ICursor) | Abre sem fechar |
+| CHK-THROWS | `execute()` **sem** `throws Exception` | Declara throws |
+| CHK-SCNAT | Sem descritor `.sc` para tabela `R*` nativa | `.sc` em `Rxxxxx` |
 
 ### Demais (após críticos)
 
@@ -87,6 +89,12 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-SIG | Sanitizado | Vazamento |
 | CHK-COM | Comentários por bloco | Código longo sem comentário |
 | CHK-CONT | Continuidade na resposta **final** | Ausente no final (N/A no rascunho interno) |
+| CHK-NEST | Auxiliares no nível da classe | Método aninhado / código solto fora de método |
+| CHK-SCJSON | Se há `.sc`: JSON puro começando com `{` | Texto/YAML/BOM antes do `{` |
+| CHK-TIPCON | TipCon via SQL/`ContextSession` (se usado) | `col.getTipCon()` |
+| CHK-MARANT | `MarcacaoAnterior` só `diferencaMinutos` (se usado) | `getHora`/`getData` |
+| CHK-RS0 | `IResultSet` índice base-0 (se usado) | base-1 como JDBC |
+| CHK-DBSESS | ContextSession sem close indevido; DBCenter com close (se DML) | Sessão mal gerenciada |
 
 ## Resumo ao usuário (sempre após o gate)
 
@@ -130,7 +138,7 @@ Evidência / Bases consultadas: …
 
 ## Exemplos
 
-Gate PASS após Fase C limpa · FAIL crítico `CHK-COMP` por stub → corrige ≤2 · **Não** publicar sem gate · **Não** pular críticos.
+Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-THROWS`/`CHK-SCNAT` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
 
 ## Relacionados
 

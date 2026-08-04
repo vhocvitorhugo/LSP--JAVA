@@ -8,9 +8,11 @@ description: >-
 ---
 
 # Skill 2 · Base de Documentação e Banco
-Versão: v1.2 · Interna · `skill-02-base-documentacao-banco.md`
+Versão: v1.3 · Interna · `skill-02-base-documentacao-banco.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router (`router.md`).
+
+**Nota:** ContextSession/DBCenter da plataforma G5 (SELECT/DML em Java) **não** autorizam citar ou usar **Senior SQL 2** — continue usando só os links de SQL em regra abaixo.
 
 **Fronteira:** esta skill = **links oficiais + aliases de banco**. Mapeamento LSP→Java, `getHorSit`/`setHorSit`, marcações, esqueletos → **Skill 3** (não duplique aqui).
 

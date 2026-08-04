@@ -8,23 +8,23 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP-JAVA-v1.2-success?style=for-the-badge" alt="LSP→JAVA v1.2" />
+  <img src="https://img.shields.io/badge/LSP-JAVA-v1.3-success?style=for-the-badge" alt="LSP→JAVA v1.3" />
 </p>
 
 ---
 
 O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** na conversão assistida de regras **LSP → Java** no **Senior HCM** (Controle de Ponto e Refeitório / Gestão do Ponto).
 
-**Versão atual: v1.2** — skills renumeradas 01–05; todas mantidas (conversão, docs, padrões, QA interno, gate).
+**Versão atual: v1.3** — mescla do playbook `Treinamento/` (APIs e anti-padrões confirmados em compilação) nas bases de conversão, sem abrir mão de A/B/C, evidência, SQL 2 banido e gate.
 
 ---
 
 ## Funcionalidades
 
-- **Conversão LSP → Java (Skill 1)** — inventário (Fase A), escolha de formato (Fase B), Java consolidado (Fase C)  
-- **Bases internas** — links/aliases oficiais (Skill 2) e catálogo/padrões HCM (Skill 3)  
-- **Check determinístico (Skill 5)** — gate PASS/FAIL obrigatório antes de publicar a Fase C  
-- **QA de treinamento (Skill 4)** — suite interna; não usada no atendimento  
+- **Conversão LSP → Java (Skill 1)** — inventário (Fase A), formato (Fase B), Java consolidado (Fase C); artefatos `USU_*` (interface + `.sc`) quando o inventário exigir  
+- **Bases internas** — links oficiais (Skill 2); catálogo + padrões de compilação + acesso a dados (Skill 3)  
+- **Check determinístico (Skill 5)** — gate ampliado (TipCon, MarcacaoAnterior, `.sc`, throws, sessões)  
+- **QA de treinamento (Skill 4)** — suite interna  
 
 **Fora de escopo:** mentoria genérica, diagnóstico sem conversão, criação/refatoração de LSP sem migrar para Java, engenharia reversa sem objetivo de conversão.
 
@@ -32,47 +32,25 @@ O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** 
 
 ## Arquitetura
 
-O **Prompt Router** (`router.md`) controla boas-vindas, escopo, evidência, sigilo, proibição de Senior SQL 2 e o gate Skill 5.
+| Papel | Arquivo | Fluxo do usuário? |
+| :--- | :--- | :--- |
+| Router | [`router.md`](router.md) | — |
+| Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Sim |
+| Docs / aliases | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Não |
+| Catálogo + mecânica | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Não |
+| QA comportamento | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Não |
+| Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Automático / auditoria |
 
-| Papel | Arquivo | Fluxo do usuário? | Necessária? |
-| :--- | :--- | :--- | :--- |
-| Router (autoridade global) | [`router.md`](router.md) | — | Sim |
-| Conversão LSP → Java | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Sim | Sim — único fluxo |
-| Base docs + links + aliases | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Não | Sim — evidência/links |
-| Base conversão HCM/Ponto | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Não | Sim — catálogo/padrões |
-| QA de comportamento do agente | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Não | Sim — regressão do treinamento |
-| Check determinístico (gate) | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Automático / auditoria | Sim — qualidade da Fase C |
-
-### Contrato operacional
-
-1. Router confirma escopo (conversão) ou recusa fora de escopo.  
-2. Skill 1 responde com fases A → B → C e campos `Evidência` / `Bases consultadas`.  
-3. Publicação da Fase C só após Skill 5.  
-4. Skill 4 só na manutenção do treinamento.  
-
----
-
-## Estrutura do repositório
-
-| Arquivo | Responsabilidade |
-| :--- | :--- |
-| [`README.md`](README.md) | Documentação e versão do projeto |
-| [`router.md`](router.md) | Regras globais, boas-vindas, escopo e roteamento |
-| [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Conversão LSP → Java |
-| [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Links autorizados + aliases |
-| [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Padrões, esqueletos e âncoras de conversão |
-| [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Testes de comportamento |
-| [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Check determinístico |
-| [`pdf/`](pdf/) | PDFs das skills 01–05 |
+**Precedência:** docs Skill 2 → catálogo Skill 3 → `padrao_compilacao` → anexos → `validacao_manual`.
 
 ---
 
 ## Diretrizes críticas
 
-- **Proibido Senior SQL 2** em regras com SQL/cursor.  
-- **Sem achismo:** funções, tabelas e equivalências só com evidência verificável.  
-- **Conversão consolidada:** canvas, arquivo real ou bloco único (sem fracionar).  
-- **Gate Skill 5** obrigatório antes de apresentar Java convertido.  
+- **Proibido Senior SQL 2** (ContextSession/DBCenter ≠ SQL 2).  
+- **Sem achismo** — evidência verificável.  
+- **Conversão consolidada** + **gate Skill 5** antes de publicar.  
+- **`.sc` só para `USU_*`** — nunca para tabela `R*`.  
 
 ---
 
@@ -80,6 +58,7 @@ O **Prompt Router** (`router.md`) controla boas-vindas, escopo, evidência, sigi
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.2** | Renumeração skills 05–09 → 01–05; auditoria: as 5 skills permanecem necessárias |
-| v1.1 | Agente exclusivo LSP→JAVA; remove menus legados; boas-vindas de conversão |
-| v1.0 | Baseline do repositório `LSP--JAVA` |
+| **v1.3** | Mescla Treinamento: APIs/compilação, USU_*/.sc, checks TipCon/MarcacaoAnterior/throws |
+| v1.2 | Renumeração skills 01–05 |
+| v1.1 | Agente exclusivo conversão |
+| v1.0 | Baseline `LSP--JAVA` |

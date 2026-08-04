@@ -8,26 +8,28 @@ description: >-
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.2 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.3 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
-**Fronteira:** Skill 2 = links/aliases; **esta skill** = mecânica + catálogo + exemplos de conversão.  
-**Crescimento do catálogo:** só incluir equivalência **confirmada** (doc oficial / Skill 2). Proibido expandir por inferência.
+**Fronteira:** Skill 2 = links/aliases; **esta skill** = mecânica + catálogo + padrões de compilação + exemplos.  
+**Precedência:** docs oficiais Skill 2 → catálogo oficial abaixo → padrões `padrao_compilacao` (Eclipse) → anexos sanitizados → `validacao_manual`.  
+**Crescimento do catálogo `confirmada`:** só com doc oficial / Skill 2. Achados de compilação entram como `padrao_compilacao`, não como inventados.
 
 ## Como consultar (ordem obrigatória)
 
 ```text
 A. Restrições + Regra de ouro + Invariantes   ← nunca pular
 B. Workflow (6 passos)
-C. Tipos / sintaxe (se necessário)
+C. Tipos / sintaxe / VaPara / Funcao (se necessário)
 D. Catálogo — só a família do item LSP
-E. Armadilhas (checklist rápido)
-F. Exemplos — só o padrão análogo
-G. Saída tipada para a Skill 1
+E. Acesso a dados (USU_* / R* / ContextSession) se houver cursor/SQL
+F. Armadilhas Eclipse + checklist
+G. Exemplos — só o padrão análogo
+H. Saída tipada para a Skill 1
 ```
 
-Não leia o catálogo inteiro de ponta a ponta em toda conversão. Localize a **família** no índice abaixo.
+Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índice. Em conflito de assinatura, **revalide na Skill 2**.
 
 ## Índice rápido do arquivo
 
@@ -36,11 +38,14 @@ Não leia o catálogo inteiro de ponta a ponta em toda conversão. Localize a **
 | Proibições / minutos / Sem Situacao.getMinutos | Restrições absolutas |
 | Modelo mental LSP→contexto | Regra de ouro |
 | Passo a passo | Workflow |
-| Tipagem / Se→if / Vapara | Tipos e sintaxe |
-| Esqueleto Apuracao / FechamentoBH | Esqueletos |
+| Tipagem / Se→if / VaPara / Funcao | Tipos e sintaxe |
+| Esqueleto Apuracao / Consistência / BH | Esqueletos + tipos de regra |
 | `DatPro`, `HorSit`, `FPxMar`, históricos… | Catálogo → família |
-| Erros comuns | Armadilhas |
-| Par LSP/Java pronto | Exemplos sanitizados |
+| TipCon / MarcacaoRegra / overloads HorSit | Catálogo + notas `padrao_compilacao` |
+| Cursor `USU_*` / `.sc` / ContextSession | Acesso a dados |
+| Erros Eclipse / anti-padrões | Armadilhas |
+| CalculaQtdMinutos / interjornada / TipCon SQL | Exemplos sanitizados |
+| Campos LSP conflitantes | Tabela conflitantes |
 
 ## Fontes oficiais
 
@@ -61,12 +66,14 @@ Catálogo abaixo: evidência `confirmada` (salvo nota). Exemplos: `padrao_anexo`
 ## Restrições absolutas
 
 1. Preferir o catálogo; se faltar → Skill 2 → `validacao_manual` (não inventar).  
-2. Horas em APIs de ponto = **minutos inteiros**.  
-3. SQL/cursor → API semântica do catálogo antes de EntitySession.  
+2. Horas em APIs de ponto = **minutos inteiros** (`int`, não `double` solto).  
+3. SQL/cursor → API semântica do catálogo **antes** de EntitySession/ContextSession — exceto tabela **`USU_*` custom** sem API (aí ICursor+`.sc`).  
 4. **Proibido** `getSituacao(...).getMinutos()` / `setMinutos(...)` — use `getHorSit` / `setHorSit` / `zeraHorasSituacao`.  
-5. Sanitize nomes de cliente em exemplos anexados.  
+5. Sanitize nomes de cliente em exemplos anexados; package do projeto é **parâmetro** (ex. sanitizado `gestaopontoCustom`) — nunca vazar cliente.  
 6. Sem `Mensagem()`/popup em apuração — preferir `mensagemLog`.  
-7. Confirmar se o método existe no **contexto** da regra (apuração ≠ geral ≠ BH).
+7. Confirmar se o método existe no **contexto** da regra (apuração ≠ consistência ≠ BH ≠ geral).  
+8. `execute()` **sem** `throws Exception`; auxiliares `private` no **nível da classe** (nunca aninhados).  
+9. ContextSession/DBCenter da plataforma **≠** Senior SQL 2 (SQL 2 continua proibido).
 
 ## Regra de ouro
 
@@ -103,24 +110,39 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 | lógico `0`/`1` | `boolean` |
 | `Data` | `LocalDate` (ou padrão do SDK — não misturar Joda + `java.time` sem necessidade) |
 | `Hora` (minutos) | `int` minutos |
-| marcação | `Marcacao` |
+| marcação | `MarcacaoRegra` (`padrao_compilacao`; preferir a `Marcacao` genérica) |
 | `Se` / `Senao` / `Enquanto` / `Inicio`/`Fim` | `if` / `else` / `while` / `{ }` |
-| `Vapara` / labels | `while`/`for` + `break`/`continue` |
+| `Vapara` / labels | early `return`; `break`/`continue`; ou flag + `do { } while(false)` |
+| `Funcao` sem `end` | `private void` no nível da classe |
+| `Funcao` com 1 `end` | retorno tipado do método |
+| `Funcao` com vários `end` | `int[]` / objeto (não closures aninhadas) |
+| `Numero[n]` array | `int[n+1]` ou `double[n+1]` (LSP 1-based → Java 0-based) |
+| `Tabela` | `List<record>` / classe interna |
 | `@ ... @` | `//` |
 | `=` comparação | `==` / `.isEqual()` / `.equals()` |
 | `<>` | `!=` |
+| decimal `,` | `.` |
 
 ## Instruções
 
 ```text
-1. Seguir “Como consultar” (A→G)
+1. Seguir “Como consultar” (A→H)
 2. Identificar contexto
 3. Buscar item só na família do Catálogo
 4. Assinatura/contexto duvidosos → Índice das Funções (Skill 2)
 5. Ausente → validacao_manual
 ```
 
-## Esqueletos de classe
+## Tipos de regra e esqueletos (`padrao_compilacao`)
+
+| Tipo LSP | Classe base | Contexto | Exceção |
+|---|---|---|---|
+| Apuração | `custom.senior.apuracao.Apuracao` | `getContextoApuracao()` | `RegraApuracaoException` |
+| Consistência | `custom.senior.apuracao.ConsistenciaAcertos` | `getContextoConsistenciaAcerto()` | `RegraConsistenciaAcertoException` |
+| Manutenção BH | `custom.senior.bancohoras.RegraManutencaoBH` | `getContextoManutencaoBH()` | `RegraBancoHorasException` |
+| Fechamento BH | `custom.senior.bancohoras.RegraFechamentoBH` | `getContextoFechamentoBH()` | `RegraBancoHorasException` |
+
+Package: o informado pelo usuário/projeto. Exemplo sanitizado: `gestaopontoCustom` (não `gestaoDoPontoCustom`).
 
 ### Apuração
 
@@ -128,9 +150,24 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 @Rule(description = "Regra de Apuracao")
 public class RegraApuracao extends Apuracao {
     @Override
+    public void execute() { // SEM throws Exception
+        ContextoGeralRH ctxGeral = getContainer().getContextoGeral();
+        ContextoApuracao ctx = getContainer().getContextoApuracao();
+    }
+
+    private void auxiliar(ContextoApuracao ctx, int param) { /* nível da classe */ }
+}
+```
+
+### Consistência de Acertos
+
+```java
+@Rule(description = "Consistencia de Acertos")
+public class RegraConsistencia extends ConsistenciaAcertos {
+    @Override
     public void execute() {
-        ContextoGeralRH contextoGeral = getContainer().getContextoGeral();
-        ContextoApuracao contextoApuracao = getContainer().getContextoApuracao();
+        ContextoConsistenciaAcerto ctx = getContainer().getContextoConsistenciaAcerto();
+        // extras: getHorSitAnterior, getDataInicial/Final, getHorSitAnteriorFaixa
     }
 }
 ```
@@ -138,15 +175,16 @@ public class RegraApuracao extends Apuracao {
 ### Fechamento BH
 
 ```java
-@Rule(description = "Regra de Fechamento de Banco de Horas")
-public class RegraFechamentoBH extends FechamentoBH {
+@Rule(description = "Fechamento BH")
+public class RegraFechamentoBH extends custom.senior.bancohoras.RegraFechamentoBH {
     @Override
     public void execute() {
-        ContextoGeralRH contextoGeral = getContainer().getContextoGeral();
-        ContextoFechamentoBH contextoFechamentoBH = getContainer().getContextoFechamentoBH();
+        ContextoFechamentoBH ctx = getContainer().getContextoFechamentoBH();
     }
 }
 ```
+
+Imports frequentes (`padrao_compilacao`): `java.time.LocalDate`/`LocalDateTime`, `com.senior.rule.Rule`, `com.senior.dataset.ICursor`, `MappedParamProvider`, `Colaborador`, `MarcacaoRegra`, `TipoIntervalo`, `TipoHoraExtra`, `ContextSession`, `DBCenter`, `IResultSet`, `com.senior.dataset.IEntity` (+ `@Entity`/`@Field`), readonly `IR030EMP`/`IR060DSI`/…
 
 ---
 
@@ -178,7 +216,7 @@ Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto 
 | `AnoSis` / `MesSis` / `DiaSis` | `getAnoData` / `getMesData` / `getDiaData` |
 | `HorSis` / `ExtSis` | Nativo em Java |
 | `DatIni` / `Datfim` | `getDataInicial()` / `getDataFinal()` |
-| `DiaSem`, `DiaDom`…`DiaSab` | `getDiaSem(Date data)` |
+| `DiaSem`, `DiaDom`…`DiaSab` | Preferir `getDiaSem(Date)`; alt. `getData().getDayOfWeek().getValue()` (`padrao_compilacao`) |
 | `MesAtu` | `getMesData(Date data)` |
 | `RetornaAnoData` / `RetornaDiaData` / `RetornaMesData` | `getAnoData` / `getDiaData` / `getMesData` |
 
@@ -186,8 +224,8 @@ Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto 
 
 | LSP | Java |
 |---|---|
-| `HorSit[]` | `getHorSit(int codSit)` / `getHorSit(LocalDate data, int codSit)`, `setHorSit(int codSit, int horas)`, `somaHorasSituacao(...)`, `zeraHorasSituacao(...)`, `zeraHorasSituacaoFaixa(...)`, `getHorSitFaixa(...)`, `getHorSitAnterior(int... codSit)` |
-| `SitAnt[]` | `getHorSitAnterior(int codSit)` |
+| `HorSit[]` | `getHorSit(int)` / `getHorSit(LocalDate, int)`, `setHorSit`, `somaHorasSituacao`, `zeraHorasSituacao`, `zeraHorasSituacaoFaixa`, `getHorSitFaixa` — overloads `padrao_compilacao`: `getHorSit(int[])`, `zeraHorasSituacao(varargs)` |
+| `SitAnt[]` | `getHorSitAnterior(int)` / `getHorSitAnteriorFaixa` (consistência) |
 | `TotSit[]` / `BuscaTotalizadoresSituacoes` | `getTotalSituacoes(int codigoTotalizador, date data)` (e overload com intervalo) |
 | `MotSit` | `getMotivoAcerto(int situacao)` |
 
@@ -206,11 +244,14 @@ Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto 
 
 | LSP | Java |
 |---|---|
-| `FPxMar` / `FLeMar` / `ConGer` / `DatMar` / `HorMar` / `FncMar` / `OriMar` / `RlgMar` / `UsoMar` | `getMarcacoesRealizadas(boolean conger)` |
-| `QtdMar` / `TotMar` | `getQtdMarcacoesRealizadas(boolean conger)` |
-| `DulMar` / `HulMar` | `getMarcacaoAnterior()` |
-| `MinJor` | `getHorasInterjornadaRealizada()` |
+| `FPxMar` / `FLeMar` / … | `List<MarcacaoRegra> getMarcacoesRealizadas(boolean)` — `getData()` → **`.toLocalDate()`**; índice Java **0-based** |
+| `QtdMar` / `TotMar` | Preferir `getQtdMarcacoesRealizadas(boolean)`; alt. `.size()` (`padrao_compilacao`) |
+| `DulMar` / `HulMar` | `getMarcacaoAnterior()` → tipo `MarcacaoAnterior`: **só** `diferencaMinutos(data, hora)` — sem `getHora`/`getData` |
+| `MinJor` | Preferir `getHorasInterjornadaRealizada()`; alt. `diferencaMinutos` se só MarcacaoAnterior |
 | `MinMJo` | `getHorasInterjornadaPrevista()` |
+| `TipCon` | **Não** existe `Colaborador.getTipCon()` — SQL `SELECT TIPCON FROM R034FUN …` via ContextSession (`padrao_compilacao`) |
+| `ApuDiu`/`ApuNot` tipados | Também `getHorasSeparadas(TipoIntervalo\|TipoHoraExtra)` → `ISeparacaoHoras` |
+| log / pendência / alerta | `mensagemLog`, `setGerarPendencia`, `criarAlerta` (try/catch) |
 
 ### Escala / horário / filial / feriado
 
@@ -222,7 +263,7 @@ Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto 
 | `TemTes` | `getTrocaEscala(Date data)` |
 | `TemThr` | `getTrocaHorario(Date data)` |
 | `RetornaEscala` | `getEscalaPrevistaColaborador(...)` |
-| `CodHor` / `RetornaHorarioApurado` | `getHorario()` |
+| `CodHor` / `RetornaHorarioApurado` | `getHorario()` / `getHorario().getCodigo()` — especiais 9996–9999 (folga/feriado/comp/DSR) |
 | `HorEsc` / `HorTrf` | `getHorarioEscala()` |
 | `HorDFe` | `getHorarioOriginalEscala()` |
 | `HorFol` | `getCodigoHorarioFolga()` / `getHorarioFolga()` |
@@ -277,19 +318,96 @@ int codDsi = contextoApuracao.getDefinicaoSituacoes().getCodigo();
 
 ---
 
+## Campos LSP conflitantes (`padrao_compilacao`)
+
+| LSP | Erro comum | Correto |
+|---|---|---|
+| `TipCon` | `col.getTipCon()` | SQL `R034FUN.TIPCON` |
+| `nMar` / marcações | índice 1-based / tipo errado | `List<MarcacaoRegra>` 0-based + `.toLocalDate()` |
+| `MarcacaoAnterior` | `getHora()` / `getData()` | só `diferencaMinutos` |
+| `HorSit[n]` | tratar como array Java | `get/setHorSit(codSit, minutos)` |
+| `SitAnt` | getter inventado | `getHorSitAnterior` no contexto de consistência |
+| `QtdMar` | inventar campo | API oficial ou `.size()` |
+
+## Domínio HCM — constantes úteis
+
+| Valor | Uso |
+|---|---|
+| CodHor `9996`–`9999` | Folga / feriado / compensado / DSR (`<9996` = horário normal) |
+| `1320` / `300` | Janela noturna 22h–05h (minutos) |
+| `660` / `360` | Limites CLT interjornada / sem intervalo |
+| `1440` | Virada de dia em `CalculaQtdMinutos` |
+
+## Acesso a dados (após API-first)
+
+```text
+Tabela USU_* custom?
+  SIM → IEntity + .sc + ICursor (EntitySession)
+  NÃO (R* nativa / USU_* em tabela nativa) → ContextSession SELECT ou DBCenter DML
+Readonly em com.senior.rh.entities.readonly.*? → importar, não recriar
+```
+
+**Fatal:** `.sc` apontando para `Rxxxxx` → *"Tabela … inválida. É permitido mapear somente tabelas de usuário"*.
+
+### ICursor (USU_*)
+
+```java
+MappedParamProvider params = new MappedParamProvider();
+params.setParam("vNumEmp", vNumEmp);
+ICursor<IMinhaTabela> cur = getContainer().getEntitySession().newCursor(IMinhaTabela.class);
+cur.addFilter("USU_NumEmp = :vNumEmp", params);
+cur.open();
+try {
+    if (cur.first()) { IMinhaTabela row = cur.read(); }
+} finally { cur.close(); }
+```
+
+Alternativas: `EntitySessionProvider.getSession()`; `CursorUtil` + `SearchMode.EXACT_MATCH`; `setOrder` + `OrderDirection`.
+
+### ContextSession (SELECT) vs DBCenter (DML)
+
+| | ContextSession | DBCenter |
+|---|---|---|
+| Uso | SELECT | INSERT/UPDATE/DELETE |
+| Close | **Não** fechar (container) | **Fechar** no `finally` |
+| Placeholder | `?` | `?` |
+| Índice `IResultSet` | **base-0** (`getInt(0)` = 1º campo) | — |
+| databaseId típico | — | ex. `"vetorh"` (confirmar projeto) |
+
+### Interface + `.sc` (só USU_*)
+
+- `import com.senior.dataset.IEntity` (**nunca** `com.senior.g5…IEntity`)
+- `@Entity` + `@Field`; IDs de usuário em `long`; flags `char` `'S'`
+- `.sc` = JSON puro começando com `{`; `id` = nome do arquivo sem extensão; `query: from USU_…`
+- Null: `isXNull()` antes de ler
+
+### Readonly do framework (importar)
+
+`IR030EMP`, `IR060DSI`, `IR004HOR`, `IR010SIT`, `IR010TOB`, `IR014SIN`, `IR070ACC`, …
+
 ## Armadilhas práticas
 
-| Armadilha | Correção |
+| Armadilha / erro Eclipse | Correção |
 |---|---|
 | Só trocar sintaxe sem mapear variáveis | Inventário + getters/setters primeiro |
 | Copiar ordem de parâmetros LSP | Confirmar no Índice das Funções |
 | `getSituacao().get/setMinutos` | `getHorSit` / `setHorSit` / `zeraHorasSituacao` |
-| Cursor SQL por reflexo | Buscar família no catálogo |
+| Cursor SQL por reflexo | Buscar família no catálogo; USU_* → ICursor |
 | `getHorSit(variavelDeMinutos)` | 1º arg = **código da situação** |
 | Inventar `getApuDiu(1)` | `getHoras` / `getHorasSeparadas` |
-| Método de apuração em contexto geral | Confirmar contexto |
+| `execute() throws Exception` | Remover throws (`IRulePoint`) |
+| Método aninhado / código solto | Auxiliares no nível da classe |
+| `col.getTipCon()` | SQL `R034FUN.TIPCON` |
+| `MarcacaoAnterior.getHora/getData` | `diferencaMinutos` |
+| `LocalDateTime` → `LocalDate` | `.toLocalDate()` em `MarcacaoRegra.getData()` |
+| `.sc` em tabela `R*` | Remover `.sc`; ContextSession |
+| `.sc` não-JSON / BOM | Reescrever começando com `{` |
+| `import com.senior.g5…IEntity` | `com.senior.dataset.IEntity` |
+| Package `gestaoDoPontoCustom` | Package do projeto (ex. `gestaopontoCustom`) |
+| `IResultSet` base-1 | base-0 |
+| Filename ≠ classe pública | Renomear arquivo (Windows: temp rename) |
 | Inventar método | `validacao_manual` |
-| Misturar `java.time` e Joda | Seguir SDK / `validacao_manual` |
+| Misturar `java.time` e Joda | Preferir `java.time` / SDK |
 
 ## Exemplos sanitizados (use só o análogo)
 
@@ -302,8 +420,8 @@ Fim;
 ```
 
 ```java
-LocalTime agora = new LocalTime(); // ou padrão do projeto
-int minutos = agora.getHourOfDay() * 60 + agora.getMinuteOfHour();
+java.time.LocalTime agora = java.time.LocalTime.now();
+int minutos = agora.getHour() * 60 + agora.getMinute();
 if (minutos > 870) {
     contextoApuracao.setHorSit(100, 120);
 }
@@ -316,15 +434,16 @@ if (minutos > 870) {
 contexto.getSituacao(xNorAnt).setMinutos(0);
 // CERTO
 contexto.zeraHorasSituacao(xNorAnt);
-double v = contexto.getHorSit(xExDDsr);
+int v = contexto.getHorSit(xExDDsr); // minutos int
 contexto.setHorSit(xExDDsr, v + vNorDes);
 ```
 
 ### Marcações FLeMar/FPxMar → List
 
 ```java
-for (Marcacao m : contextoApuracao.getMarcacoesRealizadas(false)) {
-    if (m.getData().isAfter(contextoApuracao.getData())) { /* ... */ }
+for (MarcacaoRegra m : contextoApuracao.getMarcacoesRealizadas(false)) {
+    LocalDate d = m.getData().toLocalDate();
+    if (d.isAfter(contextoApuracao.getData())) { /* ... */ }
 }
 ```
 
@@ -363,21 +482,54 @@ private int trocarSituacao(ContextoApuracao ctx, int origem, int destino, int mi
 }
 ```
 
-### EntitySession (último recurso)
+### CalculaQtdMinutos (virada de dia)
 
 ```java
-ICursor<IEntidadeCustom> cursor = EntitySessionProvider.getSession()
+private int calculaQtdMinutos(LocalDate d1, int horIni, LocalDate d2, int horFim) {
+    if (d1.isBefore(d2)) horFim = horFim + 1440;
+    return horFim - horIni;
+}
+```
+
+### TipCon via ContextSession
+
+```java
+int nTipCon = 0;
+try {
+    IResultSet rs = ContextSession.getSession().executeQuery(
+        "SELECT TIPCON FROM R034FUN WHERE NUMEMP = ? AND TIPCOL = ? AND NUMCAD = ?",
+        numEmp, tipCol, numCad);
+    if (rs.next()) nTipCon = rs.getInt(0);
+} catch (Exception ex) {
+    ctx.mensagemLog("Erro TipCon: " + ex.getMessage());
+}
+```
+
+### Interjornada (MarcacaoAnterior)
+
+```java
+if (ctx.getMarcacaoAnterior() != null) {
+    int n = ctx.getMarcacaoAnterior().diferencaMinutos(datMar, horaMar);
+    if (n < 0) n = -n;
+    // preferir getHorasInterjornada* quando disponível no contexto
+}
+```
+
+### EntitySession / ICursor (USU_* sem API)
+
+```java
+ICursor<IEntidadeCustom> cursor = getContainer().getEntitySession()
         .newCursor(IEntidadeCustom.class);
 try {
-    cursor.addFilter("campoA = :campoA", new MappedParamProvider("campoA", valorA));
+    cursor.addFilter("USU_Campo = :v", new MappedParamProvider("v", valor));
     cursor.open();
-    if (cursor.next()) { /* read */ }
+    if (cursor.first()) { /* read */ }
 } finally {
     cursor.close();
 }
 ```
 
-Justificar ausência de API; marcar `validacao_manual` se entidade custom.
+Justificar ausência de API semântica; emitir interface+`.sc` só para `USU_*`.
 
 ## Saída para a Skill 1
 
@@ -385,11 +537,11 @@ Justificar ausência de API; marcar `validacao_manual` se entidade custom.
 contexto: Apuracao | FechamentoBH | outro | indefinido
 item_lsp: ...
 equivalente_java: ...
-evidencia: confirmada | padrao_anexo | validacao_manual
-fonte: equivalencia-funcoes-regras | indice-funcoes | anexo
+evidencia: confirmada | padrao_compilacao | padrao_anexo | validacao_manual
+fonte: equivalencia-funcoes-regras | indice-funcoes | compilacao | anexo
 limite: ...
 ```
 
 ## Relacionados
 
-Skill 2 (URLs/aliases) · Skill 1 · Skill 5 (`CHK-SITAPI`, `CHK-ORDEM`, `CHK-FIN`, `CHK-CTXOK`)
+Skill 2 (URLs/aliases) · Skill 1 · Skill 5 (`CHK-SITAPI`, `CHK-THROWS`, `CHK-SCNAT`, `CHK-TIPCON`, `CHK-MARANT`, …)

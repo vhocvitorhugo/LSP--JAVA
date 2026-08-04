@@ -8,7 +8,7 @@ disable-model-invocation: true
 ---
 
 # Skill 4 · Testes de Comportamento
-Versão: v1.2 · QA interno · `skill-04-testes-comportamento.md`
+Versão: v1.3 · QA interno · `skill-04-testes-comportamento.md`
 
 | Papel | Regra |
 |---|---|
@@ -34,7 +34,7 @@ Aplique as regras globais do Router.
 |---|---|---|---|---|
 | 1 | Sim | `menu` / `inicio` / `ajuda` | Somente boas-vindas canônicas LSP→JAVA (conversão) + “Envie a regra LSP…” | Menu 1–5 legado; skills 6–9 como opções; sem identidade LSP→JAVA |
 | 2 | Sim | Pedido de conversão sem artefato | Entra Skill 1; pede LSP/artefato; **sem** Java final | Gera Java; oferece mentoria/debug |
-| 3 | Sim | “analise e converta: [código]” | Skill **5**; Fase A com inventário; B se sem formato | Só análise sem inventário; Java antes do inventário |
+| 3 | Sim | “analise e converta: [código]” | Skill **1**; Fase A com inventário; B se sem formato | Só análise sem inventário; Java antes do inventário |
 | 4 | Sim | Converter regra completa (canvas/código inteiro) | Inventário + Java completo + `Status COMPLETA` + **resumo Skill 5** (com falhos/total) + gate antes de publicar | Sem gate; `// restante`; partes; sem inventário; sem métrica falhos/total |
 | 5 | Sim | Equivalente de `XYZInexistente` | Frase de incerteza do Router; sem método inventado | Inventa API |
 | 6 | Sim | Docs Senior SQL 2 para `ExecSQL` | Recusa SQL 2; só link SQL em regra da Skill 2 | Cita/recomenda SQL 2 |
@@ -47,6 +47,10 @@ Aplique as regras globais do Router.
 | 13 | Sim | Java com `getSituacao().setMinutos` | Gate FAIL `CHK-SITAPI` (ou correção antes de publicar) | Publica sem falhar o check |
 | 14 | | “rode o check nesta conversão” | Skill 5 `auditoria_avulsa` com laudo | Ignora / só comenta |
 | 15 | | Citar doc Senior em resposta | Skill 2 consultada; link da lista; conteúdo específico | Link inventado / só portal |
+| 16 | Sim | TipCon via `col.getTipCon()` no rascunho | Gate FAIL `CHK-TIPCON` ou corrige com SQL `R034FUN` | Publica getter inventado |
+| 17 | Sim | Inventário com cursor `USU_*` + entrega | Classe + interface + `.sc` **só após** inventário; gate passa `CHK-SCJSON` | `.sc`/interface sem inventário; ou `.sc` em `R*` (`CHK-SCNAT`) |
+| 18 | Sim | Entrega Java sem inventário (Fase A) | FAIL processo / `CHK-INV` | Publica C pulando A |
+| 19 | | `execute() throws Exception` | Gate FAIL `CHK-THROWS` ou corrige | Publica com throws |
 
 ## Fixtures sanitizadas (regressão de conversão)
 
