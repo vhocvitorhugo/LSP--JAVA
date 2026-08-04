@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.5 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.6 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
@@ -38,7 +38,7 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | Proibições / minutos / Sem Situacao.getMinutos | Restrições absolutas |
 | Modelo mental LSP→contexto | Regra de ouro |
 | Passo a passo | Workflow |
-| Tipagem / Se→if / VaPara / Funcao | Tipos e sintaxe |
+| Tipagem / Se→if / Logico / Escolha / VaPara | Tipos e sintaxe |
 | Esqueleto Apuracao / Consistência / BH | Esqueletos + tipos de regra |
 | `DatPro`, `HorSit`, `FPxMar`, históricos… | Catálogo → família |
 | TipCon / MarcacaoRegra / overloads HorSit | Catálogo + notas `padrao_compilacao` |
@@ -47,9 +47,22 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | CalculaQtdMinutos / interjornada / TipCon SQL | Exemplos sanitizados |
 | Templates IEntity / `.sc` / DBCenter | Acesso a dados |
 | VaPara / operadores | Tipos e sintaxe |
+| Goldens G-SIT / G-CUR / G-USU | Goldens ponta a ponta |
 | InicioCalculo / AposGravar | Outros pontos |
-| ⚠️ pendente | Itens pendentes |
+| ⛔ SDK / ⚠️ pendente | Itens pendentes (SDK) |
 | Campos LSP conflitantes | Tabela conflitantes |
+
+### Âncoras 80% (não leia o arquivo inteiro)
+
+| Se a regra tem… | Vá direto para |
+|---|---|
+| `HorSit` / situações / minutos | Catálogo → Situações + **G-SIT** |
+| Marcações / `FPxMar` / `MarcacaoAnterior` | Catálogo → Marcações + Exemplos |
+| `TipCon` / `R034FUN` | Campos conflitantes + TipCon via ContextSession |
+| Cursor `USU_*` / interface / `.sc` | Acesso a dados + **G-USU** |
+| Cursor `R*` / `CriarCursor` | Acesso a dados + **G-CUR** (API primeiro) |
+| `VaPara` / labels | Tipos e sintaxe → VaPara |
+| INSERT/UPDATE/DELETE | DBCenter (não ContextSession) |
 
 ## Fontes oficiais
 
@@ -111,11 +124,12 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 | `Numero` inteiro | `int` / `long` |
 | `Numero` decimal | `double` |
 | `Alfa` | `String` |
-| lógico `0`/`1` | `boolean` |
+| `Logico` / lógico `0`/`1` | `boolean` (`0`→`false`, `1`→`true`) |
 | `Data` | `LocalDate` (ou padrão do SDK — não misturar Joda + `java.time` sem necessidade) |
 | `Hora` (minutos) | `int` minutos |
 | marcação | `MarcacaoRegra` (`padrao_compilacao`; preferir a `Marcacao` genérica) |
 | `Se` / `Senao` / `Enquanto` / `Inicio`/`Fim` | `if` / `else` / `while` / `{ }` |
+| `Escolha` / `Caso` / `OutroCaso` | `switch` (sem fall-through acidental) **ou** `if/else` encadeado |
 | `Vapara` / labels | early `return`; `break`/`continue`; ou flag + `do { } while(false)` |
 | `Funcao` sem `end` | `private void` no nível da classe |
 | `Funcao` com 1 `end` | retorno tipado do método |
@@ -129,6 +143,35 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 | `e` / `ou` / `nao` | `&&` / `||` / `!` |
 | `RestoDivisao(a,b)` | `a % b` |
 | `Mensagem(...)` em regra | exceção de domínio (`BusinessException` / `RegraApuracaoException`) — não popup |
+
+### Escolha / Caso (`padrao_compilacao`)
+
+```lsp
+Escolha (nOpcao)
+  Caso 1
+    @ ...
+  Caso 2
+    @ ...
+  OutroCaso
+    @ ...
+FimEscolha;
+```
+
+```java
+switch (nOpcao) {
+    case 1:
+        // ...
+        break;
+    case 2:
+        // ...
+        break;
+    default:
+        // OutroCaso
+        break;
+}
+```
+
+Alfa/`String`: preferir `if/else` com `.equals()` (ou `switch` em Java 17+ com cuidado). **Não** copiar fall-through do `switch` sem `break` a menos que o LSP caia propositalmente no próximo `Caso`.
 
 ### VaPara — 3 padrões (`padrao_compilacao`)
 
@@ -504,6 +547,8 @@ Null: `int v = entity.isUSU_CodEmpNull() ? 0 : entity.getUSU_CodEmp();`
 IDs de usuário/consultor → **`long`**, não `int`.  
 Import correto: `com.senior.dataset.IEntity` — **nunca** `com.senior.g5…IEntity`.
 
+**Norma capitalização `USU_*`:** getters/setters/null **espelham o nome do campo** exatamente como no banco/`.sc` (ex.: campo `USU_CodEmp` → `getUSU_CodEmp` / `setUSU_CodEmp`). Não “javaizar” para `getUsuCodEmp`. Divergência só com evidência do schema do projeto.
+
 ### Template `.sc` (JSON puro)
 
 ```json
@@ -711,43 +756,73 @@ Justificar ausência de API semântica; emitir interface+`.sc` só para `USU_*`.
 
 ### DiferencaMarcacaoDiurnoNoturno (sanitizado)
 
+Preferir `getHorasSeparadas` / APIs oficiais quando cobrirem o caso. Se a regra LSP calcular manualmente diurno/noturno na janela 22h–05h (`1320`/`300`):
+
 ```java
+/** Retorna [diurno, noturno] em minutos. Janela noturna padrão: 1320→1440 e 0→300. */
 private int[] diferencaMarcacaoDiurnoNoturno(int nMar1, LocalDate d1, int nMar2, LocalDate d2,
                                              int iniNot, int fimNot) {
-    // retorna [diurno, noturno]; usar CalculaQtdMinutos + janela 1320/300
-    // implementação completa: analogia ao playbook de compilação — sem sits de cliente
-    return new int[]{0, 0}; // preencher com a lógica do bloco LSP correspondente
+    int total = calculaQtdMinutos(d1, nMar1, d2, nMar2);
+    if (total < 0) total = -total;
+    int noturno = 0;
+    int cursor = nMar1;
+    LocalDate dia = d1;
+    int restante = total;
+    while (restante > 0) {
+        int limiteNot = (cursor >= iniNot) ? 1440 : (cursor < fimNot ? fimNot : iniNot);
+        int trecho;
+        if (cursor >= iniNot || cursor < fimNot) {
+            trecho = Math.min(restante, (cursor >= iniNot ? 1440 - cursor : fimNot - cursor));
+            if (trecho <= 0) trecho = Math.min(restante, 1);
+            noturno += trecho;
+        } else {
+            trecho = Math.min(restante, iniNot - cursor);
+        }
+        cursor += trecho;
+        restante -= trecho;
+        if (cursor >= 1440) {
+            cursor -= 1440;
+            dia = dia.plusDays(1);
+        }
+    }
+    return new int[]{total - noturno, noturno};
 }
 ```
 
-Preferir `getHorasSeparadas` / APIs oficiais quando cobrirem o caso.
+**Proibido** publicar `return new int[]{0,0}` ou `// preencher` — isso é `CHK-STUB` FAIL.
 
 ### VerificaInterjornada (MarcacaoAnterior)
 
 ```java
 private void verificaInterjornada(ContextoApuracao ctx, LocalDate datMar, int horaMar, int sitInt) {
     if (ctx.getMarcacaoAnterior() == null) return;
+    // Preferir getHorasInterjornadaRealizada/Prevista quando existirem no contexto
     int n = ctx.getMarcacaoAnterior().diferencaMinutos(datMar, horaMar);
     if (n < 0) n = -n;
     if (n > 0 && n < 660) {
         ctx.setHorSit(sitInt, 660 - n);
     }
-    // Preferir getHorasInterjornadaRealizada/Prevista quando existirem no contexto
 }
 ```
 
 ### MarcacoesInvalidas (padrão)
 
 ```java
+/** Pares entrada/saída: lista vazia ou ímpar = inválida; data/hora de saída antes da entrada = inválida. */
 private boolean marcacoesInvalidas(List<MarcacaoRegra> mars) {
     if (mars == null || mars.isEmpty()) return true;
+    if (mars.size() % 2 != 0) return true;
     for (int i = 0; i + 1 < mars.size(); i += 2) {
-        // validar pares entrada/saída — regras de negócio = validacao_manual / anexo
+        // getData() tipicamente LocalDateTime — comparar o instante completo
+        if (mars.get(i + 1).getData().isBefore(mars.get(i).getData())) {
+            return true;
+        }
     }
     return false;
 }
 ```
 
+Regras de negócio extras do cliente (tolerâncias, tipos de marcação) → `validacao_manual` / anexo — **sem** deixar o método vazio.
 ### Outros pontos de customização (referência, não fluxo de menu)
 
 | Tipo | Base | APIs típicas |
@@ -768,17 +843,128 @@ private boolean marcacoesInvalidas(List<MarcacaoRegra> mars) {
 - [ ] Filename = classe; auxiliares no nível da classe
 - [ ] ICursor `close` no `finally`; DBCenter `session.close`; ContextSession **sem** close
 
-### Itens pendentes de confirmação (⚠️)
+### Itens pendentes / bloqueados até SDK (⛔)
 
 | Item | Status |
 |---|---|
-| Package/enum completo `TipoHoraExtra` | ⚠️ Pendente — `validacao_manual` |
-| `@Transactional` vs container | ⚠️ Pendente |
-| `Logico` / `Escolha/Caso` LSP | ⚠️ Pendente |
-| `isNull/setNull` em `LocalDate` de IEntity | ⚠️ Confirmar no projeto |
-| Capitalização getters `USU_*` | ⚠️ Confirmar com analista |
+| Package/enum completo `TipoHoraExtra` | ⛔ **Bloqueado até SDK** — usar só valores já citados no catálogo (`TipoIntervalo` etc.); demais → `validacao_manual` + perguntar enum do projeto. **Não** inventar como `confirmada`. |
+| `@Transactional` vs container | ⛔ **Bloqueado até SDK** — **não** anotar `@Transactional` sem evidência do projeto; deixar ao container. |
+| `isNull`/`setNull` em `LocalDate` de IEntity | Template IEntity = `padrao_compilacao`; se o SDK do projeto divergir → `validacao_manual`. |
+| Capitalização getters `USU_*` | **Norma fechada** (ver Acesso a dados): espelhar nome do campo — fora desta tabela. |
 
-Não inventar esses itens como `confirmada`.
+Sem jar/docs/projeto de referência, o teto de maturidade do treinamento fica **~9.x**; nota **10** exige fechar os ⛔ com evidência de SDK.
+
+Não inventar itens ⛔ como `confirmada`.
+
+## Goldens ponta a ponta (sanitizados)
+
+Referência obrigatória da Skill 1. Cada golden: LSP → inventário resumido → Java → checks Skill 5 esperados.
+
+### G-SIT — HorSit / minutos
+
+**LSP**
+```text
+Definir Numero nMin;
+nMin = HorSit[1];
+HorSit[1] = nMin + 60;
+```
+
+**Inventário:** `HorSit[1]` → `getHorSit`/`setHorSit`; evidência `confirmada`; contexto `apuracao`.
+
+**Java**
+```java
+@Rule(description = "G-SIT sanitizado")
+public class RegraGSIT extends Apuracao {
+    @Override
+    public void execute() {
+        ContextoApuracao ctx = getContainer().getContextoApuracao();
+        int nMin = ctx.getHorSit(1);
+        ctx.setHorSit(1, nMin + 60);
+    }
+}
+```
+
+**Skill 5:** PASS `CHK-SITAPI`, `CHK-MIN`, `CHK-THROWS`, `CHK-STUB`. FAIL se `getSituacao().setMinutos`.
+
+### G-CUR — cursor R* (API / ContextSession, sem `.sc`)
+
+**LSP**
+```text
+Definir Alfa aNomEmp;
+CriarCursor('R030EMP');
+AbrirCursor('R030EMP');
+// leitura NomEmp ...
+FecharCursor('R030EMP');
+```
+
+**Inventário:** cursor `R030EMP` nativo → **não** `.sc`; preferir API/readonly; fallback ContextSession; evidência `padrao_compilacao`.
+
+**Java (padrão ContextSession se sem API semântica)**
+```java
+@Rule(description = "G-CUR sanitizado")
+public class RegraGCUR extends Apuracao {
+    @Override
+    public void execute() {
+        ContextoApuracao ctx = getContainer().getContextoApuracao();
+        String aNomEmp = "";
+        try {
+            IResultSet rs = ContextSession.getSession().executeQuery(
+                "SELECT NOMEMP FROM R030EMP WHERE NUMEMP = ?",
+                ctx.getColaborador().getNumEmp());
+            if (rs.next()) {
+                aNomEmp = rs.getString(0);
+            }
+        } catch (Exception ex) {
+            ctx.mensagemLog("Erro G-CUR: " + ex.getMessage());
+        }
+        // ContextSession: não fechar sessão do container
+    }
+}
+```
+
+**Skill 5:** PASS `CHK-SCNAT` (sem `.sc` em `R*`), `CHK-SQL2`, `CHK-DBSESS`, `CHK-STUB`. Preferir API readonly/`getDefinicao…` quando existir no catálogo.
+
+### G-USU — USU_* + I* + `.sc`
+
+**LSP**
+```text
+Definir Numero nCod;
+CriarCursor('USU_TExemplo');
+AbrirCursor('USU_TExemplo');
+// lê USU_CodEmp ...
+FecharCursor('USU_TExemplo');
+```
+
+**Inventário:** `USU_TExemplo` custom → `IUsuTExemplo` + `ScUsuTExemplo.sc` + ICursor; evidência `padrao_compilacao`.
+
+**Java (classe)**
+```java
+@Rule(description = "G-USU sanitizado")
+public class RegraGUSU extends Apuracao {
+    @Override
+    public void execute() {
+        ContextoApuracao ctx = getContainer().getContextoApuracao();
+        ICursor<IUsuTExemplo> cur = getContainer().getEntitySession().newCursor(IUsuTExemplo.class);
+        try {
+            cur.addFilter("USU_CodEmp = :e",
+                new MappedParamProvider("e", ctx.getColaborador().getNumEmp()));
+            cur.open();
+            if (cur.first()) {
+                IUsuTExemplo row = cur.read();
+                int nCod = row.isUSU_CodEmpNull() ? 0 : row.getUSU_CodEmp();
+                ctx.mensagemLog("USU_CodEmp=" + nCod);
+            }
+        } finally {
+            cur.close();
+        }
+    }
+}
+```
+
+**Interface (trecho):** `getUSU_CodEmp` / `setUSU_CodEmp` espelhando o campo.  
+**`.sc`:** JSON começando com `{`; `"id": "ScUsuTExemplo"` = filename sem extensão; `entity` = package+interface; **somente** `USU_*`.
+
+**Skill 5:** PASS `CHK-FIN`, `CHK-SCJSON`, `CHK-SCID`, `CHK-SCNAT`, `CHK-STUB`.
 
 ## Saída para a Skill 1
 

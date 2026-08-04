@@ -8,14 +8,14 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP-JAVA-v1.5-success?style=for-the-badge" alt="LSP→JAVA v1.5" />
+  <img src="https://img.shields.io/badge/LSP-JAVA-v1.6-success?style=for-the-badge" alt="LSP→JAVA v1.6" />
 </p>
 
 ---
 
 O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** na conversão assistida de regras **LSP → Java** no **Senior HCM / Gestão do Ponto**.
 
-**Versão atual: v1.5** — README público reforçado (quick start, pipeline e papéis das skills) e correção residual no checklist do Router (`Skills 2/3` + gate 5).
+**Versão atual: v1.6** — caminho qualidade: cartão de decisão, goldens G-SIT/G-CUR/G-USU, `CHK-STUB`, sintaxe `Logico`/`Escolha`, norma `USU_*`. Itens de API que dependem de SDK (`TipoHoraExtra`, `@Transactional`) ficam **bloqueados até validação com jar/projeto** (teto ~9.x sem SDK).
 
 **Para quem:** analistas e desenvolvedores que migram regras LSP de ponto para Java no ecossistema Senior.
 
@@ -47,6 +47,8 @@ C  Java completo → gate Skill 5 → resposta (+ resumo do check)
 | **B** | Pergunta formato só se você não indicou |
 | **C** | Código consolidado; gate determinístico antes de publicar |
 
+**Ordem de decisão (Skill 1):** contexto → API semântica → `USU_*` (IEntity/`.sc`) → `R*`/TipCon (ContextSession) → `validacao_manual` sem omitir bloco.
+
 ---
 
 ## Arquitetura
@@ -56,9 +58,9 @@ C  Java completo → gate Skill 5 → resposta (+ resumo do check)
 | Router | [`router.md`](router.md) | Escopo, boas-vindas, evidência, roteamento |
 | Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Fluxo do usuário (fases A/B/C) |
 | Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Interna — links oficiais e aliases |
-| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Interna — padrões e mecânica de conversão |
+| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Interna — padrões, goldens, mecânica |
 | QA | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Interna — suite de regressão do treinamento |
-| Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Gate obrigatório / auditoria |
+| Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Gate obrigatório / auditoria (`CHK-STUB`, …) |
 
 **Precedência de evidência:** docs Skill 2 → catálogo Skill 3 → padrões de compilação → anexos → validação manual.
 
@@ -80,7 +82,8 @@ Cópias em PDF das skills (mesma versão do Markdown):
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.5** | README público (quick start/pipeline); checklist Router Skills 2/3 + gate 5 |
+| **v1.6** | Goldens G-SIT/G-CUR/G-USU; CHK-STUB; cartão de decisão; Logico/Escolha; bloqueio SDK explícito |
+| v1.5 | README público (quick start/pipeline); checklist Router Skills 2/3 + gate 5 |
 | v1.4 | Templates `.sc`/IEntity, DBCenter, helpers, VaPara, Eclipse literals, CHK-SCID |
 | v1.3 | Mescla núcleo Treinamento (TipCon, MarcacaoAnterior, USU_*) |
 | v1.2 | Renumeração 01–05 |

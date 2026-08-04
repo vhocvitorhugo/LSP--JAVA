@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 1 · Conversão LSP → Java
-Versão: v1.5 · Arquivo: `skill-01-conversao-lsp-java.md`
+Versão: v1.6 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -32,7 +32,20 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 7. **Fase C:** rascunho → **gate Skill 5** → publicar com resumo do check.  
 8. Sem links de download inventados.  
 9. Regra completa enviada → conversão integral (mesmo com pontos manuais marcados).  
-10. Package = o informado pelo usuário/projeto; senão exemplo sanitizado + `validacao_manual` (nunca vazar cliente).
+10. Package = o informado pelo usuário/projeto; senão exemplo sanitizado + `validacao_manual` (nunca vazar cliente).  
+11. **Anti-stub:** exemplos da Skill 3 com corpo incompleto / “preencher depois” = **FAIL de processo** — **não copiar**. Use goldens G-SIT / G-CUR / G-USU ou implemente a lógica do LSP; gate `CHK-STUB`.
+
+## Cartão de decisão (ordem obrigatória)
+
+| # | Decisão | Ação |
+|---|---|---|
+| 1 | Qual o contexto da regra? | `apuracao` / `consistencia` / `bloqueio` / `fechamento_bh` / `geral` / `indefinido` |
+| 2 | Há equivalência no catálogo / doc? | API semântica do contexto (Skill 3 → Skill 2) |
+| 3 | Tabela `USU_*` custom sem API? | IEntity + `.sc` + ICursor (só após inventário) |
+| 4 | `R*` / TipCon / SQL nativo? | ContextSession (SELECT) ou DBCenter (DML) — **nunca** getter inventado |
+| 5 | Ainda sem equivalência? | `validacao_manual` + `// TODO: …` — **sem omitir o bloco** |
+
+Goldens de referência (Skill 3): **G-SIT** (HorSit), **G-CUR** (cursor/`R*`), **G-USU** (`USU_*`+`.sc`).
 
 ## Fases
 
@@ -107,7 +120,7 @@ Regras: End → retorno; arrays → métodos/coleções; horas → minutos (`14:
 2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**mecânica + catálogo + acesso a dados + armadilhas**).  
 3. Monte inventário; mapeie com `confirmada|padrao_compilacao|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual`.  
 4. Mecânica antes da sintaxe (Skill 3: A→H).  
-5. Execute A/B/C; gate na C (Skill 5: **críticos primeiro**, incl. CHK-THROWS / CHK-SCNAT / CHK-SCID / CHK-TIPCON / CHK-MARANT quando aplicáveis).
+5. Execute A/B/C; gate na C (Skill 5: **críticos primeiro**, incl. CHK-THROWS / CHK-SCNAT / CHK-SCID / CHK-STUB / CHK-TIPCON / CHK-MARANT quando aplicáveis).
 
 Âncoras: Skill 3 — catálogo + templates IEntity/`.sc` (seção Acesso a dados) + `getHorSit`/`TipCon`/`MarcacaoRegra`.  
 **Não** usar `getSituacao(...).getMinutos()/setMinutos(...)`.  
@@ -122,7 +135,8 @@ Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()
 - [ ] API semântica antes de EntitySession (ou USU_* justificado)?  
 - [ ] `execute()` sem throws; auxiliares não aninhados?  
 - [ ] Se `.sc`: JSON com `{`; `id` = filename sem extensão; só `USU_*`?  
-- [ ] Ordem de parâmetros / minutos / TipCon / MarcacaoAnterior ok?
+- [ ] Ordem de parâmetros / minutos / TipCon / MarcacaoAnterior ok?  
+- [ ] Sem stubs (`return new int[]{0,0}`, `// preencher`, `// mesma lógica`)?
 
 ## Saída — Fase A
 
@@ -173,7 +187,7 @@ Falhas remanescentes: ...
 **A→B:** converter sem formato → inventário + perguntar 1/2.  
 **Pular B + gate:** “no canvas, regra toda” → rascunho A+C → Skill 5 → publicar.  
 **USU_*:** inventário marca cursor custom → classe + `I*` + `.sc` após gate.  
-**Não faça:** publicar C sem Skill 5; inventar método; `.sc` em `R*`; entregar em partes; `// restante`.
+**Não faça:** publicar C sem Skill 5; inventar método; `.sc` em `R*`; entregar em partes; `// restante`; copiar stub da Skill 3.
 
 ## Relacionados
 

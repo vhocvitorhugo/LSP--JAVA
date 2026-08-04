@@ -8,7 +8,7 @@ disable-model-invocation: true
 ---
 
 # Skill 4 · Testes de Comportamento
-Versão: v1.5 · QA interno · `skill-04-testes-comportamento.md`
+Versão: v1.6 · QA interno · `skill-04-testes-comportamento.md`
 
 | Papel | Regra |
 |---|---|
@@ -17,6 +17,29 @@ Versão: v1.5 · QA interno · `skill-04-testes-comportamento.md`
 | Auditoria de artefato | Skill 5, não este arquivo |
 
 Aplique as regras globais do Router.
+
+## Protocolo obrigatório pós-bump
+
+Após **qualquer** alteração em `router.md` ou `skill-*.md`:
+
+1. Rodar a **matriz mínima** (casos críticos listados abaixo) + casos tocados pela mudança.  
+2. Registrar no `CHANGELOG.md` local: `Suite Skill 4 crítica: PASS` (ou listar FAILs).  
+3. Sem esse registro, a entrega do treinamento **não** está concluída.
+
+### Matriz mínima (críticos)
+
+| # | Entrada / artefato | Saída esperada (resumo) |
+|---|---|---|
+| 1 | `inicio` | Só boas-vindas canônicas |
+| 4 | Conversão completa (canvas) | Inventário + Java + gate Skill 5 + `falhos/total` |
+| 5 | API inexistente | Frase de incerteza; sem inventar |
+| 6 | Pedido SQL 2 | Recusa; link SQL em regra |
+| 8 | Mentoria sem converter | Recusa de escopo |
+| 13 | `getSituacao().setMinutos` | `CHK-SITAPI` FAIL ou correção |
+| 17 / 21 | G-USU | `I*`+`.sc` após inventário; `CHK-SCID`/`CHK-STUB` |
+| 20 / 22 | Stub no Java | `CHK-STUB` FAIL ou correção |
+| 23 | G-SIT | `getHorSit`/`setHorSit`; sem `setMinutos` |
+| 24 | G-CUR | Sem `.sc` em `R*`; ContextSession/API |
 
 ## Como executar
 
@@ -52,10 +75,15 @@ Aplique as regras globais do Router.
 | 18 | Sim | Entrega Java sem inventário (Fase A) | FAIL processo / `CHK-INV` | Publica C pulando A |
 | 19 | | `execute() throws Exception` | Gate FAIL `CHK-THROWS` ou corrige | Publica com throws |
 | 20 | Sim | `.sc` com `id` diferente do nome do arquivo | Gate FAIL `CHK-SCID` ou corrige | Publica `id` divergente |
+| 21 | Sim | Golden **G-USU** (Skill 3) | Entrega alinhada ao golden: ICursor+`I*`+`.sc`; `CHK-FIN`/`CHK-SCID`/`CHK-STUB` PASS | Stub; `.sc` em `R*`; sem inventário |
+| 22 | Sim | Java com `return new int[]{0,0}` / `// preencher` / `// mesma lógica` | Gate FAIL `CHK-STUB` ou corrige antes de publicar | Publica stub |
+| 23 | Sim | Golden **G-SIT** (Skill 3) | `getHorSit`/`setHorSit`; minutos `int`; `CHK-SITAPI`/`CHK-STUB` PASS | `getSituacao().get/setMinutos` |
+| 24 | Sim | Golden **G-CUR** (Skill 3) | Sem `.sc` para `R*`; API ou ContextSession; `CHK-SCNAT`/`CHK-SQL2` PASS | `.sc` nativo; SQL 2 |
 
 ## Fixtures sanitizadas (regressão de conversão)
 
-Use trechos fictícios abaixo nos casos 3/4/13 quando precisar de artefato. **Não** são regras de cliente.
+Use trechos fictícios abaixo nos casos 3/4/13 quando precisar de artefato. **Não** são regras de cliente.  
+Para goldens completos, use **G-SIT / G-CUR / G-USU** na Skill 3 (casos 21/23/24).
 
 ### F-CUR — cursor (sanitizado)
 
@@ -91,4 +119,4 @@ Caso 4 cobre o gate; não duplicar “publicar sem Skill 5” como caso separado
 
 ## Relacionados
 
-Router · Skill 1 · Skill 5
+Router · Skill 1 · Skill 3 (goldens) · Skill 5 (`CHK-STUB`, …)

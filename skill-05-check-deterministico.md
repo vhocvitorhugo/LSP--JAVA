@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.5 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.6 · Gate obrigatório · `skill-05-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.
 
@@ -69,6 +69,7 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-THROWS | `execute()` **sem** `throws Exception` | Declara throws |
 | CHK-SCNAT | Sem descritor `.sc` para tabela `R*` nativa | `.sc` em `Rxxxxx` |
 | CHK-SCID | Se há `.sc`: campo `id` = nome do arquivo **sem extensão** | `id` divergente do filename |
+| CHK-STUB | Java publicado sem omissão disfarçada | `return new int[]{0,0}`; `// preencher`; `// mesma lógica`; `// restante`; corpo vazio onde o LSP tinha lógica |
 
 ### Demais (após críticos)
 
@@ -140,7 +141,7 @@ Evidência / Bases consultadas: …
 
 ## Exemplos
 
-Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
+Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-STUB`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
 
 ## Relacionados
 
