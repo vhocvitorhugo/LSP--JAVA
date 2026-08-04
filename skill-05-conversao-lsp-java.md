@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 5 · Conversão LSP → Java
-Versão: v1.0 · Arquivo: `skill-05-conversao-lsp-java.md`
+Versão: v1.1 · Arquivo: `skill-05-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -16,10 +16,10 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 
 | Usar | Não usar |
 |---|---|
-| Converter/migrar/mapear LSP→Java / HCM Ponto | Conceito → 1; debug → 2; só criar LSP → 3; só engenharia reversa → 4 |
+| Converter/migrar/mapear LSP→Java / HCM Ponto | Fora de escopo do agente → devolver ao Router (recusa + redirecionamento) |
 
-**Handoff:** só explicar → 4; gate FAIL → corrigir aqui e reexecutar 9; auditoria avulsa → 9  
-**Reuso:** se a Skill 4 já entregou inventário no formato Fase A, **reaproveite** — não remapeie do zero sem motivo.
+**Handoff:** gate FAIL → corrigir aqui e reexecutar Skill 9; auditoria avulsa → Skill 9.  
+**Inventário:** sempre montar na Fase A (não depender de fluxo externo).
 
 ## Restrições locais
 

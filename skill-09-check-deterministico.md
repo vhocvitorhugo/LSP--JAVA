@@ -1,14 +1,14 @@
 ---
 name: check-deterministico
 description: >-
-  Gate determinístico PASS/FAIL/N/A de conformidade para toda regra criada,
-  refatorada, convertida ou corrigida com código substituível. Use
-  automaticamente após rascunhos das Skills 2/3/5 antes de publicar ao usuário,
-  e quando o usuário pedir auditoria/conformidade/check de um artefato gerado.
+  Gate determinístico PASS/FAIL/N/A de conformidade para Java convertido na
+  Skill 5 Fase C. Use automaticamente após o rascunho da Fase C antes de
+  publicar ao usuário, e quando o usuário pedir auditoria/conformidade/check
+  de um artefato gerado.
 ---
 
 # Skill 9 · Check Determinístico
-Versão: v1.0 · Gate obrigatório · `skill-09-check-deterministico.md`
+Versão: v1.1 · Gate obrigatório · `skill-09-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.
 
@@ -16,22 +16,22 @@ Checks binários apenas — cite evidência observável. Proibido “parece ok�
 
 | Usar | Não usar |
 |---|---|
-| **Gate** após Skill 3 / Skill 5 Fase C / código corrigido da Skill 2; auditoria avulsa | Criar/converter do zero (3/5); QA de menu (8) |
+| **Gate** após Skill 5 Fase C; auditoria avulsa | Inventário/mapeamento (Fase A/B); QA de comportamento (Skill 8); fora de escopo |
 
 ## Pipeline do gate (obrigatório)
 
 ```text
-1. Skill origem monta RASCUNHO (ainda não envia)
+1. Skill 5 monta RASCUNHO da Fase C (ainda não envia)
 2. Skill 9 no modo gate_obrigatorio
 3. PASS → publica rascunho + resumo do check
-4. FAIL → corrige na origem → reexecuta 9 (máx. 2 ciclos)
+4. FAIL → corrige na Skill 5 → reexecuta 9 (máx. 2 ciclos)
 5. Ainda FAIL → publica + FAIL transparente + IDs que falharam
 6. Pergunta de continuidade só na resposta final ao usuário
 ```
 
-**Proibido:** mostrar regra gerada/convertida ao usuário sem este gate.
+**Proibido:** mostrar Java convertido ao usuário sem este gate.
 
-Sem gate para: menu, Skill 1, Skill 4, Skill 5 Fase A/B, diagnóstico sem código corrigido.
+Sem gate para: boas-vindas, Skill 5 Fase A/B, recusa de escopo.
 
 ## Ordem de execução (obrigatória)
 
@@ -50,7 +50,6 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | Modo | Bateria |
 |---|---|
 | `gate_obrigatorio` + conversão | `conversao_lsp_java` |
-| `gate_obrigatorio` + criar/corrigir regra | `desenvolvimento_lsp` |
 | `auditoria_avulsa` | laudo completo (mesmo ordem: críticos → demais) |
 
 ## Bateria — conversão (Skill 5 C)
@@ -89,32 +88,12 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-COM | Comentários por bloco | Código longo sem comentário |
 | CHK-CONT | Continuidade na resposta **final** | Ausente no final (N/A no rascunho interno) |
 
-## Bateria — desenvolvimento / correção (Skill 3 / 2)
-
-### Críticos
-
-| ID | PASS | FAIL |
-|---|---|---|
-| CHK-FULL | Código completo | `// restante` |
-| CHK-SQL2 | Sem SQL 2 | Usa SQL 2 |
-| CHK-EVID | Campos de evidência | Ausente |
-
-### Demais
-
-| ID | PASS | FAIL |
-|---|---|---|
-| CHK-OBJ | Objetivo/premissas | Ausente |
-| CHK-CUR | Abrir/ler/fechar | Abre sem fechar |
-| CHK-COM | Comentários por bloco | Ausente em regra longa |
-| CHK-SIG | Sanitizado | Vazamento |
-| CHK-CONT | Na resposta final | Ausente (N/A no rascunho) |
-
 ## Resumo ao usuário (sempre após o gate)
 
 ```text
 ## Check determinístico (Skill 9)
 Veredito: PASS | FAIL | INCOMPLETO
-Origem: Skill N
+Origem: Skill 5
 Ciclos de correção: 0|1|2
 Críticos: PASS | FAIL [IDs] · falhos/total = n/n
 Demais: falhos/total = n/n
@@ -128,7 +107,7 @@ Falhas remanescentes: nenhuma | [IDs]
 ```text
 ## Laudo Skill 9
 Modo: auditoria_avulsa
-Artefato: conversao | desenvolvimento | outro
+Artefato: conversao | outro
 Veredito: PASS | FAIL | INCOMPLETO
 
 ### Críticos
@@ -155,4 +134,4 @@ Gate PASS após Fase C limpa · FAIL crítico `CHK-COMP` por stub → corrige �
 
 ## Relacionados
 
-Router (gate) · Skills 2/3/5 · vs Skill 8 (QA de comportamento ≠ gate de artefato)
+Router (gate) · Skill 5 · vs Skill 8 (QA de comportamento ≠ gate de artefato)
