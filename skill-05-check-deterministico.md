@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.3 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.4 · Gate obrigatório · `skill-05-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.
 
@@ -68,6 +68,7 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-FIN | Cursor/`EntitySession` com `finally`/close (se usa ICursor) | Abre sem fechar |
 | CHK-THROWS | `execute()` **sem** `throws Exception` | Declara throws |
 | CHK-SCNAT | Sem descritor `.sc` para tabela `R*` nativa | `.sc` em `Rxxxxx` |
+| CHK-SCID | Se há `.sc`: campo `id` = nome do arquivo **sem extensão** | `id` divergente do filename |
 
 ### Demais (após críticos)
 
@@ -95,6 +96,7 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-MARANT | `MarcacaoAnterior` só `diferencaMinutos` (se usado) | `getHora`/`getData` |
 | CHK-RS0 | `IResultSet` índice base-0 (se usado) | base-1 como JDBC |
 | CHK-DBSESS | ContextSession sem close indevido; DBCenter com close (se DML) | Sessão mal gerenciada |
+| CHK-USULONG | Campos `USU_*` de usuário/consultor tipados `long` (se interface) | `int` em ID de usuário |
 
 ## Resumo ao usuário (sempre após o gate)
 
@@ -138,7 +140,7 @@ Evidência / Bases consultadas: …
 
 ## Exemplos
 
-Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-THROWS`/`CHK-SCNAT` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
+Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
 
 ## Relacionados
 

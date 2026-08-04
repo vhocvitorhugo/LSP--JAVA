@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 1 · Conversão LSP → Java
-Versão: v1.3 · Arquivo: `skill-01-conversao-lsp-java.md`
+Versão: v1.4 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -107,9 +107,9 @@ Regras: End → retorno; arrays → métodos/coleções; horas → minutos (`14:
 2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**mecânica + catálogo + acesso a dados + armadilhas**).  
 3. Monte inventário; mapeie com `confirmada|padrao_compilacao|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual`.  
 4. Mecânica antes da sintaxe (Skill 3: A→H).  
-5. Execute A/B/C; gate na C (Skill 5: **críticos primeiro**, incl. CHK-THROWS / CHK-SCNAT / CHK-TIPCON / CHK-MARANT quando aplicáveis).
+5. Execute A/B/C; gate na C (Skill 5: **críticos primeiro**, incl. CHK-THROWS / CHK-SCNAT / CHK-SCID / CHK-TIPCON / CHK-MARANT quando aplicáveis).
 
-Âncoras: Skill 3 — catálogo + `getHorSit`/`setHorSit`/`zeraHorasSituacao`/`getDefinicaoSituacoes` + TipCon SQL + `MarcacaoRegra`.  
+Âncoras: Skill 3 — catálogo + templates IEntity/`.sc` (seção Acesso a dados) + `getHorSit`/`TipCon`/`MarcacaoRegra`.  
 **Não** usar `getSituacao(...).getMinutos()/setMinutos(...)`.  
 Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()`.
 
@@ -117,10 +117,11 @@ Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()
 
 - [ ] Li a regra inteira e nomeei o contexto?  
 - [ ] Inventário cobre variáveis/funções/arrays/`End`/cursores/SQLs/`USU_*`?  
-- [ ] Consultei Skills 2 e 3 (incl. armadilhas Eclipse)?  
+- [ ] Consultei Skills 2 e 3 (templates IEntity/`.sc`, armadilhas Eclipse)?  
 - [ ] Classifiquei evidências?  
 - [ ] API semântica antes de EntitySession (ou USU_* justificado)?  
 - [ ] `execute()` sem throws; auxiliares não aninhados?  
+- [ ] Se `.sc`: JSON com `{`; `id` = filename sem extensão; só `USU_*`?  
 - [ ] Ordem de parâmetros / minutos / TipCon / MarcacaoAnterior ok?
 
 ## Saída — Fase A

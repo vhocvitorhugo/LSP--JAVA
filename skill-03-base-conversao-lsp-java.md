@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.3 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.4 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
@@ -45,6 +45,10 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | Cursor `USU_*` / `.sc` / ContextSession | Acesso a dados |
 | Erros Eclipse / anti-padrões | Armadilhas |
 | CalculaQtdMinutos / interjornada / TipCon SQL | Exemplos sanitizados |
+| Templates IEntity / `.sc` / DBCenter | Acesso a dados |
+| VaPara / operadores | Tipos e sintaxe |
+| InicioCalculo / AposGravar | Outros pontos |
+| ⚠️ pendente | Itens pendentes |
 | Campos LSP conflitantes | Tabela conflitantes |
 
 ## Fontes oficiais
@@ -122,6 +126,44 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 | `=` comparação | `==` / `.isEqual()` / `.equals()` |
 | `<>` | `!=` |
 | decimal `,` | `.` |
+| `e` / `ou` / `nao` | `&&` / `||` / `!` |
+| `RestoDivisao(a,b)` | `a % b` |
+| `Mensagem(...)` em regra | exceção de domínio (`BusinessException` / `RegraApuracaoException`) — não popup |
+
+### VaPara — 3 padrões (`padrao_compilacao`)
+
+**1. Early return**
+```lsp
+Se (condicao) { VaPara FimRegra; }
+@ lógica
+FimRegra:
+```
+```java
+if (condicao) return;
+// lógica
+```
+
+**2. Flag + do-while false** (bloco “pulado” com label)
+```java
+boolean fezProrrogacao = false;
+do {
+    // bloco principal
+    fezProrrogacao = true;
+} while (false);
+if (!fezProrrogacao) { /* bloco do label */ }
+```
+
+**3. Break de loop**
+```java
+while (condicao) {
+    if (encerrar) break;
+}
+```
+
+### Para (0-based em Java)
+```java
+for (int i = 0; i < n; i++) { /* LSP Para costuma 1..n */ }
+```
 
 ## Instruções
 
@@ -233,7 +275,7 @@ Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto 
 
 | LSP | Java |
 |---|---|
-| `ApuDiu[]` / `ApuNot[]` | `getHorasSeparadas(...)` / `getHoras(Marcacao, Marcacao, ...)` |
+| `ApuDiu[]` / `ApuNot[]` | `getHorasSeparadas(TipoIntervalo\|TipoHoraExtra)` → `ISeparacaoHoras` (`getHorasDiurnas`/`Noturnas`/`TotalHoras`); ou `getHoras(MarcacaoRegra, …)` |
 | `HrtRaD[]` / `HrtRan[]` / `TraDiu` / `TraNot` | `getHorasTrabalhadas(int parte)` |
 | `MinPvd[]` / `MinPvn[]` / `PrvTra[]` / `PrvTrd` / `PrvTrn` / `VprVho` / `VprVin` / `VprVtr` | `getTotalMinutosPrevisto(...)` / `getHorasPrevistas(...)` / `getTotalMinutosPrevistoProrrogado(...)` |
 | `FatRed` | `getHorarioPrevistoColaborador(...)` |
@@ -347,9 +389,9 @@ Tabela USU_* custom?
 Readonly em com.senior.rh.entities.readonly.*? → importar, não recriar
 ```
 
-**Fatal:** `.sc` apontando para `Rxxxxx` → *"Tabela … inválida. É permitido mapear somente tabelas de usuário"*.
+**Fatal:** `.sc` apontando para `Rxxxxx` → *"Tabela R034FUN inválida. É permitido mapear somente tabelas de usuário"*.
 
-### ICursor (USU_*)
+### ICursor — uma linha
 
 ```java
 MappedParamProvider params = new MappedParamProvider();
@@ -362,7 +404,39 @@ try {
 } finally { cur.close(); }
 ```
 
-Alternativas: `EntitySessionProvider.getSession()`; `CursorUtil` + `SearchMode.EXACT_MATCH`; `setOrder` + `OrderDirection`.
+### ICursor — múltiplas linhas + ordem
+
+```java
+String[] campos = new String[]{"USU_DatAlt"};
+OrderDirection[] ordem = new OrderDirection[]{OrderDirection.DESC};
+cur.setOrder(campos, ordem);
+cur.open();
+try {
+    while (cur.next()) {
+        IMinhaTabela row = cur.read();
+    }
+} finally { cur.close(); }
+```
+
+### Três formas de EntitySession
+
+```java
+// 1) preferencial no execute()
+getContainer().getEntitySession().newCursor(T.class);
+
+// 2) auxiliar fora do execute()
+IEntitySession es = EntitySessionProvider.getSession();
+es.newCursor(T.class);
+
+// 3) chave exata (CursorUtil)
+ICursor<T> cur = CursorUtil.getCursor(T.class);
+T buffer = cur.newBuffer();
+buffer.setNumEmp(col.getNumEmp());
+cur.open();
+try {
+    if (cur.search(buffer, SearchMode.EXACT_MATCH)) { cur.read(buffer); }
+} finally { cur.close(); }
+```
 
 ### ContextSession (SELECT) vs DBCenter (DML)
 
@@ -372,18 +446,107 @@ Alternativas: `EntitySessionProvider.getSession()`; `CursorUtil` + `SearchMode.E
 | Close | **Não** fechar (container) | **Fechar** no `finally` |
 | Placeholder | `?` | `?` |
 | Índice `IResultSet` | **base-0** (`getInt(0)` = 1º campo) | — |
-| databaseId típico | — | ex. `"vetorh"` (confirmar projeto) |
+| databaseId | — | ex. `"vetorh"` (confirmar projeto) |
 
-### Interface + `.sc` (só USU_*)
+### DBCenter INSERT (sanitizado)
 
-- `import com.senior.dataset.IEntity` (**nunca** `com.senior.g5…IEntity`)
-- `@Entity` + `@Field`; IDs de usuário em `long`; flags `char` `'S'`
-- `.sc` = JSON puro começando com `{`; `id` = nome do arquivo sem extensão; `query: from USU_…`
-- Null: `isXNull()` antes de ler
+```java
+IDBCenter database = DBCenter.getInstance("vetorh"); // confirmar databaseId do projeto
+ISession session = null;
+try {
+    session = database.newSession();
+    Date dataConv = Date.from(dataPro.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    String dataStr = new SimpleDateFormat("dd/MM/yyyy").format(dataConv);
+    session.executeUpdate(
+        "INSERT INTO USU_TExemplo (USU_NumEmp, USU_Dat, USU_CodSit) VALUES (?, ?, ?)",
+        numEmp, dataStr, codSit);
+} catch (Exception ex) {
+    ctx.mensagemLog("Erro DML: " + ex.getMessage());
+} finally {
+    if (session != null) session.close();
+}
+```
+
+### Template IEntity (só USU_*)
+
+```java
+package gestaopontoCustom; // package do projeto — sanitizar
+
+import java.time.LocalDate;
+import com.senior.dataset.IEntity;
+import com.senior.dataset.annotation.Entity;
+import com.senior.dataset.annotation.Field;
+
+@Entity
+public interface IMinhaTabela extends IEntity {
+
+    @Field(description = "Empresa")
+    int getUSU_CodEmp();
+    void setUSU_CodEmp(int USU_CodEmp);
+    boolean isUSU_CodEmpNull();
+    void setUSU_CodEmpNull();
+
+    @Field(description = "Data")
+    LocalDate getUSU_DatEmi();
+    void setUSU_DatEmi(LocalDate USU_DatEmi);
+    boolean isUSU_DatEmiNull();
+    void setUSU_DatEmiNull();
+
+    @Field(description = "Usuário — long")
+    long getUSU_CodUsu();
+    void setUSU_CodUsu(long USU_CodUsu);
+    boolean isUSU_CodUsuNull();
+    void setUSU_CodUsuNull();
+}
+```
+
+Null: `int v = entity.isUSU_CodEmpNull() ? 0 : entity.getUSU_CodEmp();`  
+IDs de usuário/consultor → **`long`**, não `int`.  
+Import correto: `com.senior.dataset.IEntity` — **nunca** `com.senior.g5…IEntity`.
+
+### Template `.sc` (JSON puro)
+
+```json
+{
+    "datasets": [
+        {
+            "id": "ScMinhaTabela",
+            "entity": "gestaopontoCustom.IMinhaTabela",
+            "storage": {
+                "databaseId": "vetorh",
+                "query": "from USU_MINHATAB USU_MINHATAB",
+                "fieldMapping": [
+                    { "field": "USU_CodEmp", "column": "USU_MINHATAB.USU_CodEmp" },
+                    { "field": "USU_DatEmi", "column": "USU_MINHATAB.USU_DatEmi" },
+                    { "field": "USU_CodUsu", "column": "USU_MINHATAB.USU_CodUsu" }
+                ],
+                "type": "DB"
+            }
+        }
+    ]
+}
+```
+
+Regras: `id` = **nome do arquivo sem extensão**; começa com `{`; sem BOM/comentários; só `USU_*` no `query`.
 
 ### Readonly do framework (importar)
 
 `IR030EMP`, `IR060DSI`, `IR004HOR`, `IR010SIT`, `IR010TOB`, `IR014SIN`, `IR070ACC`, …
+
+### Getters encadeados / ISeparacaoHoras (`padrao_compilacao`)
+
+```java
+int codSin = ctx.getHistoricoSindicato().getCodSin();
+int tabOrg = ctx.getHistoricoLocal().getTabOrg();
+int numLoc = ctx.getHistoricoLocal().getNumLoc();
+HistoricoVinculo hv = ctx.getHistoricoVinculo();
+if (hv != null) { /* usar hv */ }
+
+ISeparacaoHoras sep = ctx.getHorasSeparadas(TipoIntervalo.REFEICAO);
+int diu = sep.getHorasDiurnas();
+int not = sep.getHorasNoturnas();
+int tot = sep.getTotalHoras();
+```
 
 ## Armadilhas práticas
 
@@ -408,6 +571,21 @@ Alternativas: `EntitySessionProvider.getSession()`; `CursorUtil` + `SearchMode.E
 | Filename ≠ classe pública | Renomear arquivo (Windows: temp rename) |
 | Inventar método | `validacao_manual` |
 | Misturar `java.time` e Joda | Preferir `java.time` / SDK |
+
+### Mensagens Eclipse literais (referência)
+
+| Mensagem | Correção |
+|---|---|
+| `The import com.senior.g5 cannot be resolved` | `import com.senior.dataset.IEntity` |
+| `execute() throws Exception not declared by IRulePoint` | Remover `throws Exception` |
+| `The method getTipCon() is undefined for the type Colaborador` | SQL `R034FUN.TIPCON` |
+| `The method getHora() is undefined for the type MarcacaoAnterior` | `diferencaMinutos` |
+| `Type mismatch: cannot convert LocalDateTime to LocalDate` | `.toLocalDate()` |
+| `Expected BEGIN_OBJECT but was STRING` | `.sc` JSON puro começando com `{` |
+| `Tabela Rxxx inválida. É permitido mapear somente tabelas de usuário` | Sem `.sc` em `R*` |
+| `The public type X must be defined in its own file` | Filename = nome da classe |
+
+**Windows (case):** Refactor → nome temporário → nome correto (ou `ren` em duas etapas no CMD).
 
 ## Exemplos sanitizados (use só o análogo)
 
@@ -530,6 +708,77 @@ try {
 ```
 
 Justificar ausência de API semântica; emitir interface+`.sc` só para `USU_*`.
+
+### DiferencaMarcacaoDiurnoNoturno (sanitizado)
+
+```java
+private int[] diferencaMarcacaoDiurnoNoturno(int nMar1, LocalDate d1, int nMar2, LocalDate d2,
+                                             int iniNot, int fimNot) {
+    // retorna [diurno, noturno]; usar CalculaQtdMinutos + janela 1320/300
+    // implementação completa: analogia ao playbook de compilação — sem sits de cliente
+    return new int[]{0, 0}; // preencher com a lógica do bloco LSP correspondente
+}
+```
+
+Preferir `getHorasSeparadas` / APIs oficiais quando cobrirem o caso.
+
+### VerificaInterjornada (MarcacaoAnterior)
+
+```java
+private void verificaInterjornada(ContextoApuracao ctx, LocalDate datMar, int horaMar, int sitInt) {
+    if (ctx.getMarcacaoAnterior() == null) return;
+    int n = ctx.getMarcacaoAnterior().diferencaMinutos(datMar, horaMar);
+    if (n < 0) n = -n;
+    if (n > 0 && n < 660) {
+        ctx.setHorSit(sitInt, 660 - n);
+    }
+    // Preferir getHorasInterjornadaRealizada/Prevista quando existirem no contexto
+}
+```
+
+### MarcacoesInvalidas (padrão)
+
+```java
+private boolean marcacoesInvalidas(List<MarcacaoRegra> mars) {
+    if (mars == null || mars.isEmpty()) return true;
+    for (int i = 0; i + 1 < mars.size(); i += 2) {
+        // validar pares entrada/saída — regras de negócio = validacao_manual / anexo
+    }
+    return false;
+}
+```
+
+### Outros pontos de customização (referência, não fluxo de menu)
+
+| Tipo | Base | APIs típicas |
+|---|---|---|
+| InicioCalculoColaborador | `InicioCalculoColaborador` | `getMarcacoes`, `getTrocaHorario`, `incluirTrocaHorario`, `Periodo.getInstance` |
+| AposGravarApuracao | `AposGravarApuracao` | `isTelaAcerto`, `getDiasCalculados`, `isUltimoColaborador` |
+| Manutenção BH | `RegraManutencaoBH` | `getLancamentos()` → `ILancamentoBH` |
+| Fechamento BH | `RegraFechamentoBH` | `getBancoHoras`, `getDataFinal`, `realizarFechamento` |
+| ContextoGeralRH | qualquer regra | `getUsuarioAtivo`, `getUsuarioColaborador`, `getSaldoBancoHoras`, `getMesData` |
+
+### Checklist pré-entrega (operacional)
+
+- [ ] `execute()` sem `throws Exception`
+- [ ] `import com.senior.dataset.IEntity` (não `g5…`)
+- [ ] Sem `.sc` em `R*`; `.sc` JSON com `{`; `id` = filename
+- [ ] `MarcacaoRegra.getData().toLocalDate()`; MarcacaoAnterior só `diferencaMinutos`
+- [ ] TipCon via SQL; IDs usuário `long`
+- [ ] Filename = classe; auxiliares no nível da classe
+- [ ] ICursor `close` no `finally`; DBCenter `session.close`; ContextSession **sem** close
+
+### Itens pendentes de confirmação (⚠️)
+
+| Item | Status |
+|---|---|
+| Package/enum completo `TipoHoraExtra` | ⚠️ Pendente — `validacao_manual` |
+| `@Transactional` vs container | ⚠️ Pendente |
+| `Logico` / `Escolha/Caso` LSP | ⚠️ Pendente |
+| `isNull/setNull` em `LocalDate` de IEntity | ⚠️ Confirmar no projeto |
+| Capitalização getters `USU_*` | ⚠️ Confirmar com analista |
+
+Não inventar esses itens como `confirmada`.
 
 ## Saída para a Skill 1
 

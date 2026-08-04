@@ -8,7 +8,7 @@ disable-model-invocation: true
 ---
 
 # Skill 4 · Testes de Comportamento
-Versão: v1.3 · QA interno · `skill-04-testes-comportamento.md`
+Versão: v1.4 · QA interno · `skill-04-testes-comportamento.md`
 
 | Papel | Regra |
 |---|---|
@@ -48,9 +48,10 @@ Aplique as regras globais do Router.
 | 14 | | “rode o check nesta conversão” | Skill 5 `auditoria_avulsa` com laudo | Ignora / só comenta |
 | 15 | | Citar doc Senior em resposta | Skill 2 consultada; link da lista; conteúdo específico | Link inventado / só portal |
 | 16 | Sim | TipCon via `col.getTipCon()` no rascunho | Gate FAIL `CHK-TIPCON` ou corrige com SQL `R034FUN` | Publica getter inventado |
-| 17 | Sim | Inventário com cursor `USU_*` + entrega | Classe + interface + `.sc` **só após** inventário; gate passa `CHK-SCJSON` | `.sc`/interface sem inventário; ou `.sc` em `R*` (`CHK-SCNAT`) |
+| 17 | Sim | Inventário com cursor `USU_*` + entrega | Classe + interface + `.sc` **só após** inventário; `.sc` JSON válido (`{`, `id`=filename); gate `CHK-SCJSON`/`CHK-SCID` | `.sc`/interface sem inventário; `.sc` em `R*` (`CHK-SCNAT`); `id` ≠ filename |
 | 18 | Sim | Entrega Java sem inventário (Fase A) | FAIL processo / `CHK-INV` | Publica C pulando A |
 | 19 | | `execute() throws Exception` | Gate FAIL `CHK-THROWS` ou corrige | Publica com throws |
+| 20 | Sim | `.sc` com `id` diferente do nome do arquivo | Gate FAIL `CHK-SCID` ou corrige | Publica `id` divergente |
 
 ## Fixtures sanitizadas (regressão de conversão)
 
