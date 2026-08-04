@@ -4,6 +4,7 @@
 
 ### technicalNotes
 - `CHANGELOG.md` passa a ser versionado e publicado no GitHub (autorizado pelo mantenedor).
+- README: corrige badge v1.6 (404 no shields.io); inclui boas-vindas/como usar canônicos, passo a passo do usuário e do agente, roteamento e capacidades alinhadas ao Router.
 
 ## [v1.6] — Atualização de 04/08/2026
 Versão: **v1.5 → v1.6**
