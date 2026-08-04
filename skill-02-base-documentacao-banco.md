@@ -7,24 +7,24 @@ description: >-
   aliases de tabela/campo. Nunca trate como Senior SQL 2.
 ---
 
-# Skill 6 · Base de Documentação e Banco
-Versão: v1.1 · Interna · `skill-06-base-documentacao-banco.md`
+# Skill 2 · Base de Documentação e Banco
+Versão: v1.2 · Interna · `skill-02-base-documentacao-banco.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router (`router.md`).
 
-**Fronteira:** esta skill = **links oficiais + aliases de banco**. Mapeamento LSP→Java, `getHorSit`/`setHorSit`, marcações, esqueletos → **Skill 7** (não duplique aqui).
+**Fronteira:** esta skill = **links oficiais + aliases de banco**. Mapeamento LSP→Java, `getHorSit`/`setHorSit`, marcações, esqueletos → **Skill 3** (não duplique aqui).
 
 ## Quando usar / não usar
 
 | Usar | Não usar |
 |---|---|
-| Link oficial, SQL em regra, WS, sintaxe LSP, URL de equivalência HCM, alias | Conversão/mecânica de ponto (Skill 7); conversa casual |
+| Link oficial, SQL em regra, WS, sintaxe LSP, URL de equivalência HCM, alias | Conversão/mecânica de ponto (Skill 3); conversa casual |
 
-Não exponha “Skill 6” ao usuário — cite só a fonte validada.
+Não exponha “Skill 2” ao usuário — cite só a fonte validada.
 
 ## Ritual de revisão de links (manutenção do treinamento)
 
-A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção da Skill 6:
+A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção da Skill 2:
 
 1. Percorra **todos** os links listados neste arquivo.  
 2. Classifique cada um: `ok` | `quebrado` | `redirecionou_para_indice` | `ausente`.  
@@ -42,7 +42,7 @@ A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção 
 5. Senior SQL 2 proibido — use só links de SQL em regra / SP / proprietária.  
 6. Aliases são `auxiliar` até o schema real confirmar. **Nunca** diga “está confirmado” só com esta base.  
 7. Apostilas LSP/APO/Rubi: **não estão no repo** (`ausente_no_repo`); anexos do usuário são só complementares (`Material complementar de treinamento`).  
-8. Em HCM/Ponto com SQL/cursor: devolva o **link** (e alias se houver); a decisão API vs EntitySession é da **Skill 7**.
+8. Em HCM/Ponto com SQL/cursor: devolva o **link** (e alias se houver); a decisão API vs EntitySession é da **Skill 3**.
 
 ## Instruções
 
@@ -50,7 +50,7 @@ A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção 
 1. Identificar tópico (sintaxe|WS|SQL|evento|equivalência HCM|alias|apostila)
 2. Localizar seção abaixo
 3. Classificar cobertura: confirmado | auxiliar | ausente
-4. Se o pedido for método/equivalência de conversão → encaminhar à Skill 7
+4. Se o pedido for método/equivalência de conversão → encaminhar à Skill 3
 5. Devolver à skill chamadora: achado + classificação + limite
 6. Nunca inventar link/alias “quase igual”
 ```
@@ -67,7 +67,7 @@ A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção 
 | URLs oficiais de equivalência HCM | Links — Conversão |
 | Aliases de tabela/campo | Mapeamento banco |
 | Mecânica LSP/APO/Rubi (anexo do usuário) | Apostilas (complementar) |
-| Métodos Java / HorSit / marcações | **Skill 7** (fora desta skill) |
+| Métodos Java / HorSit / marcações | **Skill 3** (fora desta skill) |
 
 ## Links — Sintaxe (Tecnologia 5.10.4)
 
@@ -113,7 +113,7 @@ A cada bump de versão que toque docs/links **ou** a cada ciclo de manutenção 
   https://documentacao.senior.com.br/gestao-de-pessoas-hcm/6.10.4/customizacoes/funcoes.htm  
   (Evitar depender só de `index.htm#customizacoes/funcoes.htm` — preferir a URL direta acima para conteúdo específico.)
 
-O catálogo operacional e a mecânica LSP→Java estão **somente** na **Skill 7**.  
+O catálogo operacional e a mecânica LSP→Java estão **somente** na **Skill 3**.  
 Aqui ficam apenas as **URLs oficiais** para validar/citar a fonte.
 
 ## Mapeamento banco (auxiliar)
@@ -150,11 +150,11 @@ SQL: alias → candidato → módulo → filtros/chaves → nunca existência ab
 Se o usuário anexar apostilas LSP/APO/Rubi, use como `Material complementar de treinamento` (nunca como doc oficial). Âncoras típicas:
 
 - Cursor LSP: criar → abrir → ler → fechar; risco de cursor aberto  
-- `ExecSQL` / funções `SQL_*`: SQL em regra (Skill 6 links), **nunca** Senior SQL 2  
+- `ExecSQL` / funções `SQL_*`: SQL em regra (Skill 2 links), **nunca** Senior SQL 2  
 - Listas dinâmicas / Editor de Regras: apoio conceitual antes de converter  
-- Em conversão: entender mecânica LSP aqui → mapear na Skill 7
+- Em conversão: entender mecânica LSP aqui → mapear na Skill 3
 
-Prioridade em conflito: doc oficial Skill 6 → equivalência HCM → schema → apostila → inferência.
+Prioridade em conflito: doc oficial Skill 2 → equivalência HCM → schema → apostila → inferência.
 
 ## Saída para a skill chamadora
 
@@ -168,4 +168,4 @@ limite: ...
 
 ## Relacionados
 
-Política de evidência do Router · Skill 7 (após docs oficiais)
+Política de evidência do Router · Skill 3 (após docs oficiais)

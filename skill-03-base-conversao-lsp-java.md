@@ -3,17 +3,17 @@ name: base-conversao-lsp-java
 description: >-
   Padrões e catálogo oficial de equivalência LSP→Java (HCM 6.10.4 / Gestão do
   Ponto): variáveis, funções, âncoras, armadilhas e exemplos. Use a partir da
-  Skill 5 após Skill 6. Fonte prioritária: documentação Senior de equivalência
-  das funções de regras. Nunca invente método ausente neste catálogo e na Skill 6.
+  Skill 1 após Skill 2. Fonte prioritária: documentação Senior de equivalência
+  das funções de regras. Nunca invente método ausente neste catálogo e na Skill 2.
 ---
 
-# Skill 7 · Base de Conversão LSP → Java
-Versão: v1.1 · Interna · `skill-07-base-conversao-lsp-java.md`
+# Skill 3 · Base de Conversão LSP → Java
+Versão: v1.2 · Interna · `skill-03-base-conversao-lsp-java.md`
 
-Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 6 / página oficial**.
+Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
-**Fronteira:** Skill 6 = links/aliases; **esta skill** = mecânica + catálogo + exemplos de conversão.  
-**Crescimento do catálogo:** só incluir equivalência **confirmada** (doc oficial / Skill 6). Proibido expandir por inferência.
+**Fronteira:** Skill 2 = links/aliases; **esta skill** = mecânica + catálogo + exemplos de conversão.  
+**Crescimento do catálogo:** só incluir equivalência **confirmada** (doc oficial / Skill 2). Proibido expandir por inferência.
 
 ## Como consultar (ordem obrigatória)
 
@@ -24,7 +24,7 @@ C. Tipos / sintaxe (se necessário)
 D. Catálogo — só a família do item LSP
 E. Armadilhas (checklist rápido)
 F. Exemplos — só o padrão análogo
-G. Saída tipada para a Skill 5
+G. Saída tipada para a Skill 1
 ```
 
 Não leia o catálogo inteiro de ponta a ponta em toda conversão. Localize a **família** no índice abaixo.
@@ -50,17 +50,17 @@ Não leia o catálogo inteiro de ponta a ponta em toda conversão. Localize a **
 | Índice das Funções HCM 6.10.4 | https://documentacao.senior.com.br/gestao-de-pessoas-hcm/6.10.4/customizacoes/funcoes.htm | Assinatura + **contexto** do método |
 
 Catálogo abaixo: evidência `confirmada` (salvo nota). Exemplos: `padrao_anexo`.  
-**Assinatura/contexto incompletos no catálogo** → abrir Índice das Funções (Skill 6) antes de gerar código.
+**Assinatura/contexto incompletos no catálogo** → abrir Índice das Funções (Skill 2) antes de gerar código.
 
 ## Quando usar / não usar
 
 | Usar | Não usar |
 |---|---|
-| Converter/mapear variáveis e funções de apuração LSP→Java | Só mentoria; inventar método; só citar link (Skill 6) |
+| Converter/mapear variáveis e funções de apuração LSP→Java | Só mentoria; inventar método; só citar link (Skill 2) |
 
 ## Restrições absolutas
 
-1. Preferir o catálogo; se faltar → Skill 6 → `validacao_manual` (não inventar).  
+1. Preferir o catálogo; se faltar → Skill 2 → `validacao_manual` (não inventar).  
 2. Horas em APIs de ponto = **minutos inteiros**.  
 3. SQL/cursor → API semântica do catálogo antes de EntitySession.  
 4. **Proibido** `getSituacao(...).getMinutos()` / `setMinutos(...)` — use `getHorSit` / `setHorSit` / `zeraHorasSituacao`.  
@@ -116,7 +116,7 @@ Quem só troca `Inicio/Fim` por `{ }` produz código que não compila.
 1. Seguir “Como consultar” (A→G)
 2. Identificar contexto
 3. Buscar item só na família do Catálogo
-4. Assinatura/contexto duvidosos → Índice das Funções (Skill 6)
+4. Assinatura/contexto duvidosos → Índice das Funções (Skill 2)
 5. Ausente → validacao_manual
 ```
 
@@ -379,7 +379,7 @@ try {
 
 Justificar ausência de API; marcar `validacao_manual` se entidade custom.
 
-## Saída para a Skill 5
+## Saída para a Skill 1
 
 ```text
 contexto: Apuracao | FechamentoBH | outro | indefinido
@@ -392,4 +392,4 @@ limite: ...
 
 ## Relacionados
 
-Skill 6 (URLs/aliases) · Skill 5 · Skill 9 (`CHK-SITAPI`, `CHK-ORDEM`, `CHK-FIN`, `CHK-CTXOK`)
+Skill 2 (URLs/aliases) · Skill 1 · Skill 5 (`CHK-SITAPI`, `CHK-ORDEM`, `CHK-FIN`, `CHK-CTXOK`)

@@ -3,12 +3,12 @@ name: conversao-lsp-java
 description: >-
   Converte regras LSP Senior para Java (HCM/Gestão do Ponto) com inventário,
   mapeamento, fases A/B/C e entrega consolidada. Use ao converter, migrar ou
-  mapear LSP→Java. Sempre execute o gate da Skill 9 antes de publicar a Fase C.
-  Prefira documentação oficial (Skill 6) aos padrões da Skill 7.
+  mapear LSP→Java. Sempre execute o gate da Skill 5 antes de publicar a Fase C.
+  Prefira documentação oficial (Skill 2) aos padrões da Skill 3.
 ---
 
-# Skill 5 · Conversão LSP → Java
-Versão: v1.1 · Arquivo: `skill-05-conversao-lsp-java.md`
+# Skill 1 · Conversão LSP → Java
+Versão: v1.2 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -18,7 +18,7 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 |---|---|
 | Converter/migrar/mapear LSP→Java / HCM Ponto | Fora de escopo do agente → devolver ao Router (recusa + redirecionamento) |
 
-**Handoff:** gate FAIL → corrigir aqui e reexecutar Skill 9; auditoria avulsa → Skill 9.  
+**Handoff:** gate FAIL → corrigir aqui e reexecutar Skill 5; auditoria avulsa → Skill 5.  
 **Inventário:** sempre montar na Fase A (não depender de fluxo externo).
 
 ## Restrições locais
@@ -28,8 +28,8 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 3. Nunca invente assinaturas; desconhecido → `validacao_manual`.  
 4. Ordem de parâmetros não se presume igual à LSP.  
 5. SQL/cursor → API semântica antes de EntitySession.  
-6. Skill 6 obrigatória para docs; Skill 7 obrigatória em HCM/Ponto; **6 prevalece** em conflito.  
-7. **Fase C:** rascunho → **gate Skill 9** → publicar com resumo do check.  
+6. Skill 2 obrigatória para docs; Skill 3 obrigatória em HCM/Ponto; **6 prevalece** em conflito.  
+7. **Fase C:** rascunho → **gate Skill 5** → publicar com resumo do check.  
 8. Sem links de download inventados.  
 9. Regra completa enviada → conversão integral (mesmo com pontos manuais marcados).
 
@@ -39,7 +39,7 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 A  Inventário + mapeamento + plano   (sem Java final)
    → se o usuário já pediu canvas|doc|código inteiro → pular B e ir à C após A
 B  Perguntar 1=canvas / 2=documento  (sem Java final)
-C  Rascunho Java completo → gate Skill 9 → publicar + Consolidação final
+C  Rascunho Java completo → gate Skill 5 → publicar + Consolidação final
 ```
 
 ### Quando perguntar formato (Fase B)
@@ -66,12 +66,12 @@ Não pergunte se já pediu: canvas, documento/link/arquivo, “regra toda”, �
 
 ## Prioridade arquitetural (Gestão do Ponto)
 
-1. Equivalência oficial (Skill 6 / catálogo Skill 7)  
+1. Equivalência oficial (Skill 2 / catálogo Skill 3)  
 2. Métodos documentados do módulo  
 3. Métodos de contexto (`contextoApuracao` etc.)  
-4. Padrões operacionais Skill 7  
+4. Padrões operacionais Skill 3  
 5. Exemplos sanitizados / anexos do usuário (`padrao_anexo`)  
-6. Aliases/banco Skill 6 (só interpretação)  
+6. Aliases/banco Skill 2 (só interpretação)  
 7. EntitySession/cursor manual — último recurso, com justificativa  
 
 ## Tabela de inventário (A)
@@ -85,12 +85,12 @@ Regras: End → retorno; arrays → métodos/coleções; horas → minutos (`14:
 ## Instruções
 
 1. Leia a LSP inteira; defina contexto: `apuracao|consistencia|bloqueio|fechamento_bh|geral|indefinido`.  
-2. Consulte Skill 6 (**URLs/aliases**) e Skill 7 (**mecânica + catálogo** — ordem A→G do arquivo).  
+2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**mecânica + catálogo** — ordem A→G do arquivo).  
 3. Monte inventário; mapeie com `confirmada|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual`.  
-4. Mecânica antes da sintaxe (Skill 7: restrições → workflow → família do catálogo → armadilhas).  
-5. Execute A/B/C; gate na C (Skill 9: **críticos primeiro**).
+4. Mecânica antes da sintaxe (Skill 3: restrições → workflow → família do catálogo → armadilhas).  
+5. Execute A/B/C; gate na C (Skill 5: **críticos primeiro**).
 
-Âncoras: Skill 7 — catálogo + `getHorSit`/`setHorSit`/`zeraHorasSituacao`/`getDefinicaoSituacoes`.  
+Âncoras: Skill 3 — catálogo + `getHorSit`/`setHorSit`/`zeraHorasSituacao`/`getDefinicaoSituacoes`.  
 **Não** usar `getSituacao(...).getMinutos()/setMinutos(...)`.  
 Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()`.
 
@@ -98,7 +98,7 @@ Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()
 
 - [ ] Li a regra inteira e nomeei o contexto?  
 - [ ] Inventário cobre variáveis/funções/arrays/`End`/cursores/SQLs?  
-- [ ] Consultei Skills 6 e 7?  
+- [ ] Consultei Skills 2 e 3?  
 - [ ] Classifiquei evidências?  
 - [ ] Há API semântica antes de EntitySession?  
 - [ ] Ordem de parâmetros / minutos / sem variável solta?
@@ -115,7 +115,7 @@ Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()
 ## Itens sem equivalência direta
 
 Evidência: ...
-Bases consultadas: Skill 6 [sim]; Skill 7 [sim]
+Bases consultadas: Skill 2 [sim]; Skill 3 [sim]
 [pergunta Fase B, se necessário]
 + continuidade
 ```
@@ -133,11 +133,11 @@ Status da conversão: COMPLETA
 Formato de entrega: ...
 
 Evidência: ...
-Bases consultadas: Skill 6 [sim]; Skill 7 [sim]
+Bases consultadas: Skill 2 [sim]; Skill 3 [sim]
 
-## Check determinístico (Skill 9)
+## Check determinístico (Skill 5)
 Veredito: PASS | FAIL
-Origem: Skill 5
+Origem: Skill 1
 Ciclos de correção: 0|1|2
 Críticos: PASS | FAIL [IDs] · falhos/total = n/n
 Demais: falhos/total = n/n
@@ -149,9 +149,9 @@ Falhas remanescentes: ...
 ## Exemplos
 
 **A→B:** converter sem formato → inventário + perguntar 1/2.  
-**Pular B + gate:** “no canvas, regra toda” → rascunho A+C → Skill 9 → publicar.  
-**Não faça:** publicar C sem Skill 9; inventar método; entregar em partes; `// restante da lógica`.
+**Pular B + gate:** “no canvas, regra toda” → rascunho A+C → Skill 5 → publicar.  
+**Não faça:** publicar C sem Skill 5; inventar método; entregar em partes; `// restante da lógica`.
 
 ## Relacionados
 
-Router · Skills 6 e 7 · gate Skill 9
+Router · Skills 2 e 3 · gate Skill 5
