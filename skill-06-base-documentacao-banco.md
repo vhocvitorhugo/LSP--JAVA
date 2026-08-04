@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 6 · Base de Documentação e Banco
-Versão: v1.14 · Interna · `skill-06-base-documentacao-banco.md`
+Versão: v1.0 · Interna · `skill-06-base-documentacao-banco.md`
 
 Não entra no menu 1–5. Aplique as regras globais do Router (`router.md`).
 

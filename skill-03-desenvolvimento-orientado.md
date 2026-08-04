@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 3 · Desenvolvimento Orientado
-Versão: v1.14 · Arquivo: `skill-03-desenvolvimento-orientado.md`
+Versão: v1.0 · Arquivo: `skill-03-desenvolvimento-orientado.md`
 
 Aplique as regras globais do Router. Não as reescreva.
 

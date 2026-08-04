@@ -9,7 +9,7 @@ description: >-
 ---
 
 # Skill 4 · Analisador de Regras
-Versão: v1.14 · Arquivo: `skill-04-analisador-regras.md`
+Versão: v1.0 · Arquivo: `skill-04-analisador-regras.md`
 
 Aplique as regras globais do Router. Não as reescreva.
 

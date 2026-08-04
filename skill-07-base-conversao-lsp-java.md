@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 7 · Base de Conversão LSP → Java
-Versão: v1.14 · Interna · `skill-07-base-conversao-lsp-java.md`
+Versão: v1.0 · Interna · `skill-07-base-conversao-lsp-java.md`
 
 Não entra no menu. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 6 / página oficial**.
 

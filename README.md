@@ -8,14 +8,14 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSPCodMind-v1.14-success?style=for-the-badge" alt="LSPCodMind v1.14" />
+  <img src="https://img.shields.io/badge/LSPCodMind-v1.0-success?style=for-the-badge" alt="LSPCodMind v1.0" />
 </p>
 
 ---
 
 O **LSPCodMind** é um framework de agente em formato modular **Router + Skills**, focado na plataforma **Senior Sistemas**: diagnóstico de regras, engenharia reversa de legado, desenvolvimento orientado e conversão assistida LSP → Java no **Senior HCM** (Controle de Ponto e Refeitório).
 
-**Versão atual: v1.14** — repositório de gravação GitHub alterado para `vhocvitorhugo/LSP--JAVA`; diretrizes e artefatos alinhados à nova origem de push.
+**Versão atual: v1.0** — baseline do repositório `vhocvitorhugo/LSP--JAVA` (projeto novo).
 
 ---
 
@@ -84,18 +84,4 @@ O **Prompt Router** (`router.md`) controla menu, roteamento, evidência, sigilo,
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.14** | Remote de gravação: `https://github.com/vhocvitorhugo/LSP--JAVA.git` |
-| v1.13 | Menu com identidade; desempate 2×3×4; inventário Skill 4; ritual links; fixtures QA; métrica Skill 9; PDFs sync |
-| v1.12 | Router: identidade LSPCodMind — agente especializado em regras de desenvolvimento nos sistemas Senior |
-| v1.11 | README obrigatório a cada alteração de skill/router (regra no AGENTS.md) |
-| v1.10 | Skills 6–9: fronteira clara, navegação Skill 7, PASS na 8, críticos-primeiro na 9 |
-| v1.9 | Fusão do treinamento PDF legado (mecânica/exemplos/protocolo) no framework atual |
-| v1.8 | Catálogo oficial de equivalência LSP→Java (doc Senior 6.10.4) na Skill 7 + exemplos práticos |
-| v1.7 | Skills e Router em português (Brasil) |
-| v1.6 | Skills 6 e 7 em arquivo único (remove `*-reference.md`) |
-| v1.5 | README sincronizado no GitHub (remove badge legado v13.0) |
-| v1.4 | Estilo skills.sh |
-| v1.3 | Skill 9 como gate obrigatório |
-| v1.2 | Criação da Skill 9 |
-| v1.1 | Treinamento operacional + versionamento minor |
-| v1.0 | Baseline |
+| **v1.0** | Baseline do repositório `LSP--JAVA` |

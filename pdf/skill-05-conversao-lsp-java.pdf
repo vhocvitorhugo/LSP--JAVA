@@ -20,7 +20,7 @@ BT
 /F2 16.00 Tf 1 0 0 1 54.00 730.00 Tm (Skill 5 * Convers\343o LSP -> Java) Tj
 /F1 8.00 Tf 1 0 0 1 54.00 701.60 Tm (Fonte: skill-05-conversao-lsp-java.md) Tj
 /F2 16.00 Tf 1 0 0 1 54.00 667.70 Tm (Skill 5 * Convers\343o LSP -> Java) Tj
-/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.14 * Arquivo: skill-05-conversao-lsp-java.md) Tj
+/F1 10.00 Tf 1 0 0 1 54.00 641.30 Tm (Vers\343o: v1.0  * Arquivo: skill-05-conversao-lsp-java.md) Tj
 /F1 10.00 Tf 1 0 0 1 54.00 617.30 Tm (Aplique as regras globais do Router. Preserve a inten\347\343o funcional, n\343o a sintaxe literal.) Tj
 /F2 13.00 Tf 1 0 0 1 54.00 583.30 Tm (Quando usar / n\343o usar) Tj
 /F1 10.00 Tf 1 0 0 1 54.00 556.10 Tm (| Usar | N\343o usar | |---|---| | Converter/migrar/mapear LSP->Java / HCM Ponto | Conceito -> 1; debug ->) Tj
