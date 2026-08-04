@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 2 · Base de Documentação e Banco
-Versão: v1.4 · Interna · `skill-02-base-documentacao-banco.md`
+Versão: v1.5 · Interna · `skill-02-base-documentacao-banco.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router (`router.md`).
 

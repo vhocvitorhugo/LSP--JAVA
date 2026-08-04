@@ -8,39 +8,71 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP-JAVA-v1.4-success?style=for-the-badge" alt="LSP→JAVA v1.4" />
+  <img src="https://img.shields.io/badge/LSP-JAVA-v1.5-success?style=for-the-badge" alt="LSP→JAVA v1.5" />
 </p>
 
 ---
 
-O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** na conversão assistida de regras **LSP → Java** no **Senior HCM**.
+O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** na conversão assistida de regras **LSP → Java** no **Senior HCM / Gestão do Ponto**.
 
-**Versão atual: v1.4** — profundidade de compilação: templates IEntity/`.sc`, DBCenter, cursores, helpers sanitizados, VaPara, mensagens Eclipse e CHK-SCID — sem engolir negócio de cliente do playbook externo.
+**Versão atual: v1.5** — README público reforçado (quick start, pipeline e papéis das skills) e correção residual no checklist do Router (`Skills 2/3` + gate 5).
+
+**Para quem:** analistas e desenvolvedores que migram regras LSP de ponto para Java no ecossistema Senior.
+
+**Fora de escopo:** mentoria genérica, debug sem conversão, criar/refatorar LSP sem migrar para Java, ou só engenharia reversa.
 
 ---
 
-## Funcionalidades
+## Quick start
 
-- **Conversão (Skill 1)** — A/B/C + artefatos `USU_*` após inventário  
-- **Docs (Skill 2)** — links oficiais; ContextSession ≠ SQL 2  
-- **Base conversão (Skill 3)** — catálogo 6.10.4 + `padrao_compilacao` (templates, DML, helpers)  
-- **QA (Skill 4)** — suite interna  
-- **Gate (Skill 5)** — checks ampliados (SCID, THROWS, TIPCON, …)  
+1. Carregue o agente com [`router.md`](router.md) e as skills `skill-01` … `skill-05` deste repositório.
+2. Digite `inicio`, `menu` ou `ajuda` para ver as boas-vindas.
+3. Cole a regra LSP (ou anexe o arquivo) e peça para **converter**.
+4. Opcional: diga o formato — **canvas**, **documento/arquivo** ou **bloco único**.
+5. Para auditar uma conversão já gerada: peça `check` / auditoria.
 
-**Precedência:** docs Skill 2 → catálogo Skill 3 → `padrao_compilacao` → anexos → `validacao_manual`.
+---
+
+## Pipeline de conversão
+
+```text
+A  Inventário + mapeamento + plano     (sem Java final)
+B  Escolha de formato (se ainda não pediu)
+C  Java completo → gate Skill 5 → resposta (+ resumo do check)
+```
+
+| Fase | O que acontece |
+| :--- | :--- |
+| **A** | Inventário LSP→Java, evidências e plano |
+| **B** | Pergunta formato só se você não indicou |
+| **C** | Código consolidado; gate determinístico antes de publicar |
 
 ---
 
 ## Arquitetura
 
-| Papel | Arquivo |
-| :--- | :--- |
-| Router | [`router.md`](router.md) |
-| Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) |
-| Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) |
-| Catálogo + mecânica | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) |
-| QA | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) |
-| Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) |
+| Papel | Arquivo | Uso |
+| :--- | :--- | :--- |
+| Router | [`router.md`](router.md) | Escopo, boas-vindas, evidência, roteamento |
+| Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Fluxo do usuário (fases A/B/C) |
+| Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Interna — links oficiais e aliases |
+| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Interna — padrões e mecânica de conversão |
+| QA | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Interna — suite de regressão do treinamento |
+| Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Gate obrigatório / auditoria |
+
+**Precedência de evidência:** docs Skill 2 → catálogo Skill 3 → padrões de compilação → anexos → validação manual.
+
+---
+
+## PDFs
+
+Cópias em PDF das skills (mesma versão do Markdown):
+
+- [`pdf/skill-01-conversao-lsp-java.pdf`](pdf/skill-01-conversao-lsp-java.pdf)
+- [`pdf/skill-02-base-documentacao-banco.pdf`](pdf/skill-02-base-documentacao-banco.pdf)
+- [`pdf/skill-03-base-conversao-lsp-java.pdf`](pdf/skill-03-base-conversao-lsp-java.pdf)
+- [`pdf/skill-04-testes-comportamento.pdf`](pdf/skill-04-testes-comportamento.pdf)
+- [`pdf/skill-05-check-deterministico.pdf`](pdf/skill-05-check-deterministico.pdf)
 
 ---
 
@@ -48,7 +80,8 @@ O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** 
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.4** | Templates `.sc`/IEntity, DBCenter, helpers, VaPara, Eclipse literals, CHK-SCID |
+| **v1.5** | README público (quick start/pipeline); checklist Router Skills 2/3 + gate 5 |
+| v1.4 | Templates `.sc`/IEntity, DBCenter, helpers, VaPara, Eclipse literals, CHK-SCID |
 | v1.3 | Mescla núcleo Treinamento (TipCon, MarcacaoAnterior, USU_*) |
 | v1.2 | Renumeração 01–05 |
 | v1.1 | Agente exclusivo conversão |

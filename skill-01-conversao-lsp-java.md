@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 1 · Conversão LSP → Java
-Versão: v1.4 · Arquivo: `skill-01-conversao-lsp-java.md`
+Versão: v1.5 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
