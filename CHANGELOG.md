@@ -1,5 +1,22 @@
 # Changelog — LSP→JAVA
 
+## [v1.7] — Atualização de 06/08/2026
+Versão: **v1.6 → v1.7**
+
+### features
+- Skill 1 / Router: entrega pública **código Java primeiro**, inventário/análise depois, na mesma resposta pós-gate.
+- Formato omitido → padrão **`bloco único`** (sem Fase B bloqueante / sem perguntar antes do Java).
+
+### improvements
+- Skill 4: casos 3/4/11/17/18 alinhados à nova ordem e ao default de formato.
+- Skill 5: `CHK-INV` / `CHK-MAP` aceitam inventário/mapeamento **após** o código.
+- README: passo a passo usuário/agente e pipeline atualizados.
+
+### technicalNotes
+- Paridade v1.7 em router + skills 01–05; PDFs regenerados.
+- Suite Skill 4 crítica: PASS (revisão mental matriz mínima + casos 3/4 ordem código→análise).
+- Links Skill 2: ok (sem alteração de URLs nesta entrega; paridade de versão apenas).
+
 ## [docs] — Atualização de 04/08/2026
 
 ### technicalNotes

@@ -2,13 +2,13 @@
 name: check-deterministico
 description: >-
   Gate determinístico PASS/FAIL/N/A de conformidade para Java convertido na
-  Skill 1 Fase C. Use automaticamente após o rascunho da Fase C antes de
-  publicar ao usuário, e quando o usuário pedir auditoria/conformidade/check
-  de um artefato gerado.
+  Skill 1. Use automaticamente após o rascunho Java antes de publicar ao
+  usuário, e quando o usuário pedir auditoria/conformidade/check de um
+  artefato gerado.
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.6 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.7 · Gate obrigatório · `skill-05-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.
 
@@ -16,14 +16,14 @@ Checks binários apenas — cite evidência observável. Proibido “parece ok�
 
 | Usar | Não usar |
 |---|---|
-| **Gate** após Skill 1 Fase C; auditoria avulsa | Inventário/mapeamento (Fase A/B); QA de comportamento (Skill 4); fora de escopo |
+| **Gate** após rascunho Java da Skill 1; auditoria avulsa | Resposta só de boas-vindas/recusa; QA de comportamento (Skill 4); fora de escopo |
 
 ## Pipeline do gate (obrigatório)
 
 ```text
-1. Skill 1 monta RASCUNHO da Fase C (ainda não envia)
+1. Skill 1 monta inventário interno + RASCUNHO Java (ainda não envia)
 2. Skill 5 no modo gate_obrigatorio
-3. PASS → publica rascunho + resumo do check
+3. PASS → publica: código primeiro → análise/inventário → resumo do check
 4. FAIL → corrige na Skill 1 → reexecuta Skill 5 (máx. 2 ciclos)
 5. Ainda FAIL → publica + FAIL transparente + IDs que falharam
 6. Pergunta de continuidade só na resposta final ao usuário
@@ -31,7 +31,7 @@ Checks binários apenas — cite evidência observável. Proibido “parece ok�
 
 **Proibido:** mostrar Java convertido ao usuário sem este gate.
 
-Sem gate para: boas-vindas, Skill 1 Fase A/B, recusa de escopo.
+Sem gate para: boas-vindas, pedido sem artefato (só pedir LSP), recusa de escopo.
 
 ## Ordem de execução (obrigatória)
 
@@ -52,13 +52,13 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | `gate_obrigatorio` + conversão | `conversao_lsp_java` |
 | `auditoria_avulsa` | laudo completo (mesmo ordem: críticos → demais) |
 
-## Bateria — conversão (Skill 1 C)
+## Bateria — conversão (Skill 1)
 
 ### Críticos (rodar primeiro)
 
 | ID | PASS | FAIL |
 |---|---|---|
-| CHK-INV | Tabela de inventário presente | Ausente na conversão completa |
+| CHK-INV | Tabela de inventário presente na resposta (pode vir **após** o código) | Ausente na conversão completa |
 | CHK-COMP | Classe/`execute` completo, sem omissão | Stub / `// restante` / partes |
 | CHK-CONS | Entrega única consolidada | Fragmentada |
 | CHK-STAT | `Status da conversão: COMPLETA` | Ausente |
@@ -76,7 +76,7 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | ID | PASS | FAIL |
 |---|---|---|
 | CHK-CTX | Contexto nomeado | Ausente |
-| CHK-MAP | Seção de mapeamento | Só código |
+| CHK-MAP | Seção de mapeamento presente (após o código é OK) | Só código, sem mapeamento |
 | CHK-CLASS | Rótulos de evidência usados | “ok” vago |
 | CHK-B23 | Skills 2+3 sim no HCM | Marcado não |
 | CHK-SQLAPI | API ou nota manual | SQL/EntitySession cego |
@@ -141,7 +141,7 @@ Evidência / Bases consultadas: …
 
 ## Exemplos
 
-Gate PASS após Fase C limpa · FAIL `CHK-COMP`/`CHK-STUB`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos.
+Gate PASS após rascunho limpo · FAIL `CHK-COMP`/`CHK-STUB`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos · Inventário/mapeamento após o código = PASS em `CHK-INV`/`CHK-MAP`.
 
 ## Relacionados
 
