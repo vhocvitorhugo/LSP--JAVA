@@ -1,31 +1,32 @@
 ---
 name: base-conversao-lsp-java
 description: >-
-  Padrões e catálogo oficial de equivalência LSP→Java (HCM 6.10.4 / Gestão do
-  Ponto): variáveis, funções, âncoras, armadilhas e exemplos. Use a partir da
-  Skill 1 após Skill 2. Fonte prioritária: documentação Senior de equivalência
-  das funções de regras. Nunca invente método ausente neste catálogo e na Skill 2.
+  Núcleo de padrões LSP→Java (HCM 6.10.4 / Gestão do Ponto): restrições,
+  workflow, tipagem, esqueletos e armadilhas. Use a partir da Skill 1 após
+  Skill 2. Carregue sob demanda skill-03-referencia-catalogo,
+  skill-03-referencia-acesso-dados e skill-03-referencia-exemplos-goldens.
+  Nunca invente método ausente no catálogo ou na Skill 2.
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.9 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.10 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
-**Fronteira:** Skill 2 = links/aliases; **esta skill** = mecânica + catálogo + padrões de compilação + exemplos.  
-**Precedência:** docs oficiais Skill 2 → catálogo oficial abaixo → padrões `padrao_compilacao` (Eclipse) → anexos sanitizados → `validacao_manual`.  
+**Fronteira:** Skill 2 = links/aliases; **este núcleo** = mecânica + tipagem + esqueletos + armadilhas; catálogo/acesso/exemplos = **referências** `skill-03-referencia-*`.  
+**Precedência:** docs oficiais Skill 2 → catálogo (referencia-catalogo) → padrões `padrao_compilacao` (Eclipse) → anexos sanitizados → `validacao_manual`.  
 **Crescimento do catálogo `confirmada`:** só com doc oficial / Skill 2. Achados de compilação entram como `padrao_compilacao`, não como inventados.
 
 ## Como consultar (ordem obrigatória)
 
 ```text
-A. Restrições + Regra de ouro + Invariantes   ← nunca pular
+A. Restrições + Regra de ouro + Invariantes   ← nunca pular (neste arquivo)
 B. Workflow (6 passos)
 C. Tipos / sintaxe / VaPara / Funcao (se necessário)
-D. Catálogo — só a família do item LSP
-E. Acesso a dados (USU_* / R* / ContextSession) se houver cursor/SQL
-F. Armadilhas Eclipse + checklist
-G. Exemplos — só o padrão análogo
+D. Catálogo — skill-03-referencia-catalogo (só a família)
+E. Acesso a dados — skill-03-referencia-acesso-dados (se cursor/SQL/USU_*)
+F. Armadilhas Eclipse + checklist (neste arquivo)
+G. Exemplos/goldens — skill-03-referencia-exemplos-goldens (só o análogo)
 H. Saída tipada para a Skill 1
 ```
 
@@ -40,14 +41,14 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | Passo a passo | Workflow |
 | Tipagem / Se→if / Logico / Escolha / VaPara | Tipos e sintaxe |
 | Esqueleto Apuracao / Consistência / BH | Esqueletos + tipos de regra |
-| `DatPro`, `HorSit`, `FPxMar`, históricos… | Catálogo → família |
-| TipCon / MarcacaoRegra / overloads HorSit | Catálogo + notas `padrao_compilacao` |
-| Cursor `USU_*` / `.sc` / ContextSession | Acesso a dados |
+| `DatPro`, `HorSit`, `FPxMar`, históricos… | **referencia-catalogo** → família |
+| TipCon / MarcacaoRegra / overloads HorSit | **referencia-catalogo** + notas `padrao_compilacao` |
+| Cursor `USU_*` / `.sc` / ContextSession | **referencia-acesso-dados** |
 | Erros Eclipse / anti-padrões | Armadilhas |
-| CalculaQtdMinutos / interjornada / TipCon SQL | Exemplos sanitizados |
-| Templates IEntity / `.sc` / DBCenter | Acesso a dados |
+| CalculaQtdMinutos / interjornada / TipCon SQL | **referencia-exemplos-goldens** |
+| Templates IEntity / `.sc` / DBCenter | **referencia-acesso-dados** |
 | VaPara / operadores | Tipos e sintaxe |
-| Goldens G-SIT / G-CUR / G-USU / G-MIX | Goldens ponta a ponta |
+| Goldens G-SIT / G-CUR / G-USU / G-MIX | **referencia-exemplos-goldens** |
 | InicioCalculo / AposGravar | Outros pontos |
 | ⛔ SDK / ⚠️ pendente | Itens pendentes (SDK) |
 | Campos LSP conflitantes | Tabela conflitantes |
@@ -63,15 +64,15 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | Cursor `R*` / `CriarCursor` | Acesso a dados + **G-CUR** (API primeiro) |
 | `VaPara` / labels | Tipos e sintaxe → VaPara |
 | INSERT/UPDATE/DELETE | DBCenter (não ContextSession) |
-| Situação + `R*` + `USU_*` juntos | **G-MIX** |
+| Situação + `R*` + `USU_*` juntos | exemplos-goldens → **G-MIX** |
 
 ### Índice símbolo LSP → seção (busca rápida)
 
 | Símbolo / gatilho LSP | Seção |
 |---|---|
-| `HorSit` / `setHorSit` / situação / minutos | Catálogo → Situações / HorSit · **G-SIT** · Exemplos HorSit |
+| `HorSit` / `setHorSit` / situação / minutos | referencia-catalogo · G-SIT |
 | `FPxMar` / `FLeMar` / `MarcacaoAnterior` / marcações | Catálogo → Marcações · Exemplos · `CHK-MARANT` |
-| `TipCon` / `R034FUN` | Campos conflitantes · Exemplos TipCon via ContextSession |
+| `TipCon` / `R034FUN` | catalogo (Campos) · exemplos TipCon |
 | `CriarCursor` / `AbrirCursor` / `R030EMP` / `R014SIN` / `R*` | Acesso a dados · **G-CUR** (sem `.sc`) |
 | `USU_*` / tabela custom | Acesso a dados · templates IEntity/`.sc` · **G-USU** |
 | `HorSit` + `R*` + `USU_*` na mesma regra | **G-MIX** |
@@ -85,6 +86,19 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | `InicioCalculo` / `AposGravar` | Outros pontos de customização |
 | `TipoHoraExtra` / `@Transactional` | Itens pendentes (SDK) ⛔ |
 | Método ausente no catálogo | Skill 2 Índice das Funções → `validacao_manual` + TODO (Skill 1) |
+
+
+## Progressive disclosure (Agent Skills)
+
+Este arquivo é o **núcleo** (<500 linhas). Detalhes sob demanda:
+
+| Precisa de… | Carregar |
+|---|---|
+| Catálogo de equivalência / famílias / TipCon / constantes | [`skill-03-referencia-catalogo.md`](skill-03-referencia-catalogo.md) |
+| ICursor / `.sc` / ContextSession / DBCenter / IEntity | [`skill-03-referencia-acesso-dados.md`](skill-03-referencia-acesso-dados.md) |
+| Exemplos sanitizados + goldens G-SIT/G-CUR/G-USU/G-MIX | [`skill-03-referencia-exemplos-goldens.md`](skill-03-referencia-exemplos-goldens.md) |
+
+**Não** leia as três referências de ponta a ponta — só a âncora necessária (índice símbolo no núcleo).
 
 ## Fontes oficiais
 
@@ -295,325 +309,6 @@ Imports frequentes (`padrao_compilacao`): `java.time.LocalDate`/`LocalDateTime`,
 
 ---
 
-## Catálogo de equivalência (oficial Senior 6.10.4)
-
-Fonte: [Equivalência das funções de regras](https://documentacao.senior.com.br/gestao-de-pessoas-hcm/6.10.4/informacoes-adicionais/rotinas/gpo/integracao-controle-ponto-refeitorio/equivalencia-funcoes-regras.htm).  
-Métodos tipicamente em `contextoApuracao` / container — **confirmar contexto e assinatura** no Índice das Funções.
-
-### Famílias (âncora de busca)
-
-| Família | Itens típicos LSP |
-|---|---|
-| Data / sistema | `DatPro`, `HorSis`, `DiaSem`, `DatIni`… |
-| Situações | `HorSit[]`, `SitAnt[]`, `TotSit[]`, `MotSit` |
-| Horas apuradas/previstas | `ApuDiu[]`, `ApuNot[]`, `TraDiu`, `PrvTra[]`… |
-| Marcações | `FPxMar`, `FLeMar`, `DatMar`, `QtdMar`… |
-| Escala / horário / feriado | `EscAtu`, `CodHor`, `FerFil`… |
-| Históricos / usuário | `CarEmp`, `CodSinEmp`, `CodUsu`… |
-| Compensação / BH / log | `TemCmp[]`, `RetBHRDat`, `MensagemLog`… |
-
-### Data / sistema
-
-| LSP (Controle de Ponto) | Java (Gestão do Ponto) |
-|---|---|
-| `DatPro` (implícito via Ano/Dia/MesPro) | `getData()` |
-| `AnoPro` | `getAnoData(Date data)` / `getData()` |
-| `MesPro` | `getMesData(Date data)` |
-| `DiaPro` | `getDiaData(Date data)` |
-| `AnoSis` / `MesSis` / `DiaSis` | `getAnoData` / `getMesData` / `getDiaData` |
-| `HorSis` / `ExtSis` | Nativo em Java |
-| `DatIni` / `Datfim` | `getDataInicial()` / `getDataFinal()` |
-| `DiaSem`, `DiaDom`…`DiaSab` | Preferir `getDiaSem(Date)`; alt. `getData().getDayOfWeek().getValue()` (`padrao_compilacao`) |
-| `MesAtu` | `getMesData(Date data)` |
-| `RetornaAnoData` / `RetornaDiaData` / `RetornaMesData` | `getAnoData` / `getDiaData` / `getMesData` |
-
-### Situações / HorSit
-
-| LSP | Java |
-|---|---|
-| `HorSit[]` | `getHorSit(int)` / `getHorSit(LocalDate, int)`, `setHorSit`, `somaHorasSituacao`, `zeraHorasSituacao`, `zeraHorasSituacaoFaixa`, `getHorSitFaixa` — overloads `padrao_compilacao`: `getHorSit(int[])`, `zeraHorasSituacao(varargs)` |
-| `SitAnt[]` | `getHorSitAnterior(int)` / `getHorSitAnteriorFaixa` (consistência) |
-| `TotSit[]` / `BuscaTotalizadoresSituacoes` | `getTotalSituacoes(int codigoTotalizador, date data)` (e overload com intervalo) |
-| `MotSit` | `getMotivoAcerto(int situacao)` |
-
-### Apuração diurna/noturna / trabalhadas / previstas
-
-| LSP | Java |
-|---|---|
-| `ApuDiu[]` / `ApuNot[]` | `getHorasSeparadas(TipoIntervalo\|TipoHoraExtra)` → `ISeparacaoHoras` (`getHorasDiurnas`/`Noturnas`/`TotalHoras`); ou `getHoras(MarcacaoRegra, …)` |
-| `HrtRaD[]` / `HrtRan[]` / `TraDiu` / `TraNot` | `getHorasTrabalhadas(int parte)` |
-| `MinPvd[]` / `MinPvn[]` / `PrvTra[]` / `PrvTrd` / `PrvTrn` / `VprVho` / `VprVin` / `VprVtr` | `getTotalMinutosPrevisto(...)` / `getHorasPrevistas(...)` / `getTotalMinutosPrevistoProrrogado(...)` |
-| `FatRed` | `getHorarioPrevistoColaborador(...)` |
-| `ExtrasIntervalo` | `getExtrasIntervalo` / `getExtrasIntervaloAnterior` / `getExtrasIntervaloPosterior` |
-| `MinExD[]` / `MinExn[]` / `MsaInd[]` / `MsaInn[]` / `IniExt` / `FimExt` / `PerExt` / `PriExt` / `QtdExt` / `TipExt` / `DiaExt` | `getIntervalosCalculados()` / `getIntervaloCalculado(int indice)` |
-
-### Marcações
-
-| LSP | Java |
-|---|---|
-| `FPxMar` / `FLeMar` / … | `List<MarcacaoRegra> getMarcacoesRealizadas(boolean)` — `getData()` → **`.toLocalDate()`**; índice Java **0-based** |
-| `QtdMar` / `TotMar` | Preferir `getQtdMarcacoesRealizadas(boolean)`; alt. `.size()` (`padrao_compilacao`) |
-| `DulMar` / `HulMar` | `getMarcacaoAnterior()` → tipo `MarcacaoAnterior`: **só** `diferencaMinutos(data, hora)` — sem `getHora`/`getData` |
-| `MinJor` | Preferir `getHorasInterjornadaRealizada()`; alt. `diferencaMinutos` se só MarcacaoAnterior |
-| `MinMJo` | `getHorasInterjornadaPrevista()` |
-| `TipCon` | **Não** existe `Colaborador.getTipCon()` — SQL `SELECT TIPCON FROM R034FUN …` via ContextSession (`padrao_compilacao`) |
-| `ApuDiu`/`ApuNot` tipados | Também `getHorasSeparadas(TipoIntervalo\|TipoHoraExtra)` → `ISeparacaoHoras` |
-| log / pendência / alerta | `mensagemLog`, `setGerarPendencia`, `criarAlerta` (try/catch) |
-
-### Escala / horário / filial / feriado
-
-| LSP | Java |
-|---|---|
-| `EscAtu` | `getEscala()` |
-| `EscEmp` / `RetEscEmp` | `getHistoricoEscala()` |
-| `EscTrf` | `getEscalaHistorico()` |
-| `TemTes` | `getTrocaEscala(Date data)` |
-| `TemThr` | `getTrocaHorario(Date data)` |
-| `RetornaEscala` | `getEscalaPrevistaColaborador(...)` |
-| `CodHor` / `RetornaHorarioApurado` | `getHorario()` / `getHorario().getCodigo()` — especiais 9996–9999 (folga/feriado/comp/DSR) |
-| `HorEsc` / `HorTrf` | `getHorarioEscala()` |
-| `HorDFe` | `getHorarioOriginalEscala()` |
-| `HorFol` | `getCodigoHorarioFolga()` / `getHorarioFolga()` |
-| `HorPfo` | `getHorarioProjecaoFolga()` |
-| `RetornaHorario` / `RetornaBatidaHorario` | `getHorarioPrevistoColaborador(...)` |
-| `NumPer` | `getNumeroPeriodos(int codHor)` |
-| `NumInt` | `getNumeroIntervalos()` |
-| `NinRef` | `getNumeroIntervaloRefeicao()` |
-| `TurInt` | `getTurmaIntervalo()` |
-| `RetMinRefHTr` | `getMinutosRefeicaoPrevisto()` |
-| `FilEmp` / `RetFilEmp` / `DatAltFil` / `EmpAltFil` | `getHistoricoFilial()` |
-| `FerFil` | `getFeriadoFilial(Date data)` |
-| `VerDatFer` | `getFeriado(Date data)` |
-
-### Históricos colaborador / usuário
-
-| LSP | Java |
-|---|---|
-| `CarEmp` / `EstCarEmp` / `RetCarEmp` | `getHistoricoCargo()` |
-| `CcuEmp` / `DatAltCcu` / `RetCcuEmp` | `getHistoricoCentrodeCusto()` |
-| `CodSinEmp` / `RetSinEmp` | `getHistoricoSindicato()` |
-| `CodVinEmp` / `RetVinEmp` | `getHistoricoVinculo()` |
-| `LocEmp` / `RetLocEmp` | `getHistoricoLocal(...)` |
-| `CodAfs` / `IniAfs` / `FimAfs` / `TemAfs` / `QtdAfs[]` | `getHistoricosAfastamento()` |
-| `BusCraTit` | `getHistoricosCracha()` / `getHistoricosCrachaProvisorio()` |
-| `RetApuPon` | `getHistoricoApuracao(colaborador, data)` |
-| `CodUsu` | `getUsuarioAtivo()` |
-| `NomUsu` | `getUsuario(long codigoUsuario)` |
-| `RetornaDesGrupo` / `RetornaQtdGrupos` | `getGrupos(long codigoUsuario)` |
-| `AssociaUsuColab` | `associarUsuarioColaborador(...)` |
-| `RetColabPorCodUsu` | `getUsuarioColaborador(...)` |
-
-### Compensação / banco de horas / cálculo
-
-| LSP | Java |
-|---|---|
-| `TemCmp[]` / `DtICmp[]` / `DtFCmp[]` / `PerCmp[]` / `QtdCmp[]` / `SitCmD[]` / `SitCmN[]` / `TipCmp[]` | `getCompensacoes()` / `getCompensacoes(LocalDate data)` |
-| `LimBa1` / `LimBa2` | `getEscala()` |
-| `RetBHRDat` | `getSaldoBanco(int banco, int empresa, int tipo, int cadastro, LocalDate data)` |
-| `TipCal` | `getTipoCalculo()` |
-| `MensagemLog` | `mensagemLog(String mensagem)` |
-| `VerificaAbrangenciaNumero` | `getAbrangencia(string abrangencia, int numero)` |
-| `RetornaCodLoc` / `RetornaNumLoc` / `RetNivLoc` | `getCodigoLocal` / `getNumeroLocal` / `getQtdNiveisLocal` |
-
-### Definição de situações (padrão complementar)
-
-Cursor `R014SIN`/`R030EMP` para `CodDsi` → preferir API (`padrao_anexo` até confirmar na doc):
-
-```java
-int codDsi = contextoApuracao.getDefinicaoSituacoes().getCodigo();
-```
-
----
-
-## Campos LSP conflitantes (`padrao_compilacao`)
-
-| LSP | Erro comum | Correto |
-|---|---|---|
-| `TipCon` | `col.getTipCon()` | SQL `R034FUN.TIPCON` |
-| `nMar` / marcações | índice 1-based / tipo errado | `List<MarcacaoRegra>` 0-based + `.toLocalDate()` |
-| `MarcacaoAnterior` | `getHora()` / `getData()` | só `diferencaMinutos` |
-| `HorSit[n]` | tratar como array Java | `get/setHorSit(codSit, minutos)` |
-| `SitAnt` | getter inventado | `getHorSitAnterior` no contexto de consistência |
-| `QtdMar` | inventar campo | API oficial ou `.size()` |
-
-## Domínio HCM — constantes úteis
-
-| Valor | Uso |
-|---|---|
-| CodHor `9996`–`9999` | Folga / feriado / compensado / DSR (`<9996` = horário normal) |
-| `1320` / `300` | Janela noturna 22h–05h (minutos) |
-| `660` / `360` | Limites CLT interjornada / sem intervalo |
-| `1440` | Virada de dia em `CalculaQtdMinutos` |
-
-## Acesso a dados (após API-first)
-
-```text
-Tabela USU_* custom?
-  SIM → IEntity + .sc + ICursor (EntitySession)
-  NÃO (R* nativa / USU_* em tabela nativa) → ContextSession SELECT ou DBCenter DML
-Readonly em com.senior.rh.entities.readonly.*? → importar, não recriar
-```
-
-**Fatal:** `.sc` apontando para `Rxxxxx` → *"Tabela R034FUN inválida. É permitido mapear somente tabelas de usuário"*.
-
-### ICursor — uma linha
-
-```java
-MappedParamProvider params = new MappedParamProvider();
-params.setParam("vNumEmp", vNumEmp);
-ICursor<IMinhaTabela> cur = getContainer().getEntitySession().newCursor(IMinhaTabela.class);
-cur.addFilter("USU_NumEmp = :vNumEmp", params);
-cur.open();
-try {
-    if (cur.first()) { IMinhaTabela row = cur.read(); }
-} finally { cur.close(); }
-```
-
-### ICursor — múltiplas linhas + ordem
-
-```java
-String[] campos = new String[]{"USU_DatAlt"};
-OrderDirection[] ordem = new OrderDirection[]{OrderDirection.DESC};
-cur.setOrder(campos, ordem);
-cur.open();
-try {
-    while (cur.next()) {
-        IMinhaTabela row = cur.read();
-    }
-} finally { cur.close(); }
-```
-
-### Três formas de EntitySession
-
-```java
-// 1) preferencial no execute()
-getContainer().getEntitySession().newCursor(T.class);
-
-// 2) auxiliar fora do execute()
-IEntitySession es = EntitySessionProvider.getSession();
-es.newCursor(T.class);
-
-// 3) chave exata (CursorUtil)
-ICursor<T> cur = CursorUtil.getCursor(T.class);
-T buffer = cur.newBuffer();
-buffer.setNumEmp(col.getNumEmp());
-cur.open();
-try {
-    if (cur.search(buffer, SearchMode.EXACT_MATCH)) { cur.read(buffer); }
-} finally { cur.close(); }
-```
-
-### ContextSession (SELECT) vs DBCenter (DML)
-
-| | ContextSession | DBCenter |
-|---|---|---|
-| Uso | SELECT | INSERT/UPDATE/DELETE |
-| Close | **Não** fechar (container) | **Fechar** no `finally` |
-| Placeholder | `?` | `?` |
-| Índice `IResultSet` | **base-0** (`getInt(0)` = 1º campo) | — |
-| databaseId | — | ex. `"vetorh"` (confirmar projeto) |
-
-### DBCenter INSERT (sanitizado)
-
-```java
-IDBCenter database = DBCenter.getInstance("vetorh"); // confirmar databaseId do projeto
-ISession session = null;
-try {
-    session = database.newSession();
-    Date dataConv = Date.from(dataPro.atStartOfDay(ZoneId.systemDefault()).toInstant());
-    String dataStr = new SimpleDateFormat("dd/MM/yyyy").format(dataConv);
-    session.executeUpdate(
-        "INSERT INTO USU_TExemplo (USU_NumEmp, USU_Dat, USU_CodSit) VALUES (?, ?, ?)",
-        numEmp, dataStr, codSit);
-} catch (Exception ex) {
-    ctx.mensagemLog("Erro DML: " + ex.getMessage());
-} finally {
-    if (session != null) session.close();
-}
-```
-
-### Template IEntity (só USU_*)
-
-```java
-package gestaopontoCustom; // package do projeto — sanitizar
-
-import java.time.LocalDate;
-import com.senior.dataset.IEntity;
-import com.senior.dataset.annotation.Entity;
-import com.senior.dataset.annotation.Field;
-
-@Entity
-public interface IMinhaTabela extends IEntity {
-
-    @Field(description = "Empresa")
-    int getUSU_CodEmp();
-    void setUSU_CodEmp(int USU_CodEmp);
-    boolean isUSU_CodEmpNull();
-    void setUSU_CodEmpNull();
-
-    @Field(description = "Data")
-    LocalDate getUSU_DatEmi();
-    void setUSU_DatEmi(LocalDate USU_DatEmi);
-    boolean isUSU_DatEmiNull();
-    void setUSU_DatEmiNull();
-
-    @Field(description = "Usuário — long")
-    long getUSU_CodUsu();
-    void setUSU_CodUsu(long USU_CodUsu);
-    boolean isUSU_CodUsuNull();
-    void setUSU_CodUsuNull();
-}
-```
-
-Null: `int v = entity.isUSU_CodEmpNull() ? 0 : entity.getUSU_CodEmp();`  
-IDs de usuário/consultor → **`long`**, não `int`.  
-Import correto: `com.senior.dataset.IEntity` — **nunca** `com.senior.g5…IEntity`.
-
-**Norma capitalização `USU_*`:** getters/setters/null **espelham o nome do campo** exatamente como no banco/`.sc` (ex.: campo `USU_CodEmp` → `getUSU_CodEmp` / `setUSU_CodEmp`). Não “javaizar” para `getUsuCodEmp`. Divergência só com evidência do schema do projeto.
-
-### Template `.sc` (JSON puro)
-
-```json
-{
-    "datasets": [
-        {
-            "id": "ScMinhaTabela",
-            "entity": "gestaopontoCustom.IMinhaTabela",
-            "storage": {
-                "databaseId": "vetorh",
-                "query": "from USU_MINHATAB USU_MINHATAB",
-                "fieldMapping": [
-                    { "field": "USU_CodEmp", "column": "USU_MINHATAB.USU_CodEmp" },
-                    { "field": "USU_DatEmi", "column": "USU_MINHATAB.USU_DatEmi" },
-                    { "field": "USU_CodUsu", "column": "USU_MINHATAB.USU_CodUsu" }
-                ],
-                "type": "DB"
-            }
-        }
-    ]
-}
-```
-
-Regras: `id` = **nome do arquivo sem extensão**; começa com `{`; sem BOM/comentários; só `USU_*` no `query`.
-
-### Readonly do framework (importar)
-
-`IR030EMP`, `IR060DSI`, `IR004HOR`, `IR010SIT`, `IR010TOB`, `IR014SIN`, `IR070ACC`, …
-
-### Getters encadeados / ISeparacaoHoras (`padrao_compilacao`)
-
-```java
-int codSin = ctx.getHistoricoSindicato().getCodSin();
-int tabOrg = ctx.getHistoricoLocal().getTabOrg();
-int numLoc = ctx.getHistoricoLocal().getNumLoc();
-HistoricoVinculo hv = ctx.getHistoricoVinculo();
-if (hv != null) { /* usar hv */ }
-
-ISeparacaoHoras sep = ctx.getHorasSeparadas(TipoIntervalo.REFEICAO);
-int diu = sep.getHorasDiurnas();
-int not = sep.getHorasNoturnas();
-int tot = sep.getTotalHoras();
-```
 
 ## Armadilhas práticas
 
@@ -654,415 +349,6 @@ int tot = sep.getTotalHoras();
 
 **Windows (case):** Refactor → nome temporário → nome correto (ou `ren` em duas etapas no CMD).
 
-## Exemplos sanitizados (use só o análogo)
-
-### HorSis + setHorSit
-
-```lsp
-Se (HorSis > 870) Inicio
-  HorSit = 120;   @ situação 100 @
-Fim;
-```
-
-```java
-java.time.LocalTime agora = java.time.LocalTime.now();
-int minutos = agora.getHour() * 60 + agora.getMinute();
-if (minutos > 870) {
-    contextoApuracao.setHorSit(100, 120);
-}
-```
-
-### HorSit — errado vs certo
-
-```java
-// ERRADO
-contexto.getSituacao(xNorAnt).setMinutos(0);
-// CERTO
-contexto.zeraHorasSituacao(xNorAnt);
-int v = contexto.getHorSit(xExDDsr); // minutos int
-contexto.setHorSit(xExDDsr, v + vNorDes);
-```
-
-### Marcações FLeMar/FPxMar → List
-
-```java
-for (MarcacaoRegra m : contextoApuracao.getMarcacoesRealizadas(false)) {
-    LocalDate d = m.getData().toLocalDate();
-    if (d.isAfter(contextoApuracao.getData())) { /* ... */ }
-}
-```
-
-### End → retorno (`RetBHRDat`)
-
-```java
-// ordem Java ≠ LSP — confirmar no índice
-int saldo = contextoApuracao.getSaldoBanco(codbhr, numemp, tipcol, numcad,
-        new LocalDate(2014, 9, 24));
-```
-
-### Múltiplos End → objeto
-
-```java
-private ResultadoDiurnoNoturno calculaDiurnoNoturno(...) {
-    return new ResultadoDiurnoNoturno(minutosDiurnos, minutosNoturnos);
-}
-```
-
-### Troca de situação
-
-```java
-private int trocarSituacao(ContextoApuracao ctx, int origem, int destino, int minutosPendentes) {
-    int minutosOrigem = ctx.getHorSit(origem);
-    if (minutosOrigem >= minutosPendentes && minutosOrigem > 0 && minutosPendentes > 0) {
-        ctx.setHorSit(destino, minutosPendentes);
-        ctx.setHorSit(origem, minutosOrigem - minutosPendentes);
-        return 0;
-    }
-    if (minutosOrigem < minutosPendentes && minutosOrigem > 0 && minutosPendentes > 0) {
-        ctx.setHorSit(destino, minutosOrigem);
-        ctx.setHorSit(origem, 0);
-        return minutosPendentes - minutosOrigem;
-    }
-    return minutosPendentes;
-}
-```
-
-### CalculaQtdMinutos (virada de dia)
-
-```java
-private int calculaQtdMinutos(LocalDate d1, int horIni, LocalDate d2, int horFim) {
-    if (d1.isBefore(d2)) horFim = horFim + 1440;
-    return horFim - horIni;
-}
-```
-
-### TipCon via ContextSession
-
-```java
-int nTipCon = 0;
-try {
-    IResultSet rs = ContextSession.getSession().executeQuery(
-        "SELECT TIPCON FROM R034FUN WHERE NUMEMP = ? AND TIPCOL = ? AND NUMCAD = ?",
-        numEmp, tipCol, numCad);
-    if (rs.next()) nTipCon = rs.getInt(0);
-} catch (Exception ex) {
-    ctx.mensagemLog("Erro TipCon: " + ex.getMessage());
-}
-```
-
-### Interjornada (MarcacaoAnterior)
-
-```java
-if (ctx.getMarcacaoAnterior() != null) {
-    int n = ctx.getMarcacaoAnterior().diferencaMinutos(datMar, horaMar);
-    if (n < 0) n = -n;
-    // preferir getHorasInterjornada* quando disponível no contexto
-}
-```
-
-### EntitySession / ICursor (USU_* sem API)
-
-```java
-ICursor<IEntidadeCustom> cursor = getContainer().getEntitySession()
-        .newCursor(IEntidadeCustom.class);
-try {
-    cursor.addFilter("USU_Campo = :v", new MappedParamProvider("v", valor));
-    cursor.open();
-    if (cursor.first()) { /* read */ }
-} finally {
-    cursor.close();
-}
-```
-
-Justificar ausência de API semântica; emitir interface+`.sc` só para `USU_*`.
-
-### DiferencaMarcacaoDiurnoNoturno (sanitizado)
-
-Preferir `getHorasSeparadas` / APIs oficiais quando cobrirem o caso. Se a regra LSP calcular manualmente diurno/noturno na janela 22h–05h (`1320`/`300`):
-
-```java
-/** Retorna [diurno, noturno] em minutos. Janela noturna padrão: 1320→1440 e 0→300. */
-private int[] diferencaMarcacaoDiurnoNoturno(int nMar1, LocalDate d1, int nMar2, LocalDate d2,
-                                             int iniNot, int fimNot) {
-    int total = calculaQtdMinutos(d1, nMar1, d2, nMar2);
-    if (total < 0) total = -total;
-    int noturno = 0;
-    int cursor = nMar1;
-    LocalDate dia = d1;
-    int restante = total;
-    while (restante > 0) {
-        int limiteNot = (cursor >= iniNot) ? 1440 : (cursor < fimNot ? fimNot : iniNot);
-        int trecho;
-        if (cursor >= iniNot || cursor < fimNot) {
-            trecho = Math.min(restante, (cursor >= iniNot ? 1440 - cursor : fimNot - cursor));
-            if (trecho <= 0) trecho = Math.min(restante, 1);
-            noturno += trecho;
-        } else {
-            trecho = Math.min(restante, iniNot - cursor);
-        }
-        cursor += trecho;
-        restante -= trecho;
-        if (cursor >= 1440) {
-            cursor -= 1440;
-            dia = dia.plusDays(1);
-        }
-    }
-    return new int[]{total - noturno, noturno};
-}
-```
-
-**Proibido** publicar `return new int[]{0,0}` ou `// preencher` — isso é `CHK-STUB` FAIL.
-
-### VerificaInterjornada (MarcacaoAnterior)
-
-```java
-private void verificaInterjornada(ContextoApuracao ctx, LocalDate datMar, int horaMar, int sitInt) {
-    if (ctx.getMarcacaoAnterior() == null) return;
-    // Preferir getHorasInterjornadaRealizada/Prevista quando existirem no contexto
-    int n = ctx.getMarcacaoAnterior().diferencaMinutos(datMar, horaMar);
-    if (n < 0) n = -n;
-    if (n > 0 && n < 660) {
-        ctx.setHorSit(sitInt, 660 - n);
-    }
-}
-```
-
-### MarcacoesInvalidas (padrão)
-
-```java
-/** Pares entrada/saída: lista vazia ou ímpar = inválida; data/hora de saída antes da entrada = inválida. */
-private boolean marcacoesInvalidas(List<MarcacaoRegra> mars) {
-    if (mars == null || mars.isEmpty()) return true;
-    if (mars.size() % 2 != 0) return true;
-    for (int i = 0; i + 1 < mars.size(); i += 2) {
-        // getData() tipicamente LocalDateTime — comparar o instante completo
-        if (mars.get(i + 1).getData().isBefore(mars.get(i).getData())) {
-            return true;
-        }
-    }
-    return false;
-}
-```
-
-Regras de negócio extras do cliente (tolerâncias, tipos de marcação) → `validacao_manual` / anexo — **sem** deixar o método vazio.
-### Outros pontos de customização (referência, não fluxo de menu)
-
-| Tipo | Base | APIs típicas |
-|---|---|---|
-| InicioCalculoColaborador | `InicioCalculoColaborador` | `getMarcacoes`, `getTrocaHorario`, `incluirTrocaHorario`, `Periodo.getInstance` |
-| AposGravarApuracao | `AposGravarApuracao` | `isTelaAcerto`, `getDiasCalculados`, `isUltimoColaborador` |
-| Manutenção BH | `RegraManutencaoBH` | `getLancamentos()` → `ILancamentoBH` |
-| Fechamento BH | `RegraFechamentoBH` | `getBancoHoras`, `getDataFinal`, `realizarFechamento` |
-| ContextoGeralRH | qualquer regra | `getUsuarioAtivo`, `getUsuarioColaborador`, `getSaldoBancoHoras`, `getMesData` |
-
-### Checklist pré-entrega (operacional)
-
-- [ ] `execute()` sem `throws Exception`
-- [ ] `import com.senior.dataset.IEntity` (não `g5…`)
-- [ ] Sem `.sc` em `R*`; `.sc` JSON com `{`; `id` = filename
-- [ ] `MarcacaoRegra.getData().toLocalDate()`; MarcacaoAnterior só `diferencaMinutos`
-- [ ] TipCon via SQL; IDs usuário `long`
-- [ ] Filename = classe; auxiliares no nível da classe
-- [ ] ICursor `close` no `finally`; DBCenter `session.close`; ContextSession **sem** close
-
-### Itens pendentes / bloqueados até SDK (⛔)
-
-| Item | Status |
-|---|---|
-| Package/enum completo `TipoHoraExtra` | ⛔ **Bloqueado até SDK** — usar só valores já citados no catálogo (`TipoIntervalo` etc.); demais → `validacao_manual` + perguntar enum do projeto. **Não** inventar como `confirmada`. |
-| `@Transactional` vs container | ⛔ **Bloqueado até SDK** — **não** anotar `@Transactional` sem evidência do projeto; deixar ao container. |
-| `isNull`/`setNull` em `LocalDate` de IEntity | Template IEntity = `padrao_compilacao`; se o SDK do projeto divergir → `validacao_manual`. |
-| Capitalização getters `USU_*` | **Norma fechada** (ver Acesso a dados): espelhar nome do campo — fora desta tabela. |
-
-Sem jar/docs/projeto de referência, o teto de maturidade do treinamento fica **~9.x**; nota **10** exige fechar os ⛔ com evidência de SDK.
-
-Não inventar itens ⛔ como `confirmada`.
-
-## Goldens ponta a ponta (sanitizados)
-
-Referência obrigatória da Skill 1. Cada golden: LSP → inventário resumido → Java → checks Skill 5 esperados.
-
-### G-SIT — HorSit / minutos
-
-**LSP**
-```text
-Definir Numero nMin;
-nMin = HorSit[1];
-HorSit[1] = nMin + 60;
-```
-
-**Inventário:** `HorSit[1]` → `getHorSit`/`setHorSit`; evidência `confirmada`; contexto `apuracao`.
-
-**Java**
-```java
-@Rule(description = "G-SIT sanitizado")
-public class RegraGSIT extends Apuracao {
-    @Override
-    public void execute() {
-        ContextoApuracao ctx = getContainer().getContextoApuracao();
-        int nMin = ctx.getHorSit(1);
-        ctx.setHorSit(1, nMin + 60);
-    }
-}
-```
-
-**Skill 5:** PASS `CHK-SITAPI`, `CHK-MIN`, `CHK-THROWS`, `CHK-STUB`. FAIL se `getSituacao().setMinutos`.
-
-### G-CUR — cursor R* (API / ContextSession, sem `.sc`)
-
-**LSP**
-```text
-Definir Alfa aNomEmp;
-CriarCursor('R030EMP');
-AbrirCursor('R030EMP');
-// leitura NomEmp ...
-FecharCursor('R030EMP');
-```
-
-**Inventário:** cursor `R030EMP` nativo → **não** `.sc`; preferir API/readonly; fallback ContextSession; evidência `padrao_compilacao`.
-
-**Java (padrão ContextSession se sem API semântica)**
-```java
-@Rule(description = "G-CUR sanitizado")
-public class RegraGCUR extends Apuracao {
-    @Override
-    public void execute() {
-        ContextoApuracao ctx = getContainer().getContextoApuracao();
-        String aNomEmp = "";
-        try {
-            IResultSet rs = ContextSession.getSession().executeQuery(
-                "SELECT NOMEMP FROM R030EMP WHERE NUMEMP = ?",
-                ctx.getColaborador().getNumEmp());
-            if (rs.next()) {
-                aNomEmp = rs.getString(0);
-            }
-        } catch (Exception ex) {
-            ctx.mensagemLog("Erro G-CUR: " + ex.getMessage());
-        }
-        // ContextSession: não fechar sessão do container
-    }
-}
-```
-
-**Skill 5:** PASS `CHK-SCNAT` (sem `.sc` em `R*`), `CHK-SQL2`, `CHK-DBSESS`, `CHK-STUB`. Preferir API readonly/`getDefinicao…` quando existir no catálogo.
-
-### G-USU — USU_* + I* + `.sc`
-
-**LSP**
-```text
-Definir Numero nCod;
-CriarCursor('USU_TExemplo');
-AbrirCursor('USU_TExemplo');
-// lê USU_CodEmp ...
-FecharCursor('USU_TExemplo');
-```
-
-**Inventário:** `USU_TExemplo` custom → `IUsuTExemplo` + `ScUsuTExemplo.sc` + ICursor; evidência `padrao_compilacao`.
-
-**Java (classe)**
-```java
-@Rule(description = "G-USU sanitizado")
-public class RegraGUSU extends Apuracao {
-    @Override
-    public void execute() {
-        ContextoApuracao ctx = getContainer().getContextoApuracao();
-        ICursor<IUsuTExemplo> cur = getContainer().getEntitySession().newCursor(IUsuTExemplo.class);
-        try {
-            cur.addFilter("USU_CodEmp = :e",
-                new MappedParamProvider("e", ctx.getColaborador().getNumEmp()));
-            cur.open();
-            if (cur.first()) {
-                IUsuTExemplo row = cur.read();
-                int nCod = row.isUSU_CodEmpNull() ? 0 : row.getUSU_CodEmp();
-                ctx.mensagemLog("USU_CodEmp=" + nCod);
-            }
-        } finally {
-            cur.close();
-        }
-    }
-}
-```
-
-**Interface (trecho):** `getUSU_CodEmp` / `setUSU_CodEmp` espelhando o campo.  
-**`.sc`:** JSON começando com `{`; `"id": "ScUsuTExemplo"` = filename sem extensão; `entity` = package+interface; **somente** `USU_*`.
-
-**Skill 5:** PASS `CHK-FIN`, `CHK-SCJSON`, `CHK-SCID`, `CHK-SCNAT`, `CHK-STUB`.
-
-### G-MIX — HorSit + cursor R* + USU_* (mesma regra)
-
-**LSP**
-```text
-Definir Numero nMin;
-Definir Alfa aNomEmp;
-Definir Numero nCod;
-nMin = HorSit[1];
-CriarCursor('R030EMP');
-AbrirCursor('R030EMP');
-// leitura NomEmp ...
-FecharCursor('R030EMP');
-CriarCursor('USU_TExemplo');
-AbrirCursor('USU_TExemplo');
-// lê USU_CodEmp ...
-FecharCursor('USU_TExemplo');
-HorSit[1] = nMin + 30;
-```
-
-**Inventário (obrigatório separar):**
-| Item | Destino | Evidência |
-|---|---|---|
-| `HorSit[1]` | `getHorSit`/`setHorSit` | `confirmada` |
-| `R030EMP` | ContextSession/API — **sem** `.sc` | `padrao_compilacao` |
-| `USU_TExemplo` | ICursor + `IUsuTExemplo` + `ScUsuTExemplo.sc` | `padrao_compilacao` |
-
-**Java (esqueleto sanitizado — uma classe; auxiliares no nível da classe)**
-```java
-@Rule(description = "G-MIX sanitizado")
-public class RegraGMIX extends Apuracao {
-    @Override
-    public void execute() {
-        ContextoApuracao ctx = getContainer().getContextoApuracao();
-        int nMin = ctx.getHorSit(1);
-        String aNomEmp = lerNomEmp(ctx);
-        int nCod = lerUsuCodEmp(ctx);
-        ctx.setHorSit(1, nMin + 30);
-        ctx.mensagemLog("emp=" + aNomEmp + " usuCod=" + nCod);
-    }
-
-    private String lerNomEmp(ContextoApuracao ctx) {
-        try {
-            IResultSet rs = ContextSession.getSession().executeQuery(
-                "SELECT NOMEMP FROM R030EMP WHERE NUMEMP = ?",
-                ctx.getColaborador().getNumEmp());
-            if (rs.next()) {
-                return rs.getString(0);
-            }
-        } catch (Exception ex) {
-            ctx.mensagemLog("Erro G-MIX R*: " + ex.getMessage());
-        }
-        return "";
-    }
-
-    private int lerUsuCodEmp(ContextoApuracao ctx) {
-        ICursor<IUsuTExemplo> cur = getContainer().getEntitySession().newCursor(IUsuTExemplo.class);
-        try {
-            cur.addFilter("USU_CodEmp = :e",
-                new MappedParamProvider("e", ctx.getColaborador().getNumEmp()));
-            cur.open();
-            if (cur.first()) {
-                IUsuTExemplo row = cur.read();
-                return row.isUSU_CodEmpNull() ? 0 : row.getUSU_CodEmp();
-            }
-        } finally {
-            cur.close();
-        }
-        return 0;
-    }
-}
-```
-
-**Também emitir:** `IUsuTExemplo.java` + `ScUsuTExemplo.sc` (só `USU_*`). **Nunca** `.sc` para `R030EMP`.
-
-**Skill 5:** PASS `CHK-SITAPI`, `CHK-SCNAT`, `CHK-FIN`, `CHK-SCID`, `CHK-STUB`, `CHK-NEST`. FAIL se misturar `.sc` em `R*` ou `getSituacao().setMinutos`.
 
 ## Saída para a Skill 1
 
@@ -1077,4 +363,4 @@ limite: ...
 
 ## Relacionados
 
-Skill 2 (URLs/aliases) · Skill 1 · Skill 5 (`CHK-SITAPI`, `CHK-THROWS`, `CHK-SCNAT`, `CHK-TIPCON`, `CHK-MARANT`, …)
+Skill 2 (URLs/aliases) · Skill 1 · Skill 5 · referências `skill-03-referencia-catalogo.md` · `skill-03-referencia-acesso-dados.md` · `skill-03-referencia-exemplos-goldens.md`

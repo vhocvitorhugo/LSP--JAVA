@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP--JAVA-v1.9-success?style=for-the-badge" alt="LSP→JAVA v1.9" />
+  <img src="https://img.shields.io/badge/LSP--JAVA-v1.10-success?style=for-the-badge" alt="LSP→JAVA v1.10" />
 </p>
 
 ---
@@ -19,7 +19,7 @@ O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** 
 
 Ele **não** é uma aplicação web nem um compilador: é o **treinamento** (Markdown) que um assistente de IA carrega para converter regras com inventário, evidência, Java consolidado e gate de conformidade.
 
-**Versão atual: v1.9** — Skill 2 só com links do projeto (equivalência HCM, índice, sintaxe LSP, SQL em regra + aliases HCM); removidos WS/FTP/AD/eventos/ERP. Mantém v1.8 (TODO, G-MIX, gate com evidência, Java primeiro). Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
+**Versão atual: v1.10** — alinhamento [Agent Skills](https://agentskills.io/home) / [skills.sh](https://www.skills.sh/): Skill 3 com **progressive disclosure** (núcleo + `skill-03-referencia-*`); Router/Skill 4 com Saída/Relacionados/Quando usar. Mantém Java primeiro, TODO, G-MIX, gate com evidência e Skill 2 enxuta. Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
 
 **Para quem:** analistas e desenvolvedores que migram regras LSP de ponto para Java no ecossistema Senior.
 
@@ -96,7 +96,7 @@ SENÃO                                        → BOAS-VINDAS
 2. Skill 1 — inventário + mapeamento internos (não publica resposta só-inventário)
 3. Skill 1 — gera rascunho Java completo (TODO+sugestão se API desconhecida; sem inventar confirmada)
 4. Formato: canvas/documento se pedido; senão padrão bloco único (sem perguntar)
-5. Consulta Skill 3 por índice símbolo→seção; Skill 2 só para links
+5. Consulta Skill 3: núcleo + referência catalogo/acesso/exemplos-goldens **só por âncora**; Skill 2 só para links
 6. Ordem de decisão: contexto → API semântica → USU_* → R*/TipCon → validacao_manual+TODO
 7. Gate Skill 5: críticos com evidência observável + falhos/total
 8. Se FAIL: corrige na Skill 1 e reexecuta o gate (máx. 2 ciclos)
@@ -131,7 +131,7 @@ INVENTÁRIO INTERNO → RASCUNHO JAVA → Gate Skill 5 (evidência) → [FAIL? c
 | Router | [`router.md`](router.md) | Escopo, boas-vindas, evidência, carga seletiva |
 | Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Fluxo do usuário (código → análise) |
 | Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Interna — links oficiais e aliases |
-| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Interna — padrões, goldens, índice |
+| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) + [`skill-03-referencia-*.md`](skill-03-referencia-catalogo.md) | Interna — núcleo + progressive disclosure |
 | QA | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Interna — regressão do treinamento |
 | Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Gate obrigatório / auditoria |
 
@@ -147,6 +147,9 @@ Cópias em PDF (mesma versão do Markdown):
 - [`pdf/skill-01-conversao-lsp-java.pdf`](pdf/skill-01-conversao-lsp-java.pdf)
 - [`pdf/skill-02-base-documentacao-banco.pdf`](pdf/skill-02-base-documentacao-banco.pdf)
 - [`pdf/skill-03-base-conversao-lsp-java.pdf`](pdf/skill-03-base-conversao-lsp-java.pdf)
+- [`pdf/skill-03-referencia-catalogo.pdf`](pdf/skill-03-referencia-catalogo.pdf)
+- [`pdf/skill-03-referencia-acesso-dados.pdf`](pdf/skill-03-referencia-acesso-dados.pdf)
+- [`pdf/skill-03-referencia-exemplos-goldens.pdf`](pdf/skill-03-referencia-exemplos-goldens.pdf)
 - [`pdf/skill-04-testes-comportamento.pdf`](pdf/skill-04-testes-comportamento.pdf)
 - [`pdf/skill-05-check-deterministico.pdf`](pdf/skill-05-check-deterministico.pdf)
 
@@ -156,7 +159,8 @@ Cópias em PDF (mesma versão do Markdown):
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.9** | Skill 2: só links LSP→Java HCM/Ponto (remove WS/FTP/AD/eventos/ERP) |
+| **v1.10** | Agent Skills: Skill 3 progressive disclosure; Router/Skill 4 seções Saída/Quando usar; AGENTS alinhado |
+| v1.9 | Skill 2: só links LSP→Java HCM/Ponto (remove WS/FTP/AD/eventos/ERP) |
 | v1.8 | TODO desempate; G-MIX + índice Skill 3; gate com evidência; Skill 4 folha/fixtures; PDF router; carga seletiva |
 | v1.7 | Código Java primeiro, inventário/análise depois; default bloco único sem Fase B bloqueante |
 | v1.6 | Goldens G-SIT/G-CUR/G-USU; CHK-STUB; cartão de decisão; Logico/Escolha; bloqueio SDK explícito |

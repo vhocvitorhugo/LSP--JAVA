@@ -8,7 +8,13 @@ disable-model-invocation: true
 ---
 
 # Skill 4 · Testes de Comportamento
-Versão: v1.9 · QA interno · `skill-04-testes-comportamento.md`
+Versão: v1.10 · QA interno · `skill-04-testes-comportamento.md`
+
+## Quando usar / não usar
+
+| Usar | Não usar |
+|---|---|
+| Manter ou validar o treinamento após mudança em Router/skills (pós-bump) | Atendimento ao usuário final; conversão LSP→Java; auditoria de artefato (Skill 5) |
 
 | Papel | Regra |
 |---|---|
@@ -181,6 +187,16 @@ PASS: uma classe consolidada; auxiliares no nível da classe; sem fracionar cód
 
 Caso 4 cobre o gate; não duplicar “publicar sem Skill 5” como caso separado.
 
+## Saída (folha de corrida)
+
+```text
+| # | Resultado | Evidência curta |
+|---|---|---|
+| … | PASS/FAIL | … |
+Suite: PASS | FAIL
+Folha Skill 4: N/N
+```
+
 ## Relacionados
 
-Router · Skill 1 · Skill 3 (goldens G-SIT/G-CUR/G-USU/G-MIX) · Skill 5 (`CHK-STUB`, evidência por crítico)
+Router · Skill 1 · Skill 3 (núcleo + goldens em `skill-03-referencia-exemplos-goldens.md`) · Skill 5 (`CHK-STUB`, evidência por crítico)

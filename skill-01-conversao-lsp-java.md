@@ -9,7 +9,7 @@ description: >-
 ---
 
 # Skill 1 · Conversão LSP → Java
-Versão: v1.9 · Arquivo: `skill-01-conversao-lsp-java.md`
+Versão: v1.10 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -31,7 +31,7 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 4. **Desempate (não invente × Java completo):** sempre gerar o bloco completo. Se a API/assinatura for desconhecida → `validacao_manual` **e** no código `// TODO: <problema> — Sugestão: <caminho>`. **Proibido** omitir o trecho. **Proibido** marcar assinatura inventada como `confirmada`.  
 5. Ordem de parâmetros não se presume igual à LSP.  
 6. SQL/cursor → API semântica antes de EntitySession; tabela **`USU_*`** sem API → ICursor+`.sc` (Skill 3).  
-7. Skill 2 obrigatória para docs; Skill 3 obrigatória em HCM/Ponto (consultar por **índice/âncora**, não o arquivo inteiro); **Skill 2 prevalece** em conflito.  
+7. Skill 2 obrigatória para docs; Skill 3 obrigatória em HCM/Ponto (núcleo + **referências sob demanda** `skill-03-referencia-*`; não ler o catálogo inteiro); **Skill 2 prevalece** em conflito.  
 8. Rascunho → **gate Skill 5** → publicar com resumo do check (**críticos aplicáveis + evidência observável**).  
 9. Sem links de download inventados.  
 10. Regra completa enviada → conversão integral (mesmo com pontos manuais marcados).  
@@ -50,7 +50,7 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 | 4 | `R*` / TipCon / SQL nativo? | ContextSession (SELECT) ou DBCenter (DML) — **nunca** getter inventado |
 | 5 | Ainda sem equivalência? | `validacao_manual` + `// TODO: … — Sugestão: …` — **sem omitir o bloco** |
 
-Goldens de referência (Skill 3): **G-SIT** (HorSit), **G-CUR** (cursor/`R*`), **G-USU** (`USU_*`+`.sc`), **G-MIX** (situação + `R*` + `USU_*`).
+Goldens de referência: Skill 3 → `skill-03-referencia-exemplos-goldens.md` (**G-SIT**, **G-CUR**, **G-USU**, **G-MIX**).
 
 ## Fases (processamento interno → publicação)
 
@@ -115,7 +115,7 @@ Regras: End → retorno; arrays → métodos/coleções; horas → minutos (`14:
 ## Instruções
 
 1. Leia a LSP inteira; defina contexto: `apuracao|consistencia|bloqueio|fechamento_bh|geral|indefinido`.  
-2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**índice símbolo → seção** + catálogo + acesso a dados + armadilhas).  
+2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**núcleo** + referência catalogo/acesso/exemplos-goldens conforme âncora).  
 3. Monte inventário interno; mapeie com `confirmada|padrao_compilacao|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual`.  
 4. Mecânica antes da sintaxe (Skill 3: A→H).  
 5. Gere rascunho Java completo (desempate TODO se necessário); gate (Skill 5: **críticos primeiro** com evidência).  

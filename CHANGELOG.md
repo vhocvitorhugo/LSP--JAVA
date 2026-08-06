@@ -1,5 +1,24 @@
 # Changelog — LSP→JAVA
 
+## [v1.10] — Atualização de 06/08/2026
+Versão: **v1.9 → v1.10**
+
+### features
+- Skill 3 em **progressive disclosure** (Agent Skills): núcleo `skill-03-base-conversao-lsp-java.md` (~367 linhas) + referências `skill-03-referencia-catalogo.md`, `skill-03-referencia-acesso-dados.md`, `skill-03-referencia-exemplos-goldens.md`.
+
+### improvements
+- Router: seções **Saída** e **Relacionados**; carga seletiva aponta para `skill-03-referencia-*`.
+- Skill 4: **Quando usar / não usar** + **Saída** (folha de corrida).
+- AGENTS.md: adaptação explícita do padrão agentskills.io / skills.sh (layout flat, frontmatter, progressive disclosure).
+
+### technicalNotes
+- Alinhamento agentskills.io: frontmatter válido; corpo núcleo Skill 3 com menos de 500 linhas; referências sob demanda.
+- Layout permanece flat na raiz (adaptação documentada; não migra para pastas `SKILL.md`).
+- Suite Skill 4 crítica: PASS (casos 21/23/24/25 — goldens agora em referencia-exemplos-goldens).
+- Folha Skill 4: 4/4 casos goldens com evidência de caminho atualizado.
+- Links Skill 2: ok (sem alteração de URLs).
+- Paridade v1.10; PDFs regenerados (router + skills 01–05 + referências 03).
+
 ## [v1.9] — Atualização de 06/08/2026
 Versão: **v1.8 → v1.9**
 
