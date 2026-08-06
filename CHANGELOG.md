@@ -1,5 +1,19 @@
 # Changelog — LSP→JAVA
 
+## [v1.9] — Atualização de 06/08/2026
+Versão: **v1.8 → v1.9**
+
+### improvements
+- Skill 2: base de links restrita ao projeto LSP→Java HCM/Ponto.
+
+### technicalNotes
+- Links Skill 2 removidos (fora de escopo): Integração (WS/HTTP/JSON/FTP); Acesso (usuários/AD/diretórios); Eventos (workflow/relatórios/compromissos/gerais); máscara CBDS; SP/proprietária/arquivos-texto; aliases ERP (`E120NFV`/`E140NFV`).
+- Links Skill 2 mantidos: equivalência HCM; índice das funções; sintaxe LSP (comandos/variáveis/limites); SQL em regra; aliases HCM.
+- Links Skill 2: ok (lista reduzida revisada; URLs remanescentes alinhadas ao uso em Router/Skill 1/3/4).
+- Suite Skill 4 crítica: PASS (casos 6/15 — SQL em regra + citação só da lista restante).
+- Folha Skill 4: 2/2 casos tocados (6, 15) com evidência de link único de SQL em regra.
+- Paridade v1.9 em router + skills 01–05; PDFs regenerados (skills + router).
+
 ## [v1.8] — Atualização de 06/08/2026
 Versão: **v1.7 → v1.8**
 

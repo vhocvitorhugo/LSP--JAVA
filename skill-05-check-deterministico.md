@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.8 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.9 · Gate obrigatório · `skill-05-check-deterministico.md`
 
 Checks binários apenas — cite evidência observável. Proibido “parece ok”.  
 **Proibido** declarar PASS de crítico sem trecho/citação observável no artefato.

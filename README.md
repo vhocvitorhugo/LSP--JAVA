@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP--JAVA-v1.8-success?style=for-the-badge" alt="LSP→JAVA v1.8" />
+  <img src="https://img.shields.io/badge/LSP--JAVA-v1.9-success?style=for-the-badge" alt="LSP→JAVA v1.9" />
 </p>
 
 ---
@@ -19,7 +19,7 @@ O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** 
 
 Ele **não** é uma aplicação web nem um compilador: é o **treinamento** (Markdown) que um assistente de IA carrega para converter regras com inventário, evidência, Java consolidado e gate de conformidade.
 
-**Versão atual: v1.8** — desempate TODO (nunca omitir bloco / nunca inventar `confirmada`); índice símbolo→seção + golden **G-MIX** na Skill 3; gate Skill 5 com **evidência por crítico**; Skill 4 com folha de corrida e fixtures F-TODO/F-MIX/F-LONG; carga seletiva de contexto; PDF do Router. Mantém Java primeiro / análise depois e default `bloco único`. Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
+**Versão atual: v1.9** — Skill 2 só com links do projeto (equivalência HCM, índice, sintaxe LSP, SQL em regra + aliases HCM); removidos WS/FTP/AD/eventos/ERP. Mantém v1.8 (TODO, G-MIX, gate com evidência, Java primeiro). Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
 
 **Para quem:** analistas e desenvolvedores que migram regras LSP de ponto para Java no ecossistema Senior.
 
@@ -156,7 +156,8 @@ Cópias em PDF (mesma versão do Markdown):
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.8** | TODO desempate; G-MIX + índice Skill 3; gate com evidência; Skill 4 folha/fixtures; PDF router; carga seletiva |
+| **v1.9** | Skill 2: só links LSP→Java HCM/Ponto (remove WS/FTP/AD/eventos/ERP) |
+| v1.8 | TODO desempate; G-MIX + índice Skill 3; gate com evidência; Skill 4 folha/fixtures; PDF router; carga seletiva |
 | v1.7 | Código Java primeiro, inventário/análise depois; default bloco único sem Fase B bloqueante |
 | v1.6 | Goldens G-SIT/G-CUR/G-USU; CHK-STUB; cartão de decisão; Logico/Escolha; bloqueio SDK explícito |
 | v1.5 | README público (quick start/pipeline); checklist Router Skills 2/3 + gate 5 |
