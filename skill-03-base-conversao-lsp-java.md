@@ -8,7 +8,7 @@ description: >-
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.7 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.8 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 
@@ -47,7 +47,7 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | CalculaQtdMinutos / interjornada / TipCon SQL | Exemplos sanitizados |
 | Templates IEntity / `.sc` / DBCenter | Acesso a dados |
 | VaPara / operadores | Tipos e sintaxe |
-| Goldens G-SIT / G-CUR / G-USU | Goldens ponta a ponta |
+| Goldens G-SIT / G-CUR / G-USU / G-MIX | Goldens ponta a ponta |
 | InicioCalculo / AposGravar | Outros pontos |
 | ⛔ SDK / ⚠️ pendente | Itens pendentes (SDK) |
 | Campos LSP conflitantes | Tabela conflitantes |
@@ -63,6 +63,28 @@ Não leia o catálogo inteiro de ponta a ponta. Localize a **família** no índi
 | Cursor `R*` / `CriarCursor` | Acesso a dados + **G-CUR** (API primeiro) |
 | `VaPara` / labels | Tipos e sintaxe → VaPara |
 | INSERT/UPDATE/DELETE | DBCenter (não ContextSession) |
+| Situação + `R*` + `USU_*` juntos | **G-MIX** |
+
+### Índice símbolo LSP → seção (busca rápida)
+
+| Símbolo / gatilho LSP | Seção |
+|---|---|
+| `HorSit` / `setHorSit` / situação / minutos | Catálogo → Situações / HorSit · **G-SIT** · Exemplos HorSit |
+| `FPxMar` / `FLeMar` / `MarcacaoAnterior` / marcações | Catálogo → Marcações · Exemplos · `CHK-MARANT` |
+| `TipCon` / `R034FUN` | Campos conflitantes · Exemplos TipCon via ContextSession |
+| `CriarCursor` / `AbrirCursor` / `R030EMP` / `R014SIN` / `R*` | Acesso a dados · **G-CUR** (sem `.sc`) |
+| `USU_*` / tabela custom | Acesso a dados · templates IEntity/`.sc` · **G-USU** |
+| `HorSit` + `R*` + `USU_*` na mesma regra | **G-MIX** |
+| `DatPro` / `HorSis` / data sistema | Catálogo → Data / sistema |
+| `TotSit` / totalizador | Catálogo → Situações / totalizadores |
+| `VaPara` / labels | Tipos e sintaxe → VaPara |
+| `Escolha` / `Caso` / `Logico` | Tipos e sintaxe |
+| `End` / múltiplos retornos | Exemplos End → retorno |
+| `ExecSQL` / INSERT/UPDATE/DELETE | DBCenter · **nunca** Senior SQL 2 |
+| `Mensagem(` | Restrições · `mensagemLog` / exceção de domínio |
+| `InicioCalculo` / `AposGravar` | Outros pontos de customização |
+| `TipoHoraExtra` / `@Transactional` | Itens pendentes (SDK) ⛔ |
+| Método ausente no catálogo | Skill 2 Índice das Funções → `validacao_manual` + TODO (Skill 1) |
 
 ## Fontes oficiais
 
@@ -965,6 +987,82 @@ public class RegraGUSU extends Apuracao {
 **`.sc`:** JSON começando com `{`; `"id": "ScUsuTExemplo"` = filename sem extensão; `entity` = package+interface; **somente** `USU_*`.
 
 **Skill 5:** PASS `CHK-FIN`, `CHK-SCJSON`, `CHK-SCID`, `CHK-SCNAT`, `CHK-STUB`.
+
+### G-MIX — HorSit + cursor R* + USU_* (mesma regra)
+
+**LSP**
+```text
+Definir Numero nMin;
+Definir Alfa aNomEmp;
+Definir Numero nCod;
+nMin = HorSit[1];
+CriarCursor('R030EMP');
+AbrirCursor('R030EMP');
+// leitura NomEmp ...
+FecharCursor('R030EMP');
+CriarCursor('USU_TExemplo');
+AbrirCursor('USU_TExemplo');
+// lê USU_CodEmp ...
+FecharCursor('USU_TExemplo');
+HorSit[1] = nMin + 30;
+```
+
+**Inventário (obrigatório separar):**
+| Item | Destino | Evidência |
+|---|---|---|
+| `HorSit[1]` | `getHorSit`/`setHorSit` | `confirmada` |
+| `R030EMP` | ContextSession/API — **sem** `.sc` | `padrao_compilacao` |
+| `USU_TExemplo` | ICursor + `IUsuTExemplo` + `ScUsuTExemplo.sc` | `padrao_compilacao` |
+
+**Java (esqueleto sanitizado — uma classe; auxiliares no nível da classe)**
+```java
+@Rule(description = "G-MIX sanitizado")
+public class RegraGMIX extends Apuracao {
+    @Override
+    public void execute() {
+        ContextoApuracao ctx = getContainer().getContextoApuracao();
+        int nMin = ctx.getHorSit(1);
+        String aNomEmp = lerNomEmp(ctx);
+        int nCod = lerUsuCodEmp(ctx);
+        ctx.setHorSit(1, nMin + 30);
+        ctx.mensagemLog("emp=" + aNomEmp + " usuCod=" + nCod);
+    }
+
+    private String lerNomEmp(ContextoApuracao ctx) {
+        try {
+            IResultSet rs = ContextSession.getSession().executeQuery(
+                "SELECT NOMEMP FROM R030EMP WHERE NUMEMP = ?",
+                ctx.getColaborador().getNumEmp());
+            if (rs.next()) {
+                return rs.getString(0);
+            }
+        } catch (Exception ex) {
+            ctx.mensagemLog("Erro G-MIX R*: " + ex.getMessage());
+        }
+        return "";
+    }
+
+    private int lerUsuCodEmp(ContextoApuracao ctx) {
+        ICursor<IUsuTExemplo> cur = getContainer().getEntitySession().newCursor(IUsuTExemplo.class);
+        try {
+            cur.addFilter("USU_CodEmp = :e",
+                new MappedParamProvider("e", ctx.getColaborador().getNumEmp()));
+            cur.open();
+            if (cur.first()) {
+                IUsuTExemplo row = cur.read();
+                return row.isUSU_CodEmpNull() ? 0 : row.getUSU_CodEmp();
+            }
+        } finally {
+            cur.close();
+        }
+        return 0;
+    }
+}
+```
+
+**Também emitir:** `IUsuTExemplo.java` + `ScUsuTExemplo.sc` (só `USU_*`). **Nunca** `.sc` para `R030EMP`.
+
+**Skill 5:** PASS `CHK-SITAPI`, `CHK-SCNAT`, `CHK-FIN`, `CHK-SCID`, `CHK-STUB`, `CHK-NEST`. FAIL se misturar `.sc` em `R*` ou `getSituacao().setMinutos`.
 
 ## Saída para a Skill 1
 

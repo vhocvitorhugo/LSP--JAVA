@@ -4,11 +4,12 @@ description: >-
   Converte regras LSP Senior para Java (HCM/Gestão do Ponto) com inventário
   interno, entrega Java consolidado primeiro e análise depois. Use ao converter,
   migrar ou mapear LSP→Java. Sempre execute o gate da Skill 5 antes de publicar.
-  Prefira documentação oficial (Skill 2) aos padrões da Skill 3.
+  Prefira documentação oficial (Skill 2) aos padrões da Skill 3. Em dúvida de
+  API, use TODO com sugestão — nunca omita o bloco nem invente assinatura.
 ---
 
 # Skill 1 · Conversão LSP → Java
-Versão: v1.7 · Arquivo: `skill-01-conversao-lsp-java.md`
+Versão: v1.8 · Arquivo: `skill-01-conversao-lsp-java.md`
 
 Aplique as regras globais do Router. Preserve a **intenção funcional**, não a sintaxe literal.
 
@@ -27,16 +28,17 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 1. Com LSP + pedido de conversão → **uma resposta completa** pós-gate: **código Java primeiro**, inventário/análise **depois**. Proibido encerrar só com inventário.  
 2. Inventário e mapeamento são **obrigatórios no processamento interno** antes do rascunho Java; na resposta ao usuário o Java vem **antes** da análise.  
 3. Java só consolidado; sem pedaços / `// restante`.  
-4. Nunca invente assinaturas; desconhecido → `validacao_manual` **ou** `// TODO: problema — Sugestão: …` (nunca omitir trecho).  
+4. **Desempate (não invente × Java completo):** sempre gerar o bloco completo. Se a API/assinatura for desconhecida → `validacao_manual` **e** no código `// TODO: <problema> — Sugestão: <caminho>`. **Proibido** omitir o trecho. **Proibido** marcar assinatura inventada como `confirmada`.  
 5. Ordem de parâmetros não se presume igual à LSP.  
 6. SQL/cursor → API semântica antes de EntitySession; tabela **`USU_*`** sem API → ICursor+`.sc` (Skill 3).  
-7. Skill 2 obrigatória para docs; Skill 3 obrigatória em HCM/Ponto; **Skill 2 prevalece** em conflito.  
-8. Rascunho → **gate Skill 5** → publicar com resumo do check.  
+7. Skill 2 obrigatória para docs; Skill 3 obrigatória em HCM/Ponto (consultar por **índice/âncora**, não o arquivo inteiro); **Skill 2 prevalece** em conflito.  
+8. Rascunho → **gate Skill 5** → publicar com resumo do check (**críticos aplicáveis + evidência observável**).  
 9. Sem links de download inventados.  
 10. Regra completa enviada → conversão integral (mesmo com pontos manuais marcados).  
 11. Package = o informado pelo usuário/projeto; senão exemplo sanitizado + `validacao_manual` (nunca vazar cliente).  
-12. **Anti-stub:** exemplos da Skill 3 com corpo incompleto / “preencher depois” = **FAIL de processo** — **não copiar**. Use goldens G-SIT / G-CUR / G-USU ou implemente a lógica do LSP; gate `CHK-STUB`.  
-13. **Formato:** se o usuário pediu canvas ou documento/arquivo **real**, respeite; se omitiu → padrão **`bloco único`**. **Não** perguntar formato antes de entregar o Java.
+12. **Anti-stub:** exemplos da Skill 3 com corpo incompleto / “preencher depois” = **FAIL de processo** — **não copiar**. Use goldens G-SIT / G-CUR / G-USU / **G-MIX** ou implemente a lógica do LSP; gate `CHK-STUB`. Comentário `// TODO: … — Sugestão:` **não** é stub.  
+13. **Formato:** se o usuário pediu canvas ou documento/arquivo **real**, respeite; se omitiu → padrão **`bloco único`**. **Não** perguntar formato antes de entregar o Java.  
+14. **Regra muito longa / risco de estouro de contexto:** ainda assim **uma entrega consolidada** (não fragmentar). Preferir canvas ou arquivo **real** se o usuário pediu ou se o ambiente permitir; senão bloco único. Auxiliares `private` no nível da classe — nunca “parte 2” em mensagem seguinte.
 
 ## Cartão de decisão (ordem obrigatória)
 
@@ -46,9 +48,9 @@ Aplique as regras globais do Router. Preserve a **intenção funcional**, não a
 | 2 | Há equivalência no catálogo / doc? | API semântica do contexto (Skill 3 → Skill 2) |
 | 3 | Tabela `USU_*` custom sem API? | IEntity + `.sc` + ICursor (só após inventário interno) |
 | 4 | `R*` / TipCon / SQL nativo? | ContextSession (SELECT) ou DBCenter (DML) — **nunca** getter inventado |
-| 5 | Ainda sem equivalência? | `validacao_manual` + `// TODO: …` — **sem omitir o bloco** |
+| 5 | Ainda sem equivalência? | `validacao_manual` + `// TODO: … — Sugestão: …` — **sem omitir o bloco** |
 
-Goldens de referência (Skill 3): **G-SIT** (HorSit), **G-CUR** (cursor/`R*`), **G-USU** (`USU_*`+`.sc`).
+Goldens de referência (Skill 3): **G-SIT** (HorSit), **G-CUR** (cursor/`R*`), **G-USU** (`USU_*`+`.sc`), **G-MIX** (situação + `R*` + `USU_*`).
 
 ## Fases (processamento interno → publicação)
 
@@ -70,7 +72,7 @@ Não existe Fase B bloqueante. Formato omitido = `bloco único`.
 1. **Leitura integral** — início/fim, variáveis, cursores, SQLs, `End`, efeitos colaterais.  
 2. **Inventário + plano lógico** (interno) — blocos (init, validações, consultas, negócio, situações, retorno); o plano **não** autoriza entregar Java em partes.  
 3. **Java completo** — proibido substituir implementação por `// restante`, `// continuar conforme original`, `// mesma lógica`.  
-4. **Gate Skill 5** — corrige até 2 ciclos se necessário.  
+4. **Gate Skill 5** — corrige até 2 ciclos se necessário; críticos com evidência.  
 5. **Publicar** na ordem: código → análise → consolidação + check.  
 6. **Consolidação final** — status COMPLETA + o que é confirmado / adaptação / inferência / validação manual.
 
@@ -113,13 +115,13 @@ Regras: End → retorno; arrays → métodos/coleções; horas → minutos (`14:
 ## Instruções
 
 1. Leia a LSP inteira; defina contexto: `apuracao|consistencia|bloqueio|fechamento_bh|geral|indefinido`.  
-2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**mecânica + catálogo + acesso a dados + armadilhas**).  
+2. Consulte Skill 2 (**URLs/aliases**) e Skill 3 (**índice símbolo → seção** + catálogo + acesso a dados + armadilhas).  
 3. Monte inventário interno; mapeie com `confirmada|padrao_compilacao|adaptacao_arquitetural|padrao_anexo|inferencia|validacao_manual`.  
 4. Mecânica antes da sintaxe (Skill 3: A→H).  
-5. Gere rascunho Java completo; gate (Skill 5: **críticos primeiro**, incl. CHK-THROWS / CHK-SCNAT / CHK-SCID / CHK-STUB / CHK-TIPCON / CHK-MARANT quando aplicáveis).  
+5. Gere rascunho Java completo (desempate TODO se necessário); gate (Skill 5: **críticos primeiro** com evidência).  
 6. Publique: **código primeiro**, depois objetivo/inventário/mapeamento e fechamento.
 
-Âncoras: Skill 3 — catálogo + templates IEntity/`.sc` (seção Acesso a dados) + `getHorSit`/`TipCon`/`MarcacaoRegra`.  
+Âncoras: Skill 3 — índice de símbolos + templates IEntity/`.sc` + `getHorSit`/`TipCon`/`MarcacaoRegra`.  
 **Não** usar `getSituacao(...).getMinutos()/setMinutos(...)`.  
 Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()`.
 
@@ -127,8 +129,8 @@ Cursor `R014SIN`/`R030EMP` → `CodDsi` → `getDefinicaoSituacoes().getCodigo()
 
 - [ ] Li a regra inteira e nomeei o contexto?  
 - [ ] Inventário interno cobre variáveis/funções/arrays/`End`/cursores/SQLs/`USU_*`?  
-- [ ] Consultei Skills 2 e 3 (templates IEntity/`.sc`, armadilhas Eclipse)?  
-- [ ] Classifiquei evidências?  
+- [ ] Consultei Skills 2 e 3 por âncora (templates IEntity/`.sc`, armadilhas Eclipse)?  
+- [ ] Classifiquei evidências? Desconhecidos com TODO + sugestão?  
 - [ ] API semântica antes de EntitySession (ou USU_* justificado)?  
 - [ ] `execute()` sem throws; auxiliares não aninhados?  
 - [ ] Se `.sc`: JSON com `{`; `id` = filename sem extensão; só `USU_*`?  
@@ -163,6 +165,10 @@ Origem: Skill 1
 Ciclos de correção: 0|1|2
 Críticos: PASS | FAIL [IDs] · falhos/total = n/n
 Demais: falhos/total = n/n
+### Críticos aplicáveis (obrigatório)
+| ID | Resultado | Evidência (trecho observável) |
+|---|---|---|
+| CHK-… | PASS/FAIL/N/A | … |
 Falhas remanescentes: ...
 
 + continuidade
@@ -174,10 +180,22 @@ Inventário e mapeamento **devem** aparecer na resposta (seção 2), mas **nunca
 ## Exemplos
 
 **Conversão sem formato:** “converta [LSP]” → inventário interno → Java + análise na mesma mensagem (`bloco único`) + gate; **não** perguntar formato.  
-**Formato explícito:** “no canvas, regra toda” → mesma entrega no canvas + gate.  
+
+**API desconhecida (desempate TODO):**
+```text
+LSP: XYZInexistente(nCod);
+```
+```java
+// TODO: XYZInexistente sem equivalência no catálogo/Skill 2 —
+// Sugestão: validar no Índice das Funções do contexto ou substituir por API do módulo.
+ctx.mensagemLog("validacao_manual: XYZInexistente(nCod) nao mapeado");
+```
+Inventário: evidência `validacao_manual`. **Não** inventar `ctx.xyzInexistente(...)`.
+
 **USU_*:** inventário interno marca cursor custom → classe + `I*` + `.sc` no bloco de código; análise depois.  
+**G-MIX:** regra com HorSit + `R*` + `USU_*` → seguir golden Skill 3.  
 **Sem LSP:** peça o artefato; sem Java.  
-**Não faça:** resposta só-inventário; perguntar formato antes do Java; publicar sem Skill 5; inventar método; `.sc` em `R*`; entregar em partes; `// restante`; copiar stub da Skill 3.
+**Não faça:** resposta só-inventário; perguntar formato antes do Java; publicar sem Skill 5; inventar método como `confirmada`; `.sc` em `R*`; entregar em partes; `// restante`; copiar stub da Skill 3.
 
 ## Relacionados
 

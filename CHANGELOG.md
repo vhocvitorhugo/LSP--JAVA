@@ -1,5 +1,26 @@
 # Changelog — LSP→JAVA
 
+## [v1.8] — Atualização de 06/08/2026
+Versão: **v1.7 → v1.8**
+
+### features
+- Skill 1 / Router: **desempate TODO** (`// TODO: problema — Sugestão:`) — bloco completo sem inventar `confirmada`.
+- Skill 3: **índice símbolo LSP → seção** + golden **G-MIX** (HorSit + `R*` + `USU_*`).
+- Skill 5: resumo do gate exige **tabela de críticos aplicáveis + evidência observável** (sem evidência → INCOMPLETO).
+- Skill 4: **folha de corrida** pós-bump; fixtures **F-TODO / F-MIX / F-LONG**; casos 25–27.
+- PDF do **Router** (`pdf/router.pdf`) + carga seletiva de contexto no Router.
+
+### improvements
+- Política de regra longa: entrega consolidada; preferir canvas/arquivo real; nunca fragmentar.
+- `CHK-STUB`: TODO no formato Skill 1 = PASS (não conta como stub).
+- README / AGENTS.md locais alinhados ao pipeline inventário interno → Java → gate → código→análise (sem Fase B).
+
+### technicalNotes
+- Paridade v1.8 em router + skills 01–05; PDFs regenerados (skills + router).
+- Suite Skill 4 crítica: PASS (folha: 1,4,5,6,8,13,17/21,20/22,23,24,25,26 com evidência de alinhamento textual).
+- Folha Skill 4: 12/12 casos da matriz mínima cobertos por revisão de critérios + fixtures.
+- Links Skill 2: ok (sem alteração de URLs; paridade de versão).
+
 ## [v1.7] — Atualização de 06/08/2026
 Versão: **v1.6 → v1.7**
 

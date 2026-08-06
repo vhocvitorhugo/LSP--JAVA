@@ -4,13 +4,14 @@ description: >-
   Gate determinístico PASS/FAIL/N/A de conformidade para Java convertido na
   Skill 1. Use automaticamente após o rascunho Java antes de publicar ao
   usuário, e quando o usuário pedir auditoria/conformidade/check de um
-  artefato gerado.
+  artefato gerado. Sempre cite evidência observável por crítico aplicável.
 ---
 
 # Skill 5 · Check Determinístico
-Versão: v1.7 · Gate obrigatório · `skill-05-check-deterministico.md`
+Versão: v1.8 · Gate obrigatório · `skill-05-check-deterministico.md`
 
-Checks binários apenas — cite evidência observável. Proibido “parece ok”.
+Checks binários apenas — cite evidência observável. Proibido “parece ok”.  
+**Proibido** declarar PASS de crítico sem trecho/citação observável no artefato.
 
 ## Quando usar / não usar
 
@@ -23,7 +24,7 @@ Checks binários apenas — cite evidência observável. Proibido “parece ok�
 ```text
 1. Skill 1 monta inventário interno + RASCUNHO Java (ainda não envia)
 2. Skill 5 no modo gate_obrigatorio
-3. PASS → publica: código primeiro → análise/inventário → resumo do check
+3. PASS → publica: código primeiro → análise/inventário → resumo do check com evidências
 4. FAIL → corrige na Skill 1 → reexecuta Skill 5 (máx. 2 ciclos)
 5. Ainda FAIL → publica + FAIL transparente + IDs que falharam
 6. Pergunta de continuidade só na resposta final ao usuário
@@ -44,6 +45,18 @@ Sem gate para: boas-vindas, pedido sem artefato (só pedir LSP), recusa de escop
 ```
 
 Não marque N/A em check crítico só para “passar”. Se o artefato exige o check e falha → FAIL.
+
+### Evidência mínima por crítico (obrigatório na publicação)
+
+Para **cada** crítico aplicável (não N/A), a resposta final deve trazer:
+
+| Campo | Exigência |
+|---|---|
+| ID | ex. `CHK-STUB` |
+| Resultado | PASS / FAIL / N/A |
+| Evidência | trecho observável (linha/método/`Status`/tabela) — não opinião |
+
+Sem essa tabela → veredito **INCOMPLETO** (mesmo que o restante “pareça” ok).
 
 ## Modos
 
@@ -70,6 +83,8 @@ Não marque N/A em check crítico só para “passar”. Se o artefato exige o c
 | CHK-SCNAT | Sem descritor `.sc` para tabela `R*` nativa | `.sc` em `Rxxxxx` |
 | CHK-SCID | Se há `.sc`: campo `id` = nome do arquivo **sem extensão** | `id` divergente do filename |
 | CHK-STUB | Java publicado sem omissão disfarçada | `return new int[]{0,0}`; `// preencher`; `// mesma lógica`; `// restante`; corpo vazio onde o LSP tinha lógica |
+
+**Nota `CHK-STUB`:** `// TODO: <problema> — Sugestão: <caminho>` com bloco presente e evidência `validacao_manual` = **PASS** (não é stub).
 
 ### Demais (após críticos)
 
@@ -108,6 +123,12 @@ Origem: Skill 1
 Ciclos de correção: 0|1|2
 Críticos: PASS | FAIL [IDs] · falhos/total = n/n
 Demais: falhos/total = n/n
+### Críticos aplicáveis (obrigatório)
+| ID | Resultado | Evidência (trecho observável) |
+|---|---|---|
+| CHK-COMP | PASS | execute() completo em RegraXxx |
+| CHK-STUB | PASS | sem // restante; TODOs só no formato permitido |
+| CHK-… | … | … |
 Falhas remanescentes: nenhuma | [IDs]
 ```
 
@@ -141,7 +162,7 @@ Evidência / Bases consultadas: …
 
 ## Exemplos
 
-Gate PASS após rascunho limpo · FAIL `CHK-COMP`/`CHK-STUB`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos · Inventário/mapeamento após o código = PASS em `CHK-INV`/`CHK-MAP`.
+Gate PASS após rascunho limpo **com tabela de evidências** · FAIL `CHK-COMP`/`CHK-STUB`/`CHK-THROWS`/`CHK-SCNAT`/`CHK-SCID` → corrige ≤2 · FAIL `CHK-TIPCON`/`CHK-MARANT` · **Não** publicar sem gate · **Não** pular críticos · Inventário/mapeamento após o código = PASS em `CHK-INV`/`CHK-MAP` · PASS sem tabela de evidência = **INCOMPLETO**.
 
 ## Relacionados
 
