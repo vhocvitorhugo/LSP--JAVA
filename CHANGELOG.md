@@ -1,5 +1,18 @@
 # Changelog — LSP→JAVA
 
+## [v1.11] — Atualização de 06/08/2026
+Versão: **v1.10 → v1.11**
+
+### improvements
+- README: lista explícita das três referências Skill 3 (catálogo, acesso-dados, exemplos-goldens) na arquitetura e no passo a passo de carga.
+- README: capabilities e precedência de evidência alinhadas ao progressive disclosure.
+
+### technicalNotes
+- Paridade v1.11 em router + skills 01–05 + `skill-03-referencia-*`; PDFs regenerados.
+- Suite Skill 4 crítica: PASS (sem mudança de comportamento; só documentação pública).
+- Folha Skill 4: N/A comportamental (README only) — matriz mínima inalterada.
+- Links Skill 2: ok (sem alteração de URLs).
+
 ## [v1.10] — Atualização de 06/08/2026
 Versão: **v1.9 → v1.10**
 

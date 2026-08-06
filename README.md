@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/badge/SENIOR_SISTEMAS-HCM_%7C_ERP-blue?style=for-the-badge" alt="Senior Sistemas" />
   <img src="https://img.shields.io/badge/LSP-5.10.4-orange?style=for-the-badge" alt="LSP 5.10.4" />
   <img src="https://img.shields.io/badge/JAVA-17%2B-red?style=for-the-badge" alt="Java 17+" />
-  <img src="https://img.shields.io/badge/LSP--JAVA-v1.10-success?style=for-the-badge" alt="LSP→JAVA v1.10" />
+  <img src="https://img.shields.io/badge/LSP--JAVA-v1.11-success?style=for-the-badge" alt="LSP→JAVA v1.11" />
 </p>
 
 ---
@@ -19,7 +19,7 @@ O **LSP→JAVA** é um agente em formato **Router + Skills** focado **somente** 
 
 Ele **não** é uma aplicação web nem um compilador: é o **treinamento** (Markdown) que um assistente de IA carrega para converter regras com inventário, evidência, Java consolidado e gate de conformidade.
 
-**Versão atual: v1.10** — alinhamento [Agent Skills](https://agentskills.io/home) / [skills.sh](https://www.skills.sh/): Skill 3 com **progressive disclosure** (núcleo + `skill-03-referencia-*`); Router/Skill 4 com Saída/Relacionados/Quando usar. Mantém Java primeiro, TODO, G-MIX, gate com evidência e Skill 2 enxuta. Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
+**Versão atual: v1.11** — README com as três referências da Skill 3 explícitas (catálogo, acesso-dados, exemplos-goldens) e passo a passo de carga alinhado ao progressive disclosure. Mantém v1.10 (Agent Skills, Java primeiro, TODO, G-MIX, gate com evidência, Skill 2 enxuta). Itens de API que dependem de SDK ficam **bloqueados até validação com jar/projeto**.
 
 **Para quem:** analistas e desenvolvedores que migram regras LSP de ponto para Java no ecossistema Senior.
 
@@ -48,7 +48,7 @@ Envie a regra LSP para começar.
 
 ### Passo a passo (usuário)
 
-1. Carregue no assistente o [`router.md`](router.md) e as skills `skill-01` … `skill-05` deste repositório (no atendimento: Router + Skill 1 primeiro; Skill 3 por âncora; Skill 4 só manutenção).
+1. Carregue no assistente o [`router.md`](router.md), `skill-01` … `skill-05` e, sob demanda da Skill 3, as referências [`skill-03-referencia-catalogo.md`](skill-03-referencia-catalogo.md), [`skill-03-referencia-acesso-dados.md`](skill-03-referencia-acesso-dados.md) e [`skill-03-referencia-exemplos-goldens.md`](skill-03-referencia-exemplos-goldens.md). No atendimento: Router + Skill 1 primeiro; Skill 3 núcleo + referências **só por âncora**; Skill 4 só manutenção.
 2. Digite `inicio` / `menu` / `ajuda` (opcional) para ver as boas-vindas.
 3. Cole a regra LSP (ou anexe o arquivo) e peça para **converter** / **migrar**.
 4. Opcional: diga o formato — **canvas**, **documento/arquivo** ou **bloco único** (se omitir, usa bloco único).
@@ -115,7 +115,8 @@ INVENTÁRIO INTERNO → RASCUNHO JAVA → Gate Skill 5 (evidência) → [FAIL? c
 - Conversão LSP → Java com inventário e classificação de evidência  
 - Entrega consolidada (canvas / arquivo real / bloco único) — **código primeiro**, análise depois  
 - Desempate TODO quando falta equivalência (bloco completo, sem stub)  
-- Goldens G-SIT / G-CUR / G-USU / **G-MIX**  
+- Goldens G-SIT / G-CUR / G-USU / **G-MIX** (em [`skill-03-referencia-exemplos-goldens.md`](skill-03-referencia-exemplos-goldens.md))  
+- Skill 3 com **progressive disclosure** (núcleo + referências sob demanda)  
 - Templates `USU_*` (interface IEntity + descritor `.sc`) quando o inventário exige  
 - Proibição de **Senior SQL 2**; SQL em regra via links oficiais (Skill 2)  
 - Gate determinístico PASS/FAIL com evidência por crítico e métrica `falhos/total`  
@@ -130,12 +131,17 @@ INVENTÁRIO INTERNO → RASCUNHO JAVA → Gate Skill 5 (evidência) → [FAIL? c
 | :--- | :--- | :--- |
 | Router | [`router.md`](router.md) | Escopo, boas-vindas, evidência, carga seletiva |
 | Conversão | [`skill-01-conversao-lsp-java.md`](skill-01-conversao-lsp-java.md) | Fluxo do usuário (código → análise) |
-| Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Interna — links oficiais e aliases |
-| Catálogo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) + [`skill-03-referencia-*.md`](skill-03-referencia-catalogo.md) | Interna — núcleo + progressive disclosure |
+| Docs | [`skill-02-base-documentacao-banco.md`](skill-02-base-documentacao-banco.md) | Interna — links oficiais e aliases HCM |
+| Skill 3 — núcleo | [`skill-03-base-conversao-lsp-java.md`](skill-03-base-conversao-lsp-java.md) | Interna — restrições, workflow, tipagem, armadilhas |
+| Skill 3 — catálogo | [`skill-03-referencia-catalogo.md`](skill-03-referencia-catalogo.md) | Sob demanda — equivalência / TipCon / constantes |
+| Skill 3 — acesso a dados | [`skill-03-referencia-acesso-dados.md`](skill-03-referencia-acesso-dados.md) | Sob demanda — ICursor, `.sc`, ContextSession/DBCenter |
+| Skill 3 — exemplos/goldens | [`skill-03-referencia-exemplos-goldens.md`](skill-03-referencia-exemplos-goldens.md) | Sob demanda — G-SIT / G-CUR / G-USU / G-MIX |
 | QA | [`skill-04-testes-comportamento.md`](skill-04-testes-comportamento.md) | Interna — regressão do treinamento |
 | Gate | [`skill-05-check-deterministico.md`](skill-05-check-deterministico.md) | Gate obrigatório / auditoria |
 
-**Precedência de evidência:** docs Skill 2 → catálogo Skill 3 → padrões de compilação → anexos → validação manual.
+**Precedência de evidência:** docs Skill 2 → catálogo Skill 3 (referencia-catalogo) → padrões de compilação → anexos → validação manual.
+
+**Padrão de skills:** [Agent Skills](https://agentskills.io/home) / [skills.sh](https://www.skills.sh/) (layout flat na raiz — ver `.agents/AGENTS.md` local).
 
 ---
 
@@ -159,7 +165,8 @@ Cópias em PDF (mesma versão do Markdown):
 
 | Versão | Destaque |
 | :--- | :--- |
-| **v1.10** | Agent Skills: Skill 3 progressive disclosure; Router/Skill 4 seções Saída/Quando usar; AGENTS alinhado |
+| **v1.11** | README: referências Skill 3 explícitas + passo a passo de carga progressive disclosure |
+| v1.10 | Agent Skills: Skill 3 progressive disclosure; Router/Skill 4 seções Saída/Quando usar; AGENTS alinhado |
 | v1.9 | Skill 2: só links LSP→Java HCM/Ponto (remove WS/FTP/AD/eventos/ERP) |
 | v1.8 | TODO desempate; G-MIX + índice Skill 3; gate com evidência; Skill 4 folha/fixtures; PDF router; carga seletiva |
 | v1.7 | Código Java primeiro, inventário/análise depois; default bloco único sem Fase B bloqueante |

@@ -5,7 +5,7 @@ description: >-
 ---
 
 # Skill 3 · Referência — Exemplos e goldens
-Versão: v1.10 · Referência da Skill 3 · Progressive disclosure
+Versão: v1.11 · Referência da Skill 3 · Progressive disclosure
 
 Skill interna — carregar **somente** quando o núcleo (`skill-03-base-conversao-lsp-java.md`) indicar esta âncora. Aplique as regras globais do Router.
 

@@ -9,7 +9,7 @@ description: >-
 ---
 
 # Skill 3 · Base de Conversão LSP → Java
-Versão: v1.10 · Interna · `skill-03-base-conversao-lsp-java.md`
+Versão: v1.11 · Interna · `skill-03-base-conversao-lsp-java.md`
 
 Skill interna — **não** é fluxo de usuário. Aplique as regras globais do Router. Em conflito de assinatura, **revalide na Skill 2 / página oficial**.
 

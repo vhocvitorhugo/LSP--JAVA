@@ -8,7 +8,7 @@ disable-model-invocation: true
 ---
 
 # Skill 4 · Testes de Comportamento
-Versão: v1.10 · QA interno · `skill-04-testes-comportamento.md`
+Versão: v1.11 · QA interno · `skill-04-testes-comportamento.md`
 
 ## Quando usar / não usar
 
